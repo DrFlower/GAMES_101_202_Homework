@@ -52,18 +52,6 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     // Create the projection matrix for the given parameters.
     // Then return it.
 
-    //为了使得三角形是正着显示的，这里需要把zNear和zFar取反，并把透视矩阵乘以下面这样的矩阵
-    //参考：http://games-cn.org/forums/topic/%e4%bd%9c%e4%b8%9a%e4%b8%89%e7%9a%84%e7%89%9b%e5%80%92%e8%bf%87%e6%9d%a5%e4%ba%86/
-    zNear = -zNear;
-    zFar = -zFar;
-
-    //这里还需要
-    Eigen::Matrix4f Mt(4,4);
-    Mt << 1, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, -1, 0,
-        0, 0, 0, 1; 
-
     float angel = eye_fov / 180.0 * MY_PI;
     float t = zNear * std::tan(angel/2);
     float r = t * aspect_ratio;
@@ -90,6 +78,13 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
                 0, 0, zNear + zFar, -zNear * zFar,
                 0, 0, 1, 0;
 
+    //为了使得三角形是正着显示的，这里需要把透视矩阵乘以下面这样的矩阵
+    //参考：http://games-cn.org/forums/topic/%e4%bd%9c%e4%b8%9a%e4%b8%89%e7%9a%84%e7%89%9b%e5%80%92%e8%bf%87%e6%9d%a5%e4%ba%86/
+    Eigen::Matrix4f Mt(4,4);
+    Mt << 1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -1, 0,
+        0, 0, 0, 1; 
     Mpersp2ortho = Mpersp2ortho *Mt;
 
     projection = MorthoScale * MorthoPos * Mpersp2ortho * projection;
