@@ -33,35 +33,43 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float z
     // TODO: Copy-paste your implementation from the previous assignment.
     Eigen::Matrix4f projection;
 
-
-    float angel = eye_fov * MY_PI / 180.0;
-    float height = zNear * std::tan(angel) * 2;
-    float width = height * aspect_ratio;
-    
-    auto t = -zNear * std::tan(angel/2);
-    auto r = t * aspect_ratio;
-    auto l = -r;
-    auto b = -t;
+    float angel = eye_fov / 180.0 * MY_PI;
+    float t = zNear * std::tan(angel/2);
+    float r = t * aspect_ratio;
+    float l = -r;
+    float b = -t;
 
     Eigen::Matrix4f MorthoScale(4,4);
-    MorthoScale <<  2/(r-l),0,0,0,
-                    0,2/(t-b),0,0,
-                    0,0,2/(zNear-zFar),0,
-                    0,0,0,1;
-    
+    MorthoScale << 2/(r - l) , 0, 0, 0,
+            0, 2/(t - b) , 0, 0,
+            0, 0, 2/(zFar - zNear), 0,
+            0, 0, 0, 1;
+
     Eigen::Matrix4f MorthoPos(4,4);
-    MorthoPos << 1,0,0,-(r+l)/2,
-                0,1,0,-(t+b)/2,
-                0,0,1,-(zNear+zFar)/2,
-                0,0,0,1;
+    MorthoPos << 1, 0, 0, -(r + l)/2,
+            0, 1, 0, -(t + b)/2,
+            0, 0, 1, -(zNear + zFar)/2,
+            0, 0, 0, 1;
+    
 
     Eigen::Matrix4f Mpersp2ortho(4,4);
-    Mpersp2ortho << zNear,0,0,0,
-                    0,zNear,0,0,
-                    0,0,zNear+zFar,-zFar*zNear,
-                    0,0,1,0;
 
-    projection = MorthoScale*MorthoPos*Mpersp2ortho*projection;
+    Mpersp2ortho << zNear, 0, 0, 0,
+                0, zNear, 0, 0,
+                0, 0, zNear + zFar, -zNear * zFar,
+                0, 0, 1, 0;
+
+    //为了使得三角形是正着显示的，这里需要把透视矩阵乘以下面这样的矩阵
+    //参考：http://games-cn.org/forums/topic/%e4%bd%9c%e4%b8%9a%e4%b8%89%e7%9a%84%e7%89%9b%e5%80%92%e8%bf%87%e6%9d%a5%e4%ba%86/
+    Eigen::Matrix4f Mt(4,4);
+    Mt << 1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -1, 0,
+        0, 0, 0, 1; 
+
+    Mpersp2ortho = Mpersp2ortho *Mt;
+    
+    projection = MorthoScale * MorthoPos * Mpersp2ortho * projection;
 
     return projection;
 }
@@ -77,10 +85,10 @@ int main(int argc, const char** argv)
         command_line = true;
         filename = std::string(argv[1]);
     }
-    std::cout <<argc<<std::endl;
+
     rst::rasterizer r(700, 700);
 
-    Eigen::Vector3f eye_pos = {0,0,2};
+    Eigen::Vector3f eye_pos = {0,0,5};
 
 
     std::vector<Eigen::Vector3f> pos
@@ -90,14 +98,13 @@ int main(int argc, const char** argv)
                     {-2, 0, -2},
                     {3.5, -1, -5},
                     {2.5, 1.5, -5},
-                    {-1, 0.5, -5},
+                    {-1, 0.5, -5}
             };
 
     std::vector<Eigen::Vector3i> ind
             {
-                {3, 4, 5}, 
                     {0, 1, 2},
-                                
+                    {3, 4, 5}
             };
 
     std::vector<Eigen::Vector3f> cols
