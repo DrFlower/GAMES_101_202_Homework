@@ -52,34 +52,47 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     // Create the projection matrix for the given parameters.
     // Then return it.
 
-    float angel = eye_fov * MY_PI / 180.0;
-    float height = zNear * std::tan(angel) * 2;
-    float width = height * aspect_ratio;
-    
-    auto t = -zNear * std::tan(angel/2);
-    auto r = t * aspect_ratio;
-    auto l = -r;
-    auto b = -t;
+    //为了使得三角形是正着显示的，这里需要把zNear和zFar取反，并把透视矩阵乘以下面这样的矩阵
+    //参考：http://games-cn.org/forums/topic/%e4%bd%9c%e4%b8%9a%e4%b8%89%e7%9a%84%e7%89%9b%e5%80%92%e8%bf%87%e6%9d%a5%e4%ba%86/
+    zNear = -zNear;
+    zFar = -zFar;
+
+    //这里还需要
+    Eigen::Matrix4f Mt(4,4);
+    Mt << 1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -1, 0,
+        0, 0, 0, 1; 
+
+    float angel = eye_fov / 180.0 * MY_PI;
+    float t = zNear * std::tan(angel/2);
+    float r = t * aspect_ratio;
+    float l = -r;
+    float b = -t;
 
     Eigen::Matrix4f MorthoScale(4,4);
-    MorthoScale <<  2/(r-l),0,0,0,
-                    0,2/(t-b),0,0,
-                    0,0,2/(zNear-zFar),0,
-                    0,0,0,1;
-    
+    MorthoScale << 2/(r - l) , 0, 0, 0,
+            0, 2/(t - b) , 0, 0,
+            0, 0, 2/(zFar - zNear), 0,
+            0, 0, 0, 1;
+
     Eigen::Matrix4f MorthoPos(4,4);
-    MorthoPos << 1,0,0,-(r+l)/2,
-                0,1,0,-(t+b)/2,
-                0,0,1,-(zNear+zFar)/2,
-                0,0,0,1;
+    MorthoPos << 1, 0, 0, -(r + l)/2,
+            0, 1, 0, -(t + b)/2,
+            0, 0, 1, -(zNear + zFar)/2,
+            0, 0, 0, 1;
+    
 
     Eigen::Matrix4f Mpersp2ortho(4,4);
-    Mpersp2ortho << zNear,0,0,0,
-                    0,zNear,0,0,
-                    0,0,zNear+zFar,-zFar*zNear,
-                    0,0,1,0;
 
-    projection = MorthoScale*MorthoPos*Mpersp2ortho*projection;
+    Mpersp2ortho << zNear, 0, 0, 0,
+                0, zNear, 0, 0,
+                0, 0, zNear + zFar, -zNear * zFar,
+                0, 0, 1, 0;
+
+    Mpersp2ortho = Mpersp2ortho *Mt;
+
+    projection = MorthoScale * MorthoPos * Mpersp2ortho * projection;
 
     return projection;
 }
@@ -87,11 +100,13 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 Eigen::Matrix4f get_rotation(Vector3f axis, float angel)
 {
     Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
+    //去掉长度，保留方向
     float norm = sqrt(axis[0]*axis[0]+axis[1]*axis[1]+axis[2]+axis[2]);
     axis[0]/=norm;
     axis[1]/=norm;
     axis[2]/=norm;
 
+    //围绕任意轴旋转的矩阵公式
     float rad = angel / 180.0 * MY_PI;
     Eigen::Matrix3f n(3,3);
     n << 0, -axis[2], axis[1],
@@ -105,6 +120,7 @@ Eigen::Matrix4f get_rotation(Vector3f axis, float angel)
     Eigen::Matrix3f m_rotate = component1 + component2 + component3;
 
     Eigen::Matrix4f m4_rotate = Eigen::Matrix4f::Identity();
+    //在0,0位置取3x3的矩阵
     m4_rotate.block(0,0,3,3) = m_rotate;
 
     model = m4_rotate * model;
@@ -145,10 +161,12 @@ int main(int argc, const char** argv)
 
     if (command_line) {
         r.clear(rst::Buffers::Color | rst::Buffers::Depth);
-
+        //围绕z轴旋转
         //r.set_model(get_model_matrix(angle));
+        //围绕任意轴旋转
         r.set_model(get_rotation(rotate_axis,angle));
         r.set_view(get_view_matrix(eye_pos));
+        //注意这里写入的zNear和zFar是正数，代表着距离，但课程上推导的透视矩阵是坐标，且假定是朝向z负半轴的，所以透视矩阵是需要取反的
         r.set_projection(get_projection_matrix(45, 1, 0.1, 50));
 
         r.draw(pos_id, ind_id, rst::Primitive::Triangle);
@@ -162,10 +180,12 @@ int main(int argc, const char** argv)
 
     while (key != 27) {
         r.clear(rst::Buffers::Color | rst::Buffers::Depth);
-
+        //围绕z轴旋转
         //r.set_model(get_model_matrix(angle));
+        //围绕任意轴旋转
         r.set_model(get_rotation(rotate_axis,angle));
         r.set_view(get_view_matrix(eye_pos));
+        //注意这里写入的zNear和zFar是正数，代表着距离，但课程上推导的透视矩阵是坐标，且假定是朝向z负半轴的，所以透视矩阵是需要取反的
         r.set_projection(get_projection_matrix(45, 1, 0.1, 50));
 
         r.draw(pos_id, ind_id, rst::Primitive::Triangle);
