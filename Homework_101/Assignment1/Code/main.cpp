@@ -140,7 +140,7 @@ int main(int argc, const char** argv)
 
     rst::rasterizer r(700, 700);
 
-    Eigen::Vector3f eye_pos = {0, 0, 50};
+    Eigen::Vector3f eye_pos = {0, 0, 5};
 
     Eigen::Vector3f rotate_axis = {1,1,0};
 
