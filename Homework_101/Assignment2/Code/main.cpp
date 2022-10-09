@@ -31,6 +31,9 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
 Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar)
 {
     // TODO: Copy-paste your implementation from the previous assignment.
+
+    // Edit begin
+
     Eigen::Matrix4f projection;
 
     float angel = eye_fov / 180.0 * MY_PI;
@@ -72,6 +75,8 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float z
     projection = MorthoScale * MorthoPos * Mpersp2ortho * projection;
 
     return projection;
+
+    // Edit end
 }
 
 int main(int argc, const char** argv)

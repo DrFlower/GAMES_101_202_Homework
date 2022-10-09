@@ -27,6 +27,8 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
     // Create the model matrix for rotating the triangle around the Z axis.
     // Then return it.
 
+    // Edit begin
+
     double theta = rotation_angle/180.0 * MY_PI;
 
     Eigen::Matrix4f mr;
@@ -39,6 +41,8 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
     model = mr * model;
 
     return model;
+
+    // Edit end
 }
 
 Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
@@ -51,6 +55,8 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     // TODO: Implement this function
     // Create the projection matrix for the given parameters.
     // Then return it.
+
+    // Edit begin
 
     float angel = eye_fov / 180.0 * MY_PI;
     float t = zNear * std::tan(angel/2);
@@ -90,8 +96,12 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     projection = MorthoScale * MorthoPos * Mpersp2ortho * projection;
 
     return projection;
+
+    // Edit end
 }
 
+
+// Edit begin
 Eigen::Matrix4f get_rotation(Vector3f axis, float angel)
 {
     Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
@@ -121,6 +131,7 @@ Eigen::Matrix4f get_rotation(Vector3f axis, float angel)
     model = m4_rotate * model;
     return model;
 }
+// Edit end
 
 int main(int argc, const char** argv)
 {
@@ -142,7 +153,9 @@ int main(int argc, const char** argv)
 
     Eigen::Vector3f eye_pos = {0, 0, 5};
 
+    // Edit begin
     Eigen::Vector3f rotate_axis = {1,1,0};
+    // Edit end
 
     std::vector<Eigen::Vector3f> pos{{2, 0, -2}, {0, 2, -2}, {-2, 0, -2}};
 
@@ -156,10 +169,14 @@ int main(int argc, const char** argv)
 
     if (command_line) {
         r.clear(rst::Buffers::Color | rst::Buffers::Depth);
+
+        // Edit begin
         //围绕z轴旋转
         //r.set_model(get_model_matrix(angle));
         //围绕任意轴旋转
         r.set_model(get_rotation(rotate_axis,angle));
+        // Edit end
+
         r.set_view(get_view_matrix(eye_pos));
         //注意这里写入的zNear和zFar是正数，代表着距离，但课程上推导的透视矩阵是坐标，且假定是朝向z负半轴的，所以透视矩阵是需要取反的
         r.set_projection(get_projection_matrix(45, 1, 0.1, 50));
@@ -175,10 +192,14 @@ int main(int argc, const char** argv)
 
     while (key != 27) {
         r.clear(rst::Buffers::Color | rst::Buffers::Depth);
+
+        // Edit begin
         //围绕z轴旋转
         //r.set_model(get_model_matrix(angle));
         //围绕任意轴旋转
         r.set_model(get_rotation(rotate_axis,angle));
+        // Edit end
+
         r.set_view(get_view_matrix(eye_pos));
         //注意这里写入的zNear和zFar是正数，代表着距离，但课程上推导的透视矩阵是坐标，且假定是朝向z负半轴的，所以透视矩阵是需要取反的
         r.set_projection(get_projection_matrix(45, 1, 0.1, 50));
