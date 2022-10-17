@@ -103,12 +103,20 @@ float PCSS(sampler2D shadowMap, vec4 coords){
 
 }
 
+//自适应Shadow Bias算法 https://zhuanlan.zhihu.com/p/370951892
+float getShadowBias(float c){
+  vec3 normal = normalize(vNormal);
+  vec3 lightDir = normalize(uLightPos - vFragPos);
+  float fragSize = 200. / 2048. / 2.;
+  return max(fragSize, fragSize * (1.0 - dot(normal, lightDir))) * c;
+}
 
 float useShadowMap(sampler2D shadowMap, vec4 shadowCoord){
   vec4 shadow_color = texture2D(shadowMap, shadowCoord.xy);
   float shadow_depth = unpack(shadow_color);
   float cur_depth = shadowCoord.z;
-  if(cur_depth >= shadow_depth + EPS)
+  float bias = getShadowBias(1.2);
+  if(cur_depth -bias >= shadow_depth + EPS)
   {
     return 0.;
   }
