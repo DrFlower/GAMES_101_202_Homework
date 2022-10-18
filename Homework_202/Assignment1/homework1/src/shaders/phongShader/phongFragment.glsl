@@ -15,10 +15,15 @@ varying highp vec3 vFragPos;
 varying highp vec3 vNormal;
 
 // Shadow map related variables
-#define NUM_SAMPLES 20
+#define NUM_SAMPLES 50
 #define BLOCKER_SEARCH_NUM_SAMPLES NUM_SAMPLES
 #define PCF_NUM_SAMPLES NUM_SAMPLES
 #define NUM_RINGS 10
+
+//Edit Start
+#define SHADOW_MAP_SIZE 2048.
+#define ORTHO_MATRIX_SIZE  200.
+//Edit End
 
 #define EPS 1e-3
 #define PI 3.141592653589793
@@ -87,10 +92,6 @@ float findBlocker( sampler2D shadowMap,  vec2 uv, float zReceiver ) {
 	return 1.0;
 }
 
-float PCF(sampler2D shadowMap, vec4 coords) {
-  return 1.0;
-}
-
 float PCSS(sampler2D shadowMap, vec4 coords){
 
   // STEP 1: avgblocker depth
@@ -103,20 +104,24 @@ float PCSS(sampler2D shadowMap, vec4 coords){
 
 }
 
+//Edit Start
 //自适应Shadow Bias算法 https://zhuanlan.zhihu.com/p/370951892
-float getShadowBias(float c){
+float getShadowBias(float c, float radius){
   vec3 normal = normalize(vNormal);
   vec3 lightDir = normalize(uLightPos - vFragPos);
-  float fragSize = 200. / 2048. / 2.;
+  float fragSize = (1. + ceil(radius))*(ORTHO_MATRIX_SIZE / SHADOW_MAP_SIZE / 2.);
   return max(fragSize, fragSize * (1.0 - dot(normal, lightDir))) * c;
 }
+//Edit End
 
-float useShadowMap(sampler2D shadowMap, vec4 shadowCoord){
+float useShadowMap(sampler2D shadowMap, vec4 shadowCoord, float biasC, float radius){
+  //Edit Start
+
   vec4 shadow_color = texture2D(shadowMap, shadowCoord.xy);
   float shadow_depth = unpack(shadow_color);
   float cur_depth = shadowCoord.z;
-  float bias = getShadowBias(1.2);
-  if(cur_depth -bias >= shadow_depth + EPS)
+  float bias = getShadowBias(biasC, radius);
+  if(cur_depth - bias >= shadow_depth + EPS)
   {
     return 0.;
   }
@@ -124,6 +129,23 @@ float useShadowMap(sampler2D shadowMap, vec4 shadowCoord){
   {
   return 1.0;
   }
+
+  //Edit End
+}
+
+float PCF(sampler2D shadowMap, vec4 coords) {
+  float radius = 10.0 / SHADOW_MAP_SIZE;
+  poissonDiskSamples(coords.xy);
+  //uniformDiskSamples(coords.xy);
+  float visibility = 0.0;
+  for(int i = 0; i < NUM_SAMPLES; i++){
+    vec2 offset = poissonDisk[i] * radius;
+    float shadowDepth = useShadowMap(shadowMap, vec4(coords.x + offset.x, coords.y + offset.y, coords.z , coords.w), 0.4, radius);
+    if(coords.z > shadowDepth + EPS){
+      visibility++;
+    }
+  }
+  return 1.0 - visibility / float(NUM_SAMPLES);
 }
 
 vec3 blinnPhong() {
@@ -154,9 +176,9 @@ void main(void) {
   vec3 shadowCoord = vPositionFromLight.xyz / vPositionFromLight.w;
   // 需要转化到NDC，才能在纹理uv坐标中使用
   shadowCoord.xyz = (shadowCoord.xyz + 1.0) / 2.0;
-  float visibility;
-  visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0));
-  //visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0));
+  float visibility = 1.;
+  //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), 0.75, 0.);
+  visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0));
   //visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0));
 
   vec3 phongColor = blinnPhong();
