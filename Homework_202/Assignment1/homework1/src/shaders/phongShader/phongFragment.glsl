@@ -110,19 +110,19 @@ float useShadowMap(sampler2D shadowMap, vec4 shadowCoord, float biasC, float fil
     return 0.;
   }
   else{
-  return 1.0;
+    return 1.0;
   }
 }
 //Edit End
 
 //Edit Start
 float PCF(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV) {
-  poissonDiskSamples(coords.xy);
   //uniformDiskSamples(coords.xy);
+  poissonDiskSamples(coords.xy);
   float visibility = 0.0;
   for(int i = 0; i < NUM_SAMPLES; i++){
     vec2 offset = poissonDisk[i] * filterRadiusUV;
-    float shadowDepth = useShadowMap(shadowMap, vec4(coords.x + offset.x, coords.y + offset.y, coords.z , coords.w), biasC, filterRadiusUV);
+    float shadowDepth = useShadowMap(shadowMap, coords + vec4(offset, 0., 0.), biasC, filterRadiusUV);
     if(coords.z > shadowDepth + EPS){
       visibility++;
     }
@@ -209,10 +209,14 @@ void main(void) {
 
   float visibility = 1.;
 
+  // 无PCF时的Shadow Bias
   float nonePCFBiasC = .5;
+  // 有PCF时的Shadow Bias
   float pcfBiasC = .3;
+  // PCF的采样范围，因为是在Shadow Map上采样，需要除以Shadow Map大小，得到uv坐标上的范围
   float filterRadiusUV = FILTER_RADIUS / SHADOW_MAP_SIZE;
 
+  // 硬阴影无PCF，最后参数传0
   //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), nonePCFBiasC, 0.);
   //visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
   visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
