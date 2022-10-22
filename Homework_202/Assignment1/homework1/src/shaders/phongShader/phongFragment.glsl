@@ -22,7 +22,7 @@ varying highp vec3 vNormal;
 
 //Edit Start
 #define SHADOW_MAP_SIZE 2048.
-#define FILTER_RADIUS 10.
+#define FILTER_RADIUS 15.
 #define FRUSTUM_SIZE  200.
 #define NEAR_PLANE 0.01
 #define LIGHT_Width 2.
@@ -131,8 +131,8 @@ float PCF(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV) {
 }
 //Edit End
 
+//Edit Start
 float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
-  //Edit Start
   int blockerNum = 0;
   float blockDepth = 0.;
 
@@ -154,10 +154,10 @@ float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
     return -1.;
   else
     return blockDepth / float(blockerNum);
-
-  //Edit End
 }
+//Edit End
 
+//Edit Start
 float PCSS(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV){
   float zReceiver = coords.z;
 
@@ -175,6 +175,7 @@ float PCSS(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV){
   // STEP 3: filtering
   return PCF(shadowMap, coords, biasC, filterRadiusUV);
 }
+//Edit End
 
 vec3 blinnPhong() {
   vec3 color = texture2D(uSampler, vTextureCoord).rgb;
@@ -208,8 +209,8 @@ void main(void) {
 
   float visibility = 1.;
 
-  float nonePCFBiasC = 0.75;
-  float pcfBiasC = 0.4;   
+  float nonePCFBiasC = .5;
+  float pcfBiasC = .3;
   float filterRadiusUV = FILTER_RADIUS / SHADOW_MAP_SIZE;
 
   //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), nonePCFBiasC, 0.);
