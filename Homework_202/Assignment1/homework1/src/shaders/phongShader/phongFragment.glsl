@@ -22,8 +22,10 @@ varying highp vec3 vNormal;
 
 //Edit Start
 #define SHADOW_MAP_SIZE 2048.
-#define ORTHO_MATRIX_SIZE  200.
-#define CAMERA_Z_NEAR 0.01
+#define FILTER_RADIUS 10.
+#define FRUSTUM_SIZE  200.
+#define NEAR_PLANE 0.01
+#define LIGHT_Width 2.
 //Edit End
 
 #define EPS 1e-3
@@ -91,59 +93,57 @@ void uniformDiskSamples( const in vec2 randomSeed ) {
 
 //Edit Start
 //自适应Shadow Bias算法 https://zhuanlan.zhihu.com/p/370951892
-float getShadowBias(float c, float radius){
+float getShadowBias(float c, float filterRadiusUV){
   vec3 normal = normalize(vNormal);
   vec3 lightDir = normalize(uLightPos - vFragPos);
-  float fragSize = (1. + ceil(radius))*(ORTHO_MATRIX_SIZE / SHADOW_MAP_SIZE / 2.);
+  float fragSize = (1. + ceil(filterRadiusUV)) * (FRUSTUM_SIZE / SHADOW_MAP_SIZE / 2.);
   return max(fragSize, fragSize * (1.0 - dot(normal, lightDir))) * c;
 }
 //Edit End
 
-float useShadowMap(sampler2D shadowMap, vec4 shadowCoord, float biasC, float radius){
-  //Edit Start
-
+//Edit Start
+float useShadowMap(sampler2D shadowMap, vec4 shadowCoord, float biasC, float filterRadiusUV){
   float depth = unpack(texture2D(shadowMap, shadowCoord.xy));
   float cur_depth = shadowCoord.z;
-  float bias = getShadowBias(biasC, radius);
+  float bias = getShadowBias(biasC, filterRadiusUV);
   if(cur_depth - bias >= depth + EPS){
     return 0.;
   }
   else{
   return 1.0;
   }
-
-  //Edit End
 }
+//Edit End
 
-float PCF(sampler2D shadowMap, vec4 coords) {
-  float radius = 10.0 / SHADOW_MAP_SIZE;
+//Edit Start
+float PCF(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV) {
   poissonDiskSamples(coords.xy);
   //uniformDiskSamples(coords.xy);
   float visibility = 0.0;
   for(int i = 0; i < NUM_SAMPLES; i++){
-    vec2 offset = poissonDisk[i] * radius;
-    float shadowDepth = useShadowMap(shadowMap, vec4(coords.x + offset.x, coords.y + offset.y, coords.z , coords.w), 0.4, radius);
+    vec2 offset = poissonDisk[i] * filterRadiusUV;
+    float shadowDepth = useShadowMap(shadowMap, vec4(coords.x + offset.x, coords.y + offset.y, coords.z , coords.w), biasC, filterRadiusUV);
     if(coords.z > shadowDepth + EPS){
       visibility++;
     }
   }
   return 1.0 - visibility / float(NUM_SAMPLES);
 }
+//Edit End
 
 float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
+  //Edit Start
   int blockerNum = 0;
   float blockDepth = 0.;
 
   float posZFromLight = vPositionFromLight.z;
 
   // lightRadius / posZFromLight = searchRadius / (posZFromLight - zNear)
-  float lightRadius = 0.1;
-  float searchRadius = lightRadius * (posZFromLight - CAMERA_Z_NEAR) / posZFromLight;
+  float searchRadius = LIGHT_Width / FRUSTUM_SIZE * (posZFromLight - NEAR_PLANE) / posZFromLight;
 
-  float stride = searchRadius;
   poissonDiskSamples(uv);
   for(int i = 0; i < NUM_SAMPLES; i++){
-    float shadowDepth = unpack(texture2D(shadowMap, uv + poissonDisk[i] * stride));
+    float shadowDepth = unpack(texture2D(shadowMap, uv + poissonDisk[i] * searchRadius));
     if(zReceiver > shadowDepth){
       blockerNum++;
       blockDepth += shadowDepth;
@@ -151,34 +151,29 @@ float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
   }
 
   if(blockerNum == 0)
-    return 1.0;
+    return -1.;
   else
     return blockDepth / float(blockerNum);
+
+  //Edit End
 }
 
-float PCSS(sampler2D shadowMap, vec4 coords){
-
-  float lightArea = 1.;
+float PCSS(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV){
   float zReceiver = coords.z;
-  float stride = 50. / SHADOW_MAP_SIZE;
-  float visibility = 0.;
 
-  // STEP 1: avgblocker depth
+  // STEP 1: avgblocker depth 
   float avgBlockerDepth = findBlocker(shadowMap, coords.xy, zReceiver);
 
+  if(avgBlockerDepth < -EPS)
+    return 1.0;
+
   // STEP 2: penumbra size
-  float penumbra = (zReceiver - avgBlockerDepth) * lightArea / avgBlockerDepth;
+  float penumbra = (zReceiver - avgBlockerDepth) * LIGHT_Width / avgBlockerDepth;
+
+  filterRadiusUV = penumbra * filterRadiusUV;
 
   // STEP 3: filtering
-  for(int i = 0; i < NUM_SAMPLES; i++){
-    vec2 offset = poissonDisk[i] * stride * penumbra;
-    float shadowDepth = useShadowMap(shadowMap, vec4(coords.x + offset.x, coords.y + offset.y, coords.z , coords.w), 0.4, stride);
-    if(coords.z <= shadowDepth + EPS){
-      visibility++;
-      }
-  }
-  
-  return visibility / float(NUM_SAMPLES);
+  return PCF(shadowMap, coords, biasC, filterRadiusUV);
 }
 
 vec3 blinnPhong() {
@@ -205,17 +200,24 @@ vec3 blinnPhong() {
 }
 
 void main(void) {
+  //Edit Start
 
   vec3 shadowCoord = vPositionFromLight.xyz / vPositionFromLight.w;
   // 需要转化到NDC，才能在纹理uv坐标中使用
   shadowCoord.xyz = (shadowCoord.xyz + 1.0) / 2.0;
+
   float visibility = 1.;
-  //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), 0.75, 0.);
-  //visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0));
-  visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0));
+
+  float nonePCFBiasC = 0.75;
+  float pcfBiasC = 0.4;   
+  float filterRadiusUV = FILTER_RADIUS / SHADOW_MAP_SIZE;
+
+  //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), nonePCFBiasC, 0.);
+  //visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
+  visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
 
   vec3 phongColor = blinnPhong();
 
   gl_FragColor = vec4(phongColor * visibility, 1.0);
-  //gl_FragColor = vec4(phongColor, 1.0);
+  //Edit End
 }
