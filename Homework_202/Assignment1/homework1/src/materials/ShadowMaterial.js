@@ -1,7 +1,7 @@
 class ShadowMaterial extends Material {
 
-    constructor(light, translate, scale, vertexShader, fragmentShader) {
-        let lightMVP = light.CalcLightMVP(translate, scale);
+    constructor(light, translate, rotate, scale, vertexShader, fragmentShader) {
+        let lightMVP = light.CalcLightMVP(translate, rotate, scale);
 
         super({
             'uLightMVP': { type: 'matrix4fv', value: lightMVP }
@@ -9,12 +9,12 @@ class ShadowMaterial extends Material {
     }
 }
 
-async function buildShadowMaterial(light, translate, scale, vertexPath, fragmentPath) {
+async function buildShadowMaterial(light, translate, rotate, scale, vertexPath, fragmentPath) {
 
 
     let vertexShader = await getShaderString(vertexPath);
     let fragmentShader = await getShaderString(fragmentPath);
 
-    return new ShadowMaterial(light, translate, scale, vertexShader, fragmentShader);
+    return new ShadowMaterial(light, translate, rotate, scale, vertexShader, fragmentShader);
 
 }

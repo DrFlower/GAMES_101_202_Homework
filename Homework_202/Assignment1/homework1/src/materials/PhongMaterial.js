@@ -1,7 +1,7 @@
 class PhongMaterial extends Material {
 
-    constructor(color, specular, light, translate, scale, vertexShader, fragmentShader) {
-        let lightMVP = light.CalcLightMVP(translate, scale);
+    constructor(color, specular, light, translate, rotate, scale, vertexShader, fragmentShader) {
+        let lightMVP = light.CalcLightMVP(translate, rotate, scale);
         let lightIntensity = light.mat.GetIntensity();
 
         super({
@@ -17,12 +17,12 @@ class PhongMaterial extends Material {
     }
 }
 
-async function buildPhongMaterial(color, specular, light, translate, scale, vertexPath, fragmentPath) {
+async function buildPhongMaterial(color, specular, light, translate, rotate, scale, vertexPath, fragmentPath) {
 
 
     let vertexShader = await getShaderString(vertexPath);
     let fragmentShader = await getShaderString(fragmentPath);
 
-    return new PhongMaterial(color, specular, light, translate, scale, vertexShader, fragmentShader);
+    return new PhongMaterial(color, specular, light, translate, rotate, scale, vertexShader, fragmentShader);
 
 }

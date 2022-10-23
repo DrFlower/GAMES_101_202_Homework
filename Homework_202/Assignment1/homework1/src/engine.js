@@ -42,19 +42,27 @@ function GAMES202Main() {
 	// Add renderer
 	const renderer = new WebGLRenderer(gl, camera);
 
+	
 	// Add lights
 	// light - is open shadow map == true
-	let lightPos = [0, 80, 80];
+	let lightPos1 = [0, 80, 80];
 	let focalPoint = [0, 0, 0];
 	let lightUp = [0, 1, 0]
-	const directionLight = new DirectionalLight(5000, [1, 1, 1], lightPos, focalPoint, lightUp, true, renderer.gl);
+	const directionLight = new DirectionalLight(800, [1, 1, 1], lightPos1, focalPoint, lightUp, true, renderer.gl);
 	renderer.addLight(directionLight);
 
+	//Edit Start
+	let lightPos2 = [90, 90, 0];
+	const directionLight2 = new DirectionalLight(800, [1, 1, 1], lightPos2, focalPoint, lightUp, true, renderer.gl);
+	renderer.addLight(directionLight2);
+	//Edit End
+
 	// Add shapes
-	
-	let floorTransform = setTransform(0, 0, -30, 4, 4, 4);
-	let obj1Transform = setTransform(0, 0, 0, 20, 20, 20);
-	let obj2Transform = setTransform(40, 0, -40, 10, 10, 10);
+	//Edit Start
+	let floorTransform = setTransform(0, 0, -30, 0, 0, 0, 4, 4, 4);
+	let obj1Transform = setTransform(0, 0, 0, 0, 0, 0, 20, 20, 20);
+	let obj2Transform = setTransform(40, 0, -40, 0, 0, 0, 10, 10, 10);
+	//Edit End
 
 	loadOBJ(renderer, 'assets/mary/', 'Marry', 'PhongMaterial', obj1Transform);
 	loadOBJ(renderer, 'assets/mary/', 'Marry', 'PhongMaterial', obj2Transform);
@@ -78,22 +86,38 @@ function GAMES202Main() {
 	}
 	createGUI();
 
+	let prevTime = 0;
+
 	function mainLoop(now) {
 		cameraControls.update();
-
-		renderer.render();
+		let deltaime = (now - prevTime) / 1000;
+		renderer.render(now, deltaime);
 		requestAnimationFrame(mainLoop);
+		prevTime = now;
 	}
 	requestAnimationFrame(mainLoop);
 }
 
-function setTransform(t_x, t_y, t_z, s_x, s_y, s_z) {
+//Edit Start
+function setTransform(t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z) {
+//Edit End
 	return {
 		modelTransX: t_x,
 		modelTransY: t_y,
 		modelTransZ: t_z,
+		//Edit Start
+		modelRotateX: r_x,
+		modelRotateY: r_y,
+		modelRotateZ: r_z,
+		//Edit End
 		modelScaleX: s_x,
 		modelScaleY: s_y,
 		modelScaleZ: s_z,
 	};
 }
+
+//Edit Start
+function degrees2Radians(degrees){
+	return 3.1415927 / 180 * degrees;
+}
+//Edit End
