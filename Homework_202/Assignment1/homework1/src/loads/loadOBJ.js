@@ -44,9 +44,12 @@ function loadOBJ(renderer, path, name, objMaterial, transform) {
 
 							let material, shadowMaterial;
 							let Translation = [transform.modelTransX, transform.modelTransY, transform.modelTransZ];
+							//Edit Start 添加旋转参数
 							let Rotation = [transform.modelRotateX, transform.modelRotateY, transform.modelRotateZ];
+							//Edit End
 							let Scale = [transform.modelScaleX, transform.modelScaleY, transform.modelScaleZ];
 
+							//Edit Start 原本只添加第一个light的材质，改成添加所有light的材质，并添加旋转参数
 							for(let i = 0; i < renderer.lights.length; i++){
 								let light = renderer.lights[i].entity;
 								switch (objMaterial) {
@@ -65,6 +68,7 @@ function loadOBJ(renderer, path, name, objMaterial, transform) {
 									renderer.addShadowMeshRender(shadowMeshRender);
 								});
 							}
+							//Edit End
 						}
 					});
 				}, onProgress, onError);

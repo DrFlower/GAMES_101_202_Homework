@@ -116,9 +116,11 @@ class MeshRender {
 		// Model transform
 		mat4.identity(modelMatrix);
 		mat4.translate(modelMatrix, modelMatrix, this.mesh.transform.translate);
+		//Edit Start 添加旋转
 		mat4.rotateX(modelMatrix, modelMatrix, this.mesh.transform.rotate[0])
         mat4.rotateY(modelMatrix, modelMatrix, this.mesh.transform.rotate[1])
         mat4.rotateZ(modelMatrix, modelMatrix, this.mesh.transform.rotate[2])
+		//Edit End
 		mat4.scale(modelMatrix, modelMatrix, this.mesh.transform.scale);
 		// View transform
 		camera.updateMatrixWorld();

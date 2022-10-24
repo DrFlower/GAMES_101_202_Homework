@@ -1,7 +1,9 @@
 class DirectionalLight {
 
     constructor(lightIntensity, lightColor, lightPos, focalPoint, lightUp, hasShadowMap, gl) {
+        //Edit Start 添加旋转参数
         this.mesh = Mesh.cube(setTransform(0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0));
+        //Edit End
         this.mat = new EmissiveMaterial(lightIntensity, lightColor);
         this.oriLightPos = [lightPos[0], lightPos[1], lightPos[2]];
         this.lightPos = lightPos;
@@ -16,7 +18,9 @@ class DirectionalLight {
         }
     }
 
+    //Edit Start 添加旋转参数
     CalcLightMVP(translate, rotate, scale) {
+    //Edit End
         let lightMVP = mat4.create();
         let modelMatrix = mat4.create();
         let viewMatrix = mat4.create();

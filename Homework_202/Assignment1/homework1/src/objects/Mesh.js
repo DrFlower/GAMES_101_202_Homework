@@ -1,9 +1,11 @@
 class TRSTransform {
+	//Edit Start 添加rotate参数
     constructor(translate = [0, 0, 0], rotate = [0, 0, 0], scale = [1, 1, 1]) {
         this.translate = translate;
 		this.rotate = rotate;
         this.scale = scale;
     }
+	//Edit End
 }
 class Mesh {
 	constructor(verticesAttrib, normalsAttrib, texcoordsAttrib, indices, transform) {
@@ -14,9 +16,11 @@ class Mesh {
 		this.hasTexcoords = false;
 
 		const modelTranslation = [transform.modelTransX, transform.modelTransY, transform.modelTransZ];
+		//Edit Start 添加旋转
 		const modelRatation = [transform.modelRotateX, transform.modelRotateY, transform.modelRotateZ];
 		const modelScale = [transform.modelScaleX, transform.modelScaleY, transform.modelScaleZ];
 		let meshTrans = new TRSTransform(modelTranslation, modelRatation, modelScale);
+		//Edit End
 		this.transform = meshTrans;
 
 		let extraAttribs = [];

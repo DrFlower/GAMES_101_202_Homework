@@ -51,14 +51,14 @@ function GAMES202Main() {
 	const directionLight = new DirectionalLight(800, [1, 1, 1], lightPos1, focalPoint, lightUp, true, renderer.gl);
 	renderer.addLight(directionLight);
 
-	//Edit Start
+	//Edit Start 添加第二个光源
 	let lightPos2 = [90, 90, 0];
 	const directionLight2 = new DirectionalLight(800, [1, 1, 1], lightPos2, focalPoint, lightUp, true, renderer.gl);
 	renderer.addLight(directionLight2);
 	//Edit End
 
 	// Add shapes
-	//Edit Start
+	//Edit Start 添加旋转参数
 	let floorTransform = setTransform(0, 0, -30, 0, 0, 0, 4, 4, 4);
 	let obj1Transform = setTransform(0, 0, 0, 0, 0, 0, 20, 20, 20);
 	let obj2Transform = setTransform(40, 0, -40, 0, 0, 0, 10, 10, 10);
@@ -86,6 +86,7 @@ function GAMES202Main() {
 	}
 	createGUI();
 
+	//Edit Start deltaTime实现
 	let prevTime = 0;
 
 	function mainLoop(now) {
@@ -95,10 +96,11 @@ function GAMES202Main() {
 		requestAnimationFrame(mainLoop);
 		prevTime = now;
 	}
+	//Edit End
 	requestAnimationFrame(mainLoop);
 }
 
-//Edit Start
+//Edit Start 添加rotate参数
 function setTransform(t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z) {
 //Edit End
 	return {
@@ -117,6 +119,7 @@ function setTransform(t_x, t_y, t_z, r_x, r_y, r_z, s_x, s_y, s_z) {
 }
 
 //Edit Start
+//角度转弧度
 function degrees2Radians(degrees){
 	return 3.1415927 / 180 * degrees;
 }
