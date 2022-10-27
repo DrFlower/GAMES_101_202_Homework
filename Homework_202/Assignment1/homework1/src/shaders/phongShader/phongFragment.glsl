@@ -23,9 +23,10 @@ varying highp vec3 vNormal;
 //Edit Start
 #define SHADOW_MAP_SIZE 2048.
 #define FILTER_RADIUS 15.
-#define FRUSTUM_SIZE  200.
+#define FRUSTUM_SIZE 400.
 #define NEAR_PLANE 0.01
-#define LIGHT_Width 2.
+#define LIGHT_WORLD_SIZE 5.
+#define LIGHT_SIZE_UV LIGHT_WORLD_SIZE / FRUSTUM_SIZE
 //Edit End
 
 #define EPS 1e-3
@@ -118,7 +119,7 @@ float useShadowMap(sampler2D shadowMap, vec4 shadowCoord, float biasC, float fil
 //Edit Start
 float PCF(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV) {
   //uniformDiskSamples(coords.xy);
-  poissonDiskSamples(coords.xy);
+  poissonDiskSamples(coords.xy); //使用xy坐标作为随机种子生成
   float visibility = 0.0;
   for(int i = 0; i < NUM_SAMPLES; i++){
     vec2 offset = poissonDisk[i] * filterRadiusUV;
@@ -138,8 +139,7 @@ float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
 
   float posZFromLight = vPositionFromLight.z;
 
-  // lightRadius / posZFromLight = searchRadius / (posZFromLight - zNear)
-  float searchRadius = LIGHT_Width / FRUSTUM_SIZE * (posZFromLight - NEAR_PLANE) / posZFromLight;
+  float searchRadius = LIGHT_SIZE_UV * (posZFromLight - NEAR_PLANE) / posZFromLight;
 
   poissonDiskSamples(uv);
   for(int i = 0; i < NUM_SAMPLES; i++){
@@ -158,7 +158,7 @@ float findBlocker(sampler2D shadowMap, vec2 uv, float zReceiver) {
 //Edit End
 
 //Edit Start
-float PCSS(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV){
+float PCSS(sampler2D shadowMap, vec4 coords, float biasC){
   float zReceiver = coords.z;
 
   // STEP 1: avgblocker depth 
@@ -168,9 +168,8 @@ float PCSS(sampler2D shadowMap, vec4 coords, float biasC, float filterRadiusUV){
     return 1.0;
 
   // STEP 2: penumbra size
-  float penumbra = (zReceiver - avgBlockerDepth) * LIGHT_Width / avgBlockerDepth;
-
-  filterRadiusUV = penumbra * filterRadiusUV;
+  float penumbra = (zReceiver - avgBlockerDepth) * LIGHT_SIZE_UV / avgBlockerDepth;
+  float filterRadiusUV = penumbra;
 
   // STEP 3: filtering
   return PCF(shadowMap, coords, biasC, filterRadiusUV);
@@ -202,27 +201,28 @@ vec3 blinnPhong() {
 
 void main(void) {
   //Edit Start
-
+  //vPositionFromLight为光源空间下投影的裁剪坐标，除以w结果为NDC坐标
   vec3 shadowCoord = vPositionFromLight.xyz / vPositionFromLight.w;
-  // 需要转化到NDC，才能在纹理uv坐标中使用
+  //把[-1,1]的NDC坐标转换为[0,1]的坐标
   shadowCoord.xyz = (shadowCoord.xyz + 1.0) / 2.0;
 
   float visibility = 1.;
 
   // 无PCF时的Shadow Bias
-  float nonePCFBiasC = .5;
+  float nonePCFBiasC = .4;
   // 有PCF时的Shadow Bias
-  float pcfBiasC = .3;
+  float pcfBiasC = .2;
   // PCF的采样范围，因为是在Shadow Map上采样，需要除以Shadow Map大小，得到uv坐标上的范围
   float filterRadiusUV = FILTER_RADIUS / SHADOW_MAP_SIZE;
 
   // 硬阴影无PCF，最后参数传0
   //visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), nonePCFBiasC, 0.);
   //visibility = PCF(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
-  visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC, filterRadiusUV);
+  visibility = PCSS(uShadowMap, vec4(shadowCoord, 1.0), pcfBiasC);
 
   vec3 phongColor = blinnPhong();
 
   gl_FragColor = vec4(phongColor * visibility, 1.0);
+  //gl_FragColor = vec4(phongColor, 1.0);
   //Edit End
 }
