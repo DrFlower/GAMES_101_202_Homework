@@ -48,12 +48,14 @@ function GAMES202Main() {
 	let lightPos1 = [0, 80, 80];
 	let focalPoint = [0, 0, 0];
 	let lightUp = [0, 1, 0]
-	const directionLight = new DirectionalLight(800, [1, 1, 1], lightPos1, focalPoint, lightUp, true, renderer.gl);
+	//Edit Start 改一下第一个光源的亮度
+	const directionLight = new DirectionalLight(2500, [1, 1, 1], lightPos1, focalPoint, lightUp, true, renderer.gl);
+	//Edit End
 	renderer.addLight(directionLight);
 
 	//Edit Start 添加第二个光源
 	let lightPos2 = [90, 90, 0];
-	const directionLight2 = new DirectionalLight(800, [1, 1, 1], lightPos2, focalPoint, lightUp, true, renderer.gl);
+	const directionLight2 = new DirectionalLight(2500, [1, 1, 1], lightPos2, focalPoint, lightUp, true, renderer.gl);
 	renderer.addLight(directionLight2);
 	//Edit End
 

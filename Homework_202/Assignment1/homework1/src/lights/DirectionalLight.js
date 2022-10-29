@@ -5,7 +5,6 @@ class DirectionalLight {
         this.mesh = Mesh.cube(setTransform(0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0));
         //Edit End
         this.mat = new EmissiveMaterial(lightIntensity, lightColor);
-        this.oriLightPos = [lightPos[0], lightPos[1], lightPos[2]];
         this.lightPos = lightPos;
         this.focalPoint = focalPoint;
         this.lightUp = lightUp

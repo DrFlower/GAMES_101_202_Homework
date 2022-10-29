@@ -4,7 +4,9 @@ class Material {
     #vsSrc;
     #fsSrc;
     // Uniforms is a map, attribs is a Array
-    constructor(uniforms, attribs, vsSrc, fsSrc, frameBuffer) {
+    //Edit Start 添加lightIndex参数
+    constructor(uniforms, attribs, vsSrc, fsSrc, frameBuffer, lightIndex) {
+    //Edit End 
         this.uniforms = uniforms;
         this.attribs = attribs;
         this.#vsSrc = vsSrc;
@@ -17,6 +19,9 @@ class Material {
         this.#flatten_attribs = attribs;
 
         this.frameBuffer = frameBuffer;
+        //Edit Start 添加lightIndex字段
+        this.lightIndex = lightIndex;
+        //Edit End
     }
 
     setMeshAttribs(extraAttribs) {

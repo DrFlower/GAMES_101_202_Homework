@@ -54,8 +54,10 @@ function loadOBJ(renderer, path, name, objMaterial, transform) {
 								let light = renderer.lights[i].entity;
 								switch (objMaterial) {
 									case 'PhongMaterial':
-										material = buildPhongMaterial(colorMap, mat.specular.toArray(), light, Translation, Rotation, Scale, "./src/shaders/phongShader/phongVertex.glsl", "./src/shaders/phongShader/phongFragment.glsl");
-										shadowMaterial = buildShadowMaterial(light, Translation, Rotation, Scale, "./src/shaders/shadowShader/shadowVertex.glsl", "./src/shaders/shadowShader/shadowFragment.glsl");
+										//Edit Start 添加旋转参数、光源索引参数
+										material = buildPhongMaterial(colorMap, mat.specular.toArray(), light, Translation, Rotation, Scale, i, "./src/shaders/phongShader/phongVertex.glsl", "./src/shaders/phongShader/phongFragment.glsl");
+										shadowMaterial = buildShadowMaterial(light, Translation, Rotation, Scale, i, "./src/shaders/shadowShader/shadowVertex.glsl", "./src/shaders/shadowShader/shadowFragment.glsl");
+										//Edit End
 										break;
 								}
 							

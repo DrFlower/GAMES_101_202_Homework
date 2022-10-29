@@ -22,7 +22,7 @@ varying highp vec3 vNormal;
 
 //Edit Start
 #define SHADOW_MAP_SIZE 2048.
-#define FILTER_RADIUS 15.
+#define FILTER_RADIUS 10.
 #define FRUSTUM_SIZE 400.
 #define NEAR_PLANE 0.01
 #define LIGHT_WORLD_SIZE 5.
@@ -211,7 +211,7 @@ void main(void) {
   // 无PCF时的Shadow Bias
   float nonePCFBiasC = .4;
   // 有PCF时的Shadow Bias
-  float pcfBiasC = .2;
+  float pcfBiasC = .08;
   // PCF的采样范围，因为是在Shadow Map上采样，需要除以Shadow Map大小，得到uv坐标上的范围
   float filterRadiusUV = FILTER_RADIUS / SHADOW_MAP_SIZE;
 
