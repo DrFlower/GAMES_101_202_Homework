@@ -1,0 +1,6 @@
+#ignore editor backups
+*~
+
+#ignore bazel build directories
+bazel-*
+

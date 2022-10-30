@@ -1,0 +1,12 @@
+[submodule "ext/nanovg"]
+    path = ext/nanovg
+    url = https://github.com/wjakob/nanovg
+[submodule "ext/nanovg_metal"]
+    path = ext/nanovg_metal
+    url = https://github.com/wjakob/nanovg_metal
+[submodule "ext/glfw"]
+    path = ext/glfw
+    url = https://github.com/wjakob/glfw
+[submodule "ext/pybind11"]
+	path = ext/pybind11
+	url = https://github.com/pybind/pybind11

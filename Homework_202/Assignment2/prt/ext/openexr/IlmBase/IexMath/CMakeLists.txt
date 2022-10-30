@@ -1,0 +1,24 @@
+# pstanczyk@ilm.com
+
+IF(ILMBASE_BUILD_SHARED_LIBS)
+    ADD_DEFINITIONS(-DIEXMATH_EXPORTS)
+ENDIF()
+ADD_LIBRARY ( IexMath ${LIB_TYPE}
+  IexMathFloatExc.cpp  
+  IexMathFpu.cpp
+  )
+TARGET_LINK_LIBRARIES(IexMath Iex)
+
+INSTALL ( TARGETS
+  IexMath
+  DESTINATION
+  ${OPENEXR_INSTALL_LIB_DEST}
+)
+
+INSTALL ( FILES 
+  IexMathFloatExc.h  
+  IexMathFpu.h  
+  IexMathIeeeExc.h
+  DESTINATION
+  ${OPENEXR_INSTALL_HEADER_DEST}
+)

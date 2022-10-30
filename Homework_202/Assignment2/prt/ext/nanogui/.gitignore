@@ -1,0 +1,49 @@
+*.exe
+*.lib
+*.cmake
+.DS_Store
+ext_build
+nanogui_resources.*
+build
+CMakeCache.txt
+CMakeFiles
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+Makefile
+bin2c
+example[1-9]
+example[1-9].bc
+example[1-9].wasm
+example[1-9].js
+example[1-9].exe
+example_icons
+example_icons.bc
+example_icons.js
+example_icons.wasm
+example_icons.exe
+icons
+*~
+nanogui*.so
+nanogui*.pyd
+libnanogui.so
+libnanogui.a
+libnanogui.bc
+libnanogui.dylib
+*.metallib
+.vscode/
+# html documentation specific
+*.pyc
+docs/_build
+docs/doxyoutput
+docs/api
+
+# entypo update generation
+# this is it's own repo: https://github.com/svenevs/nanogui-entypo
+# should not ever be needed again unless there are new
+# icons added :)
+resources/nanogui-entypo
+
+compile_commands.json
+.clangd

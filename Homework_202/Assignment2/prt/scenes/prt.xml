@@ -1,0 +1,37 @@
+<scene>
+    <!-- Independent sample generator, one sample per pixel -->
+	<sampler type="independent">
+		<integer name="sampleCount" value="1"/>
+	</sampler>
+
+    <!-- Render the visible surface normals -->
+    <integrator type="prt">
+		<string name="type" value="shadowed" />
+		<integer name="bounce" value="1" />
+		<integer name="PRTSampleCount" value="100" />
+		<string name="cubemap" value="cubemap/Indoor" />
+	</integrator>
+
+    <!-- Load the Stanford bunny (https://graphics.stanford.edu/data/3Dscanrep/) -->
+	<mesh type="obj">
+		<string name="filename" value="mary.obj"/>
+		<bsdf type="diffuse"/>
+	</mesh>
+
+	<!-- Render the scene viewed by a perspective camera -->
+	<camera type="perspective">
+        <!-- 3D origin, target point, and 'up' vector -->
+		<transform name="toWorld">
+            <lookat target="0.0, 1.0, 1.0"
+                    origin="0.0, 8.0, 22.0"
+                    up="0.0, 1.0, 0.0"/>
+		</transform>
+
+		<!-- Field of view: 30 degrees -->
+		<float name="fov" value="20"/>
+
+		<!-- 768 x 768 pixels -->
+		<integer name="width" value="768"/>
+		<integer name="height" value="768"/>
+	</camera>
+</scene>
