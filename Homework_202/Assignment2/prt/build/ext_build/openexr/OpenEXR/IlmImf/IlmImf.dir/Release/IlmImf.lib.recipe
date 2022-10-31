@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\x64\Release\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half\Release\eLut.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half\Release\toFloat.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\OpenEXR\IlmImf\Release\b44ExpLogTable.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\OpenEXR\IlmImf\Release\dwaLookups.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\zlib\Release\zlib1.dll</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

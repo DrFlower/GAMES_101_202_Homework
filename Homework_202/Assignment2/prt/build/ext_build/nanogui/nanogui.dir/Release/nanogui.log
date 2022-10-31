@@ -1,0 +1,11 @@
+﻿  theme.cpp
+  imageview.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\theme.cpp(81,69): error C2065: “roboto_regular_ttf”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\theme.cpp(82,44): error C2065: “roboto_regular_ttf_size”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\theme.cpp(83,71): error C2065: “roboto_bold_ttf”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\theme.cpp(84,41): error C2065: “roboto_bold_ttf_size”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp(29,9): error C2065: “imageview_vertex_gl”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp(29,9): error C2065: “imageview_vertex_gl_size”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp(30,9): error C2065: “imageview_fragment_gl”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp(30,9): error C2065: “imageview_fragment_gl_size”: 未声明的标识符
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp(25,32): error C2661: “nanogui::Shader::Shader”: 没有重载函数接受 3 个参数

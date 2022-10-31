@@ -1,0 +1,11 @@
+#define __TBB_VERSION_STRINGS(N) \
+#N": BUILD_HOST         Windows" ENDL \
+#N": BUILD_OS           Windows-10.0.19044" ENDL \
+#N": BUILD_KERNEL       10.0.19044" ENDL \
+#N": BUILD_GCC          MSVC" ENDL \
+#N": BUILD_LIBC         Unknown" ENDL \
+#N": BUILD_LD           Unknown" ENDL \
+#N": BUILD_TARGET       Unknown" ENDL \
+#N": BUILD_COMMAND      Unknown" ENDL
+
+#define __TBB_DATETIME "2022/10/30 周日"

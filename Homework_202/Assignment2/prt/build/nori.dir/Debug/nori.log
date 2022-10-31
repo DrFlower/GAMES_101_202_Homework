@@ -1,0 +1,591 @@
+﻿  Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/CMakeLists.txt
+  bitmap.cpp
+  block.cpp
+  accel.cpp
+  chi2test.cpp
+  common.cpp
+  diffuse.cpp
+  gui.cpp
+  independent.cpp
+  main.cpp
+  mesh.cpp
+  obj.cpp
+  object.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(321,16): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(348,22): warning C4456: “i”的声明隐藏了上一个本地声明 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(271,8): message : 参见“i”的声明 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(349,13): warning C4456: “j”的声明隐藏了上一个本地声明 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(271,10): message : 参见“j”的声明 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\gui.cpp(123,64): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\gui.cpp(122,64): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): warning C4477: “printf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 1 拥有了类型“_Rep”
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%lld”
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%Id”
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%I64d”
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,45): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,33): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
+  parser.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(146,53): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
+  perspective.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
+  proplist.cpp
+  rfilter.cpp
+  scene.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\algorithm(3031,24): warning C4244: “=”: 从“int”转换到“char”，可能丢失数据 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\common.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\common.cpp(66): message : 查看对正在编译的函数 模板 实例化“_OutIt std::transform<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)”的引用
+          with
+          [
+              _OutIt=std::_String_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Elem=char,
+              _InIt=std::_String_const_iterator<std::_String_val<std::_Simple_types<char>>>,
+              _Fn=int (__cdecl *)(int)
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\main.cpp)
+  ttest.cpp
+  warp.cpp
+  microfacet.cpp
+  mirror.cpp
+  dielectric.cpp
+  prt.cpp
+  spherical_harmonics.cc
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\scene.cpp)
+  default_image.cc
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\ttest.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\warp.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\microfacet.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mirror.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(103,45): warning C4100: “d”: 未引用的形参
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(347,14): warning C4244: “初始化”: 从“Eigen::EigenBase<Derived>::Index”转换到“int”，可能丢失数据
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\dielectric.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(941,35): warning C4267: “=”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(758,39): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(957): message : 查看对正在编译的函数 模板 实例化“float sh::EvalSHSum<float>(int,const std::vector<float,std::allocator<float>> &,double,double)”的引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(781,32): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\spherical-harmonics\sh\spherical_harmonics.cc(959): message : 查看对正在编译的函数 模板 实例化“float sh::EvalSHSum<float>(int,const std::vector<float,std::allocator<float>> &,const Eigen::Vector3d &)”的引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(45,17): warning C4189: “index”: 局部变量已初始化但不引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(63,26): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(71,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(72,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(75,30): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(76,30): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(202,27): warning C4018: “<”: 有符号/无符号不匹配
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(208,59): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(208,52): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(208,45): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(225,70): warning C4244: “=”: 从“_Ty”转换到“float”，可能丢失数据
+          with
+          [
+              _Ty=double
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(234,27): warning C4018: “<”: 有符号/无符号不匹配
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(204,28): warning C4189: “v”: 局部变量已初始化但不引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(205,29): warning C4189: “n”: 局部变量已初始化但不引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(264,110): warning C4244: “参数”: 从“float”转换到“Eigen::EigenBase<Derived>::Index”，可能丢失数据
+          with
+          [
+              Derived=Eigen::Matrix<float,-1,-1,0,-1,-1>
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(265,110): warning C4244: “参数”: 从“float”转换到“Eigen::EigenBase<Derived>::Index”，可能丢失数据
+          with
+          [
+              Derived=Eigen::Matrix<float,-1,-1,0,-1,-1>
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(266,110): warning C4244: “参数”: 从“float”转换到“Eigen::EigenBase<Derived>::Index”，可能丢失数据
+          with
+          [
+              Derived=Eigen::Matrix<float,-1,-1,0,-1,-1>
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
+          with
+          [
+              Func=std::equal_to<float>,
+              ArgType0=const float &,
+              ArgType1=const float &
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(38): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::result_of<BinaryOp (const float &,const float &)>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(149): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::traits<Derived>”的引用
+          with
+          [
+              Derived=Eigen::CwiseBinaryOp<std::equal_to<float>,const Eigen::Matrix<float,3,1,0,3,1>,const Eigen::Matrix<float,3,1,0,3,1>>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/CwiseBinaryOp.h(77): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOpImpl<BinaryOp,LhsType,RhsType,Eigen::internal::cwise_promote_storage_type<Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,Eigen::internal::traits<Eigen::Matrix<float,3,1,0,3,1>>::StorageKind,BinaryOp>::ret>”的引用
+          with
+          [
+              BinaryOp=std::equal_to<float>,
+              LhsType=Eigen::Matrix<float,3,1,0,3,1>,
+              RhsType=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/MatrixBase.h(289): message : 查看对正在编译的 类 模板 实例化“Eigen::CwiseBinaryOp<std::equal_to<float>,const Derived,const Derived>”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(128): message : 查看对正在编译的函数 模板 实例化“bool Eigen::MatrixBase<Derived>::operator ==<Derived>(const Eigen::MatrixBase<Derived> &) const”的引用
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp)
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(108,29): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(191): message : 查看对正在编译的函数 模板 实例化“std::vector<Eigen::Array3f,std::allocator<Eigen::Array3f>> nori::ProjEnv::PrecomputeCubemapSH<2>(const std::vector<std::unique_ptr<float [],std::default_delete<float []>>,std::allocator<std::unique_ptr<float [],std::default_delete<float []>>>> &,const int &,const int &,const int &)”的引用
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(109,29): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\prt.cpp(119,15): warning C4189: “sumWeight”: 局部变量已初始化但不引用
+  nori.vcxproj -> D:\Development\Github\Games\Homework_202\Assignment2\prt\build\Debug\nori.exe

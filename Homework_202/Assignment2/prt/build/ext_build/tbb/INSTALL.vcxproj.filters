@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\e337c4acc466a2308e49869ffad6720a\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{93507B2B-1F09-37A0-8765-9C87E2775E01}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

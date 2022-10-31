@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\old\concurrent_queue_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\old\concurrent_vector_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\old\spin_rw_mutex_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\old\task_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\arena.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\cache_aligned_allocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\concurrent_hash_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\concurrent_monitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\concurrent_queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\concurrent_vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\condition_variable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\critical_section.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\dynamic_link.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\governor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\itt_notify.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\market.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\observer_proxy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\private_server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\queuing_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\queuing_rw_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\reader_writer_lock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\recursive_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\scheduler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\semaphore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\spin_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\spin_rw_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\task.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\task_group_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\tbb_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\tbb_misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\tbb_misc_ex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\tbb_statistics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\tbb_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\x86_rtm_rw_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\rml\client\rml_tbb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\intel64-masm\atomic_support.asm" />
+    <MASM Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\intel64-masm\itsx.asm" />
+    <MASM Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\tbb\src\tbb\intel64-masm\intel64_misc.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{CC5AAD6D-7A2B-369F-A4A3-0F89AD48E285}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

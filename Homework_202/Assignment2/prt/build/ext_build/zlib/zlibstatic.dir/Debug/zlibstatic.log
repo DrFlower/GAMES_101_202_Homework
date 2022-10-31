@@ -1,0 +1,18 @@
+﻿  Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/zlib/CMakeLists.txt
+  adler32.c
+  compress.c
+  crc32.c
+  deflate.c
+  gzclose.c
+  gzlib.c
+  gzread.c
+  gzwrite.c
+  inflate.c
+  infback.c
+  inftrees.c
+  inffast.c
+  trees.c
+  uncompr.c
+  zutil.c
+  正在生成代码...
+  zlibstatic.vcxproj -> D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib\Debug\zlibstatic.lib

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\IlmBase\Half\half.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\ffa0323c246081ae0d7b3ee14e628660\eLut.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\ffa0323c246081ae0d7b3ee14e628660\toFloat.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\IlmBase\Half\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{93507B2B-1F09-37A0-8765-9C87E2775E01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{CC5AAD6D-7A2B-369F-A4A3-0F89AD48E285}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

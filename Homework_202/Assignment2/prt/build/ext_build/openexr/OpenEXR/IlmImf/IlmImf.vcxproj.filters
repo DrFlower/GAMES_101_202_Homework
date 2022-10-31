@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfB44Compressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDwaCompressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfBoxAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfCRgbaFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfChannelList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfChannelListAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfFloatAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfFrameBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfHeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfIntAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfLineOrderAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfMatrixAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfOpaqueAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRgbaFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfStringAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfVecAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfHuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfThreading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfWav.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfLut.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfCompressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRleCompressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfZipCompressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPizCompressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfMisc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfCompressionAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDoubleAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfConvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPreviewImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPreviewImageAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfVersion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfChromaticities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfChromaticitiesAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfKeyCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfKeyCodeAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTimeCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTimeCodeAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRational.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRationalAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfFramesPerSecond.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfStandardAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfStdIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfEnvmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfEnvmapAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfScanLineInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledMisc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledRgbaFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTileDescriptionAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTileOffsets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRgbaYca.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPxr24Compressor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTestFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfStringVectorAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfMultiView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfAcesFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfMultiPartOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfGenericOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfOutputPartData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfMultiPartInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfGenericInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPartType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfInputPartData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfOutputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledOutputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfInputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfTiledInputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepScanLineInputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepScanLineOutputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepScanLineInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepScanLineOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepTiledInputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepTiledOutputPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepTiledInputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepTiledOutputFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepFrameBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepCompositing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfCompositeDeepScanLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfDeepImageStateAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfFastHuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfFloatVectorAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfSystemSpecific.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfZip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\fb3eb2cb66717bbc1b41fe0d34187942\b44ExpLogTable.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\fb3eb2cb66717bbc1b41fe0d34187942\dwaLookups.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{93507B2B-1F09-37A0-8765-9C87E2775E01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{CC5AAD6D-7A2B-369F-A4A3-0F89AD48E285}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

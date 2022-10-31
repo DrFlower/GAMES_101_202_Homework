@@ -1,0 +1,10 @@
+^D:\DEVELOPMENT\GITHUB\GAMES\HOMEWORK_202\ASSIGNMENT2\PRT\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

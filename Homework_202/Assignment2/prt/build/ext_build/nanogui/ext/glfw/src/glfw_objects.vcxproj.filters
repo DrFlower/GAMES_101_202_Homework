@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\vulkan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_joystick.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_monitor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_thread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_window.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\wgl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\egl_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\osmesa_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\mappings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include\GLFW\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include\GLFW\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\win32_joystick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\wgl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\egl_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\osmesa_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B4A696F5-BFB2-39CB-B04A-36F4B488F5E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{CC5AAD6D-7A2B-369F-A4A3-0F89AD48E285}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

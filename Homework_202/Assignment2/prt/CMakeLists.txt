@@ -109,6 +109,7 @@ add_executable(warptest
 )
 
 if (WIN32)
+  target_compile_options(nori PUBLIC /utf-8) # MSVC unicode support
   target_link_libraries(nori tbb_static pugixml IlmImf nanogui  ${NANOGUI_EXTRA_LIBS} zlibstatic)
 else()
   target_link_libraries(nori tbb_static pugixml IlmImf nanogui  ${NANOGUI_EXTRA_LIBS})

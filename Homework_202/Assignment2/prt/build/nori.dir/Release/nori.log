@@ -1,0 +1,44 @@
+﻿nanogui.lib(common.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(common.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(widget.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(widget.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(texture.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(texture.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(texture_gl.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(texture_gl.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(screen.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(screen.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(shader_gl.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(shader_gl.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(label.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(label.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(slider.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(slider.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(layout.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(layout.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(renderpass_gl.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(renderpass_gl.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(opengl.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(opengl.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(theme.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(theme.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(traits.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(traits.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+nanogui.lib(shader.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”(bitmap.obj 中)
+nanogui.lib(shader.obj) : error LNK2038: 检测到“RuntimeLibrary”的不匹配项: 值“MTd_StaticDebug”不匹配值“MT_StaticRelease”(bitmap.obj 中)
+LINK : warning LNK4098: 默认库“LIBCMTD”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+nanogui.lib(common.obj) : error LNK2019: 无法解析的外部符号 _calloc_dbg，函数 "char * __cdecl std::_Maklocstr<char>(char const *,char *,struct _Cvtvec const &)" (??$_Maklocstr@D@std@@YAPEADPEBDPEADAEBU_Cvtvec@@@Z) 中引用了该符号
+nanogui.lib(common.obj) : error LNK2019: 无法解析的外部符号 _free_dbg，函数 "private: void __cdecl std::_Yarn<char>::_Tidy(void)" (?_Tidy@?$_Yarn@D@std@@AEAAXXZ) 中引用了该符号
+nanogui.lib(screen.obj) : error LNK2001: 无法解析的外部符号 _free_dbg
+nanogui.lib(common.obj) : error LNK2019: 无法解析的外部符号 _malloc_dbg，函数 "public: static void * __cdecl std::_Crt_new_delete::operator new(unsigned __int64,struct std::nothrow_t const &)" (??2_Crt_new_delete@std@@SAPEAX_KAEBUnothrow_t@1@@Z) 中引用了该符号
+nanogui.lib(screen.obj) : error LNK2001: 无法解析的外部符号 _malloc_dbg
+nanogui.lib(shader.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(shader_gl.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(label.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(layout.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(renderpass_gl.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(common.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(widget.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(texture.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+nanogui.lib(screen.obj) : error LNK2001: 无法解析的外部符号 _CrtDbgReport
+D:\Development\Github\Games\Homework_202\Assignment2\prt\build\Release\nori.exe : fatal error LNK1120: 4 个无法解析的外部命令

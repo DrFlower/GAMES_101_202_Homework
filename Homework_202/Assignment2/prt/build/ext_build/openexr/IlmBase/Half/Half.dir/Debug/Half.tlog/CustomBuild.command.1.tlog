@@ -1,0 +1,38 @@
+^D:\DEVELOPMENT\GITHUB\GAMES\HOMEWORK_202\ASSIGNMENT2\PRT\BUILD\CMAKEFILES\FFA0323C246081AE0D7B3EE14E628660\ELUT.H.RULE
+setlocal
+cd D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half
+if %errorlevel% neq 0 goto :cmEnd
+D:
+if %errorlevel% neq 0 goto :cmEnd
+D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half\Debug\eLut.exe > D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/openexr/IlmBase/Half/eLut.h
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\DEVELOPMENT\GITHUB\GAMES\HOMEWORK_202\ASSIGNMENT2\PRT\BUILD\CMAKEFILES\FFA0323C246081AE0D7B3EE14E628660\TOFLOAT.H.RULE
+setlocal
+cd D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half
+if %errorlevel% neq 0 goto :cmEnd
+D:
+if %errorlevel% neq 0 goto :cmEnd
+D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Half\Debug\toFloat.exe > D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/openexr/IlmBase/Half/toFloat.h
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\DEVELOPMENT\GITHUB\GAMES\HOMEWORK_202\ASSIGNMENT2\PRT\EXT\OPENEXR\ILMBASE\HALF\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/openexr/IlmBase/Half/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

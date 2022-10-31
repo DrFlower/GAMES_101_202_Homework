@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7150D595-1DF4-382C-BCC0-6000EE009F7E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>nanogui</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nanogui.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nanogui</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nanogui.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">nanogui</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">nanogui.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">nanogui</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">nanogui.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">nanogui</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="Debug";</PreprocessorDefinitions>
+      <IncludePaths>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(IncludePaths)</IncludePaths>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="Release";</PreprocessorDefinitions>
+      <IncludePaths>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(IncludePaths)</IncludePaths>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="MinSizeRel";</PreprocessorDefinitions>
+      <IncludePaths>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(IncludePaths)</IncludePaths>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <MASM>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;__TBB_NO_IMPLICIT_LINKAGE;NDEBUG;NANOGUI_USE_OPENGL;NANOGUI_BUILD;NVG_STB_IMAGE_IMPLEMENTATION;NANOGUI_GLAD;CMAKE_INTDIR="RelWithDebInfo";</PreprocessorDefinitions>
+      <IncludePaths>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(IncludePaths)</IncludePaths>
+    </MASM>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\zlib;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\CMakeFiles\8142038fc58665975631070ff418ce15\nanogui_resources.cpp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Running bin2c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DOUTPUT_C=nanogui_resources.cpp -DOUTPUT_H=nanogui_resources.h -DINPUT_FILES=D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/FontAwesome-Solid.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Inconsolata-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Bold.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_fragment.gl,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_vertex.gl -P D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/bin2c.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\FontAwesome-Solid.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Inconsolata-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Bold.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_fragment.gl;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_vertex.gl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.cpp;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Running bin2c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DOUTPUT_C=nanogui_resources.cpp -DOUTPUT_H=nanogui_resources.h -DINPUT_FILES=D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/FontAwesome-Solid.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Inconsolata-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Bold.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_fragment.gl,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_vertex.gl -P D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/bin2c.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\FontAwesome-Solid.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Inconsolata-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Bold.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_fragment.gl;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_vertex.gl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.cpp;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Running bin2c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DOUTPUT_C=nanogui_resources.cpp -DOUTPUT_H=nanogui_resources.h -DINPUT_FILES=D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/FontAwesome-Solid.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Inconsolata-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Bold.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_fragment.gl,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_vertex.gl -P D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/bin2c.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\FontAwesome-Solid.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Inconsolata-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Bold.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_fragment.gl;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_vertex.gl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.cpp;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Running bin2c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -DOUTPUT_C=nanogui_resources.cpp -DOUTPUT_H=nanogui_resources.h -DINPUT_FILES=D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/FontAwesome-Solid.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Inconsolata-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Bold.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/Roboto-Regular.ttf,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_fragment.gl,D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/imageview_vertex.gl -P D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/resources/bin2c.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\FontAwesome-Solid.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Inconsolata-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Bold.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\Roboto-Regular.ttf;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_fragment.gl;D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\resources\imageview_vertex.gl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.cpp;D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.h</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/nanogui/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceRuns.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/nanogui/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceRuns.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/nanogui/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceRuns.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/nanogui/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Development/Github/Games/Homework_202/Assignment2/prt -BD:/Development/Github/Games/Homework_202/Assignment2/prt/build --check-stamp-file D:/Development/Github/Games/Homework_202/Assignment2/prt/build/ext_build/nanogui/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-3.23\Modules\CheckCXXSourceRuns.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src\nanovg.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4005;4456;4457;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4005;4456;4457;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">4005;4456;4457;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">4005;4456;4457;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\src\stb_image.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\texture_gl.cpp" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\shader_gl.cpp" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\renderpass_gl.cpp" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\opengl.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\opengl_check.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\src\glad.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4055;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4055;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">4055;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">4055;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include\glad\glad.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\glad\include\KHR\khrplatform.h" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\context.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\init.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\input.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\monitor.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\vulkan.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\window.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_init.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_joystick.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_monitor.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_time.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_thread.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\win32_window.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\wgl_context.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\egl_context.obj" />
+    <Object Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\$(Configuration)\osmesa_context.obj" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\nanogui_resources.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\common.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\common.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\widget.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\widget.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\theme.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\theme.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\layout.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\layout.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\screen.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\screen.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\label.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\label.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\window.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\window.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\popup.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\popup.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\checkbox.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\checkbox.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\button.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\button.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\popupbutton.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\popupbutton.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\combobox.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\combobox.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\progressbar.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\progressbar.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\slider.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\slider.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\messagedialog.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\messagedialog.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\textbox.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\textbox.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\textarea.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\textarea.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\imagepanel.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imagepanel.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\vscrollpanel.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\vscrollpanel.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\colorwheel.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\colorwheel.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\colorpicker.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\colorpicker.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\graph.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\graph.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\tabwidget.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\tabwidget.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\canvas.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\canvas.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\texture.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\texture.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\shader.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\shader.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\imageview.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\imageview.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\traits.h" />
+    <ClCompile Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\src\traits.cpp" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\renderpass.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\formhelper.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\icons.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\toolbutton.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\opengl.h" />
+    <ClInclude Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\include\nanogui\nanogui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ZERO_CHECK.vcxproj">
+      <Project>{98F57CE0-5A95-3B21-BE68-9AD86D0AB104}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.vcxproj">
+      <Project>{A93BBFF2-56F9-3683-B6E1-9DBBF5D91EF0}</Project>
+      <Name>glfw_objects</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

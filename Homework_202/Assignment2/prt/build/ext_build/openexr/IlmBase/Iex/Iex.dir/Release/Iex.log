@@ -1,0 +1,4 @@
+﻿  Building Custom Rule D:/Development/Github/Games/Homework_202/Assignment2/prt/ext/openexr/IlmBase/Iex/CMakeLists.txt
+  IexBaseExc.cpp
+  IexThrowErrnoExc.cpp
+  Iex.vcxproj -> D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\openexr\IlmBase\Iex\Release\Iex.lib
