@@ -35,10 +35,10 @@
   ImfRleCompressor.cpp
   ImfZipCompressor.cpp
   ImfPizCompressor.cpp
-D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfZipCompressor.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPizCompressor.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfRleCompressor.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfZipCompressor.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   ImfMisc.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\openexr\OpenEXR\IlmImf\ImfPizCompressor.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   ImfCompressionAttribute.cpp
   ImfDoubleAttribute.cpp
   ImfConvert.cpp

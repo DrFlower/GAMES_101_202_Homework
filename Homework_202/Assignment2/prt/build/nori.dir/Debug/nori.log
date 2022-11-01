@@ -18,14 +18,6 @@ D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\nanogui\ext\nanovg\example\stb_image_write.h(271,10): message : 参见“j”的声明 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\bitmap.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\gui.cpp(123,64): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\gui.cpp(122,64): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
-D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): warning C4477: “printf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 1 拥有了类型“_Rep”
-          with
-          [
-              _Rep=__int64
-          ]
-D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%lld”
-D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%Id”
-D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%I64d”
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
           with
@@ -66,12 +58,19 @@ D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(12
           [
               Derived=Eigen::Matrix<float,3,1,0,3,1>
           ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\diffuse.cpp)
+  parser.cpp
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): warning C4477: “printf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 1 拥有了类型“_Rep”
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%lld”
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%Id”
+D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(62,12): message : 请考虑在格式字符串中使用“%I64d”
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,45): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,39): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(107,33): warning C4244: “参数”: 从“uint32_t”转换到“float”，可能丢失数据
-  parser.cpp
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp(146,53): warning C4267: “初始化”: 从“size_t”转换到“uint32_t”，可能丢失数据
-  perspective.cpp
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
           with
@@ -112,6 +111,7 @@ D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(12
           [
               Derived=Eigen::Matrix<float,3,1,0,3,1>
           ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\mesh.cpp)
+  perspective.cpp
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
           with
@@ -154,7 +154,6 @@ D:\Development\Github\Games\Homework_202\Assignment2\prt\include\nori/frame.h(12
           ] (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\accel.cpp)
   proplist.cpp
   rfilter.cpp
-  scene.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\algorithm(3031,24): warning C4244: “=”: 从“int”转换到“char”，可能丢失数据 (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\common.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\common.cpp(66): message : 查看对正在编译的函数 模板 实例化“_OutIt std::transform<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,int(__cdecl *)(int)>(const _InIt,const _InIt,_OutIt,_Fn)”的引用
           with
@@ -164,6 +163,7 @@ D:\Development\Github\Games\Homework_202\Assignment2\prt\src\common.cpp(66): mes
               _InIt=std::_String_const_iterator<std::_String_val<std::_Simple_types<char>>>,
               _Fn=int (__cdecl *)(int)
           ]
+  scene.cpp
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(357,2): warning C4996: 'std::equal_to<float>::result_type': warning STL4007: Many result_type typedefs and all argument_type, first_argument_type, and second_argument_type typedefs are deprecated in C++17. You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning. (编译源文件 D:\Development\Github\Games\Homework_202\Assignment2\prt\src\obj.cpp)
 D:\Development\Github\Games\Homework_202\Assignment2\prt\ext\eigen\Eigen\src/Core/util/Meta.h(373): message : 查看对正在编译的 类 模板 实例化“Eigen::internal::binary_result_of_select<Func,ArgType0,ArgType1,8>”的引用
           with
