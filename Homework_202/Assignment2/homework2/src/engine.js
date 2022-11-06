@@ -1,6 +1,6 @@
 let precomputeLT = [];
 let precomputeL = [];
-var cameraPosition = [50, 0, 100];
+var cameraPosition = [0, 0, 100];
 
 var envmap = [
 	'assets/cubemap/GraceCathedral',
@@ -118,7 +118,8 @@ async function GAMES202Main() {
 	// loadOBJ(renderer, 'assets/bunny/', 'bunny', 'addYourPRTMaterial', box2Transform);
 
 	// Edit Start
-	loadOBJ(renderer, 'assets/mary/', 'mary', 'PRTMaterial', box2Transform);
+	let maryTransform = setTransform(0, -35, 0, 20, 20, 20);
+	loadOBJ(renderer, 'assets/mary/', 'mary', 'PRTMaterial', maryTransform);
 	// Edit End
 
 	function createGUI() {
