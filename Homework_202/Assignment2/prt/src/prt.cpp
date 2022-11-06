@@ -183,6 +183,43 @@ public:
         }
     }
 
+    nori::Vector3f random_in_hemisphere()
+    {
+
+    }
+
+    std::unique_ptr<std::vector<double>> computeInterreflectionSH(const Scene* scene, nori::Mesh* mesh, uint32_t vertexIndex, int depth)
+    {
+        if (depth <= 0)
+            return 0;
+
+        const Point3f& v = mesh->getVertexPositions().col(vertexIndex);
+        const Normal3f& n = mesh->getVertexNormals().col(vertexIndex);
+
+        std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
+        coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
+
+        nori::Vector3f dir = random_in_hemisphere().normalized();
+        nori::Intersection its;
+        if (!scene->rayIntersect(Ray3f(v, dir), its))
+        {
+            return coeffs;
+        }
+
+
+
+        for (int l = 0; l <= SHOrder; l++) {
+            for (int m = -l; m <= l; m++) {
+                auto basic_sh_proj = sh::EvalSH(l, m, dir);
+                (*coeffs)[sh::GetIndex(l, m)] += basic_sh_proj;
+            }
+        }
+
+       
+
+
+    }
+
     virtual void preprocess(const Scene *scene) override
     {
 
@@ -240,7 +277,21 @@ public:
         }
         if (m_Type == Type::Interreflection)
         {
+
+
             // TODO: leave for bonus
+
+            std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
+            coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
+            for (int i = 0; i < mesh->getVertexCount(); i++)
+            {
+                for (int i = 0; i < m_SampleCount; i++)
+                {
+                    computeInterreflectionSH(scene, mesh, i, 10);
+                }
+            }
+
+    
         }
 
         // Save in face format
