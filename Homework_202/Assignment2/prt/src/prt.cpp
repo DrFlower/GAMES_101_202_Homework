@@ -183,42 +183,42 @@ public:
         }
     }
 
-    nori::Vector3f random_in_hemisphere()
-    {
+    //nori::Vector3f random_in_hemisphere()
+    //{
 
-    }
+    //}
 
-    std::unique_ptr<std::vector<double>> computeInterreflectionSH(const Scene* scene, nori::Mesh* mesh, uint32_t vertexIndex, int depth)
-    {
-        if (depth <= 0)
-            return 0;
+    //std::unique_ptr<std::vector<double>> computeInterreflectionSH(const Scene* scene, nori::Mesh* mesh, uint32_t vertexIndex, int depth)
+    //{
+    //    if (depth <= 0)
+    //        return 0;
 
-        const Point3f& v = mesh->getVertexPositions().col(vertexIndex);
-        const Normal3f& n = mesh->getVertexNormals().col(vertexIndex);
+    //    const Point3f& v = mesh->getVertexPositions().col(vertexIndex);
+    //    const Normal3f& n = mesh->getVertexNormals().col(vertexIndex);
 
-        std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
-        coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
+    //    std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
+    //    coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
 
-        nori::Vector3f dir = random_in_hemisphere().normalized();
-        nori::Intersection its;
-        if (!scene->rayIntersect(Ray3f(v, dir), its))
-        {
-            return coeffs;
-        }
-
-
-
-        for (int l = 0; l <= SHOrder; l++) {
-            for (int m = -l; m <= l; m++) {
-                auto basic_sh_proj = sh::EvalSH(l, m, dir);
-                (*coeffs)[sh::GetIndex(l, m)] += basic_sh_proj;
-            }
-        }
-
-       
+    //    nori::Vector3f dir = random_in_hemisphere().normalized();
+    //    nori::Intersection its;
+    //    if (!scene->rayIntersect(Ray3f(v, dir), its))
+    //    {
+    //        return coeffs;
+    //    }
 
 
-    }
+
+    //    for (int l = 0; l <= SHOrder; l++) {
+    //        for (int m = -l; m <= l; m++) {
+    //            auto basic_sh_proj = sh::EvalSH(l, m, dir);
+    //            (*coeffs)[sh::GetIndex(l, m)] += basic_sh_proj;
+    //        }
+    //    }
+
+    //   
+
+
+    //}
 
     virtual void preprocess(const Scene *scene) override
     {
@@ -257,14 +257,14 @@ public:
                 {
                     // TODO: here you need to calculate unshadowed transport term of a given direction
                     // TODO: 此处你需要计算给定方向下的unshadowed传输项球谐函数值
-                    return H > 0.0 ? H : 0;
+                    return H > 0.0 ? H / M_PI : 0;
                 }
                 else
                 {
                     // TODO: here you need to calculate shadowed transport term of a given direction
                     // TODO: 此处你需要计算给定方向下的shadowed传输项球谐函数值
                     if (H > 0.0 && !scene->rayIntersect(Ray3f(v, wi.normalized()))) {
-                        return H;
+                        return H / M_PI;
                     }
                     return 0;
                 }
@@ -281,17 +281,69 @@ public:
 
             // TODO: leave for bonus
 
-            std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
-            coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
-            for (int i = 0; i < mesh->getVertexCount(); i++)
+            //std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
+            //coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
+            //for (int i = 0; i < mesh->getVertexCount(); i++)
+            //{
+            //    for (int i = 0; i < m_SampleCount; i++)
+            //    {
+            //        computeInterreflectionSH(scene, mesh, i, 10);
+            //    }
+            //}
+            const int bounces = 1;
+
+            const double area = 4.0 * M_PI;
+            double* sh_buffer[bounces + 1];
+
+            Eigen::MatrixXf bouncesTransportSHCoeffs[bounces + 1];
+            
+            bouncesTransportSHCoeffs[0] = m_TransportSHCoeffs;
+            for (int i = 1; i <= bounces; i++)
             {
-                for (int i = 0; i < m_SampleCount; i++)
+                bouncesTransportSHCoeffs[i].resize(SHCoeffLength, mesh->getVertexCount());
+            }
+
+
+            for (int curBounce = 1; curBounce <= bounces; curBounce++)
+            {
+                for (int i = 0; i < mesh->getVertexCount(); i++)
                 {
-                    computeInterreflectionSH(scene, mesh, i, 10);
+                    const Point3f& v = mesh->getVertexPositions().col(i);
+                    const Normal3f& n = mesh->getVertexNormals().col(i);
+                    auto shFunc = [&](double phi, double theta) -> double {
+                        Eigen::Array3d d = sh::ToVector(phi, theta);
+                        const auto wi = Vector3f(d.x(), d.y(), d.z());
+                        double H = wi.normalized().dot(n.normalized());
+                        Intersection its;
+                        if (H > 0.0 && scene->rayIntersect(Ray3f(v, wi.normalized()), its))
+                        {
+
+                            Point3f idx = its.tri_index;
+                            Point3f point = its.p;
+                            Vector3f bary = its.bary;
+
+                            for (int coeffIndex = 0; coeffIndex < SHCoeffLength; coeffIndex++)
+                            {
+                                auto indirect =
+                                    (bouncesTransportSHCoeffs[curBounce-1].col(idx.x()).coeffRef(coeffIndex) * bary.x() +
+                                        bouncesTransportSHCoeffs[curBounce - 1].col(idx.y()).coeffRef(coeffIndex) * bary.y() +
+                                        bouncesTransportSHCoeffs[curBounce - 1].col(idx.z()).coeffRef(coeffIndex) * bary.z() +
+                                        nextBounce[coeffIndex]
+                                        ) * in;
+                                ret[coeffIndex] += indirect;
+                            }
+
+                            return coeffs;
+                        }
+
+                        return 0;
+                    };
+                    auto shCoeff = sh::ProjectFunction(SHOrder, shFunc, m_SampleCount);
+
+       
                 }
             }
 
-    
         }
 
         // Save in face format
@@ -336,13 +388,6 @@ public:
 
         const Vector3f &bary = its.bary;
         Color3f c = bary.x() * c0 + bary.y() * c1 + bary.z() * c2;
-        // TODO: you need to delete the following four line codes after finishing your calculation to SH,
-        //       we use it to visualize the normals of model for debug.
-        // TODO: 在完成了球谐系数计算后，你需要删除下列四行，这四行代码的作用是用来可视化模型法线
-        if (c.isZero()) {
-            auto n_ = its.shFrame.n.cwiseAbs();
-            return Color3f(n_.x(), n_.y(), n_.z());
-        }
         return c;
     }
 
