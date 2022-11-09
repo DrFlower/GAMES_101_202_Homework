@@ -209,7 +209,7 @@ public:
 
                 Eigen::Array3d d = sh::ToVector(phi, theta);
                 const auto wi = Vector3f(d.x(), d.y(), d.z());
-                double H = wi.normalized().dot(normal.normalized());
+                double H = wi.normalized().dot(normal);
                 Intersection its;
                 if (H > 0.0 && scene->rayIntersect(Ray3f(pos, wi.normalized()), its))
                 {
@@ -228,14 +228,11 @@ public:
 
                     for (int i = 0; i < SHCoeffLength; i++)
                     {
-                        auto indirect =
-                            (directTSHCoeffs->col(idx.x()).coeffRef(i) * bary.x() +
-                                directTSHCoeffs->col(idx.y()).coeffRef(i) * bary.y() +
-                                directTSHCoeffs->col(idx.z()).coeffRef(i) * bary.z() +
-                                (*nextBouncesCoeffs)[i]
-                            ) * H;
+                        auto interpolateSH = (directTSHCoeffs->col(idx.x()).coeffRef(i) * bary.x() +
+                            directTSHCoeffs->col(idx.y()).coeffRef(i) * bary.y() +
+                            directTSHCoeffs->col(idx.z()).coeffRef(i) * bary.z());
 
-                        (*coeffs)[i] += indirect;
+                        (*coeffs)[i] += (interpolateSH + (*nextBouncesCoeffs)[i]) * H;
                     }
                 }
             }
