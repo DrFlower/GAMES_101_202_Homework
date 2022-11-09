@@ -1,1 +1,0 @@
-D:\Development\Github\Games\Homework_202\Assignment2\prt\build\ext_build\nanogui\ext\glfw\src\glfw_objects.dir\Debug\glfw_objects.lib
