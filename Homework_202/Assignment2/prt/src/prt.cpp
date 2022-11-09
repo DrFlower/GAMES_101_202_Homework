@@ -183,42 +183,70 @@ public:
         }
     }
 
-    //nori::Vector3f random_in_hemisphere()
-    //{
+    struct ShadingPointInfo {
+        Point3f pos;
+        Normal3f normal;
+    };
 
-    //}
+    std::unique_ptr<std::vector<double>> computeInterreflectionSH(Eigen::MatrixXf* directTSHCoeffs, const Point3f& pos, const Normal3f& normal, const Scene* scene, int bounces)
+    {
+        std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
+        coeffs->assign(SHCoeffLength, 0.0);
 
-    //std::unique_ptr<std::vector<double>> computeInterreflectionSH(const Scene* scene, nori::Mesh* mesh, uint32_t vertexIndex, int depth)
-    //{
-    //    if (depth <= 0)
-    //        return 0;
+        if (bounces > m_Bounce)
+            return coeffs;
 
-    //    const Point3f& v = mesh->getVertexPositions().col(vertexIndex);
-    //    const Normal3f& n = mesh->getVertexNormals().col(vertexIndex);
+        const int sample_side = static_cast<int>(floor(sqrt(m_SampleCount)));
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<> rng(0.0, 1.0);
+        for (int t = 0; t < sample_side; t++) {
+            for (int p = 0; p < sample_side; p++) {
+                double alpha = (t + rng(gen)) / sample_side;
+                double beta = (p + rng(gen)) / sample_side;
+                double phi = 2.0 * M_PI * beta;
+                double theta = acos(2.0 * alpha - 1.0);
 
-    //    std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
-    //    coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
+                Eigen::Array3d d = sh::ToVector(phi, theta);
+                const auto wi = Vector3f(d.x(), d.y(), d.z());
+                double H = wi.normalized().dot(normal.normalized());
+                Intersection its;
+                if (H > 0.0 && scene->rayIntersect(Ray3f(pos, wi.normalized()), its))
+                {
+                    MatrixXf normals = its.mesh->getVertexNormals();
+                    Point3f idx = its.tri_index;
+                    Point3f hitPos = its.p;
+                    Vector3f bary = its.bary;
 
-    //    nori::Vector3f dir = random_in_hemisphere().normalized();
-    //    nori::Intersection its;
-    //    if (!scene->rayIntersect(Ray3f(v, dir), its))
-    //    {
-    //        return coeffs;
-    //    }
+                    Normal3f hitNormal =
+                        Normal3f(normals.col(idx.x()).normalized() * bary.x() +
+                            normals.col(idx.y()).normalized() * bary.y() +
+                            normals.col(idx.z()).normalized() * bary.z())
+                        .normalized();
 
+                    auto nextBouncesCoeffs = computeInterreflectionSH(directTSHCoeffs, hitPos, hitNormal, scene, bounces + 1);
 
+                    for (int i = 0; i < SHCoeffLength; i++)
+                    {
+                        auto indirect =
+                            (directTSHCoeffs->col(idx.x()).coeffRef(i) * bary.x() +
+                                directTSHCoeffs->col(idx.y()).coeffRef(i) * bary.y() +
+                                directTSHCoeffs->col(idx.z()).coeffRef(i) * bary.z() +
+                                (*nextBouncesCoeffs)[i]
+                            ) * H;
 
-    //    for (int l = 0; l <= SHOrder; l++) {
-    //        for (int m = -l; m <= l; m++) {
-    //            auto basic_sh_proj = sh::EvalSH(l, m, dir);
-    //            (*coeffs)[sh::GetIndex(l, m)] += basic_sh_proj;
-    //        }
-    //    }
+                        (*coeffs)[i] += indirect;
+                    }
+                }
+            }
+        }
 
-    //   
-
-
-    //}
+        for (unsigned int i = 0; i < coeffs->size(); i++) {
+            (*coeffs)[i] /= sample_side * sample_side;
+        }
+        
+        return coeffs;
+    }
 
     virtual void preprocess(const Scene *scene) override
     {
@@ -277,73 +305,19 @@ public:
         }
         if (m_Type == Type::Interreflection)
         {
-
-
             // TODO: leave for bonus
 
-            //std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
-            //coeffs->assign(sh::GetCoefficientCount(SHOrder), 0.0);
-            //for (int i = 0; i < mesh->getVertexCount(); i++)
-            //{
-            //    for (int i = 0; i < m_SampleCount; i++)
-            //    {
-            //        computeInterreflectionSH(scene, mesh, i, 10);
-            //    }
-            //}
-            const int bounces = 1;
-
-            const double area = 4.0 * M_PI;
-            double* sh_buffer[bounces + 1];
-
-            Eigen::MatrixXf bouncesTransportSHCoeffs[bounces + 1];
-            
-            bouncesTransportSHCoeffs[0] = m_TransportSHCoeffs;
-            for (int i = 1; i <= bounces; i++)
+            for (int i = 0; i < mesh->getVertexCount(); i++)
             {
-                bouncesTransportSHCoeffs[i].resize(SHCoeffLength, mesh->getVertexCount());
-            }
-
-
-            for (int curBounce = 1; curBounce <= bounces; curBounce++)
-            {
-                for (int i = 0; i < mesh->getVertexCount(); i++)
+                const Point3f& v = mesh->getVertexPositions().col(i);
+                const Normal3f& n = mesh->getVertexNormals().col(i).normalized();
+                auto indirectCoeffs = computeInterreflectionSH(&m_TransportSHCoeffs, v, n, scene, 1);
+                for (int j = 0; j < SHCoeffLength; j++)
                 {
-                    const Point3f& v = mesh->getVertexPositions().col(i);
-                    const Normal3f& n = mesh->getVertexNormals().col(i);
-                    auto shFunc = [&](double phi, double theta) -> double {
-                        Eigen::Array3d d = sh::ToVector(phi, theta);
-                        const auto wi = Vector3f(d.x(), d.y(), d.z());
-                        double H = wi.normalized().dot(n.normalized());
-                        Intersection its;
-                        if (H > 0.0 && scene->rayIntersect(Ray3f(v, wi.normalized()), its))
-                        {
-
-                            Point3f idx = its.tri_index;
-                            Point3f point = its.p;
-                            Vector3f bary = its.bary;
-
-                            for (int coeffIndex = 0; coeffIndex < SHCoeffLength; coeffIndex++)
-                            {
-                                auto indirect =
-                                    (bouncesTransportSHCoeffs[curBounce-1].col(idx.x()).coeffRef(coeffIndex) * bary.x() +
-                                        bouncesTransportSHCoeffs[curBounce - 1].col(idx.y()).coeffRef(coeffIndex) * bary.y() +
-                                        bouncesTransportSHCoeffs[curBounce - 1].col(idx.z()).coeffRef(coeffIndex) * bary.z() +
-                                        nextBounce[coeffIndex]
-                                        ) * in;
-                                ret[coeffIndex] += indirect;
-                            }
-
-                            return coeffs;
-                        }
-
-                        return 0;
-                    };
-                    auto shCoeff = sh::ProjectFunction(SHOrder, shFunc, m_SampleCount);
-
-       
+                    m_TransportSHCoeffs.col(i).coeffRef(j) += (*indirectCoeffs)[j];
                 }
+                std::cout << "computing interreflection light sh coeffs, current vertex idx: " << i << " total vertex idx: " << mesh->getVertexCount() << std::endl;
             }
-
         }
 
         // Save in face format
