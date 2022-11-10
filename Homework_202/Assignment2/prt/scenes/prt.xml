@@ -9,7 +9,7 @@
 		<string name="type" value="interreflection" />
 		<integer name="bounce" value="1" />
 		<integer name="PRTSampleCount" value="100" />
-		<string name="cubemap" value="cubemap/GraceCathedral" />
+		<string name="cubemap" value="cubemap/Skybox" />
 	</integrator>
 
     <!-- Load the Stanford bunny (https://graphics.stanford.edu/data/3Dscanrep/) -->
