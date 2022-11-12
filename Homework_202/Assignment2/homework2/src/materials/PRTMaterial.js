@@ -3,9 +3,9 @@ class PRTMaterial extends Material {
     constructor(vertexShader, fragmentShader) {
 
         super({
-            'uPrecomputeL[0]': { type: 'precomputeL', value: 0 },
-            'uPrecomputeL[1]': { type: 'precomputeL', value: 1 },
-            'uPrecomputeL[2]': { type: 'precomputeL', value: 2 },
+            'uPrecomputeL[0]': { type: 'precomputeL', value: null},
+            'uPrecomputeL[1]': { type: 'precomputeL', value: null},
+            'uPrecomputeL[2]': { type: 'precomputeL', value: null},
         }, 
         ['aPrecomputeLT'], 
         vertexShader, fragmentShader, null);
