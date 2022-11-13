@@ -301,7 +301,9 @@ public:
             auto shCoeff = sh::ProjectFunction(SHOrder, shFunc, m_SampleCount);
             for (int j = 0; j < shCoeff->size(); j++)
             {
+                // Edit Start
                 m_TransportSHCoeffs.col(i).coeffRef(j) = (*shCoeff)[j] / M_PI ;
+                // Edit End
             }
         }
         if (m_Type == Type::Interreflection)
