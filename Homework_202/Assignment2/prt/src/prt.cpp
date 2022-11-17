@@ -185,11 +185,6 @@ public:
         }
     }
 
-    struct ShadingPointInfo {
-        Point3f pos;
-        Normal3f normal;
-    };
-
     std::unique_ptr<std::vector<double>> computeInterreflectionSH(Eigen::MatrixXf* directTSHCoeffs, const Point3f& pos, const Normal3f& normal, const Scene* scene, int bounces)
     {
         std::unique_ptr<std::vector<double>> coeffs(new std::vector<double>());
