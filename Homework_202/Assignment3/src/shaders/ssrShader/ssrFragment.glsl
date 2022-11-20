@@ -139,7 +139,44 @@ vec3 EvalDirectionalLight(vec2 uv) {
 }
 
 bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
+  float step = 0.04;
+  const int totalStepTimes = 200; 
+  int curStepTimes = 0;
+
+  vec3 stepDir = normalize(dir) * step;
+  vec3 curPos = ori;
+  for(int curStepTimes = 0; curStepTimes < totalStepTimes; curStepTimes++)
+  {
+    vec2 screenUV = GetScreenCoordinate(curPos);
+    float rayDepth = GetDepth(curPos);
+    float gBufferDepth = GetGBufferDepth(screenUV);
+
+    if(rayDepth - gBufferDepth > 0.0001){
+      hitPos = curPos;
+      return true;
+    }
+
+    curPos += stepDir;
+  }
+
   return false;
+}
+
+// test Screen Space Ray Tracing 
+vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
+  wo = -wo;
+  vec3 worldNormal = GetGBufferNormalWorld(uv);
+  vec3 relfectDir = normalize(wo - 2. * dot(wo, worldNormal) * worldNormal);
+  vec3 hitPos;
+  if(RayMarch(vPosWorld.xyz, relfectDir, hitPos)){
+      vec2 screenUV = GetScreenCoordinate(hitPos);
+      // return EvalDiffuse(wi, wo, screenUV);
+      return GetGBufferDiffuse(screenUV);
+      // return vec3(1.);
+  }
+  else{
+    return vec3(0.); 
+  }
 }
 
 #define SAMPLE_NUM 1
@@ -148,12 +185,15 @@ void main() {
   float s = InitRand(gl_FragCoord.xy);
 
   vec3 L = vec3(0.0);
+  // 无光照
   // L = GetGBufferDiffuse(GetScreenCoordinate(vPosWorld.xyz));
 
   vec3 wi = normalize(uLightDir);
   vec3 wo = normalize(uCameraPos - vPosWorld.xyz);
   vec2 screenUV = GetScreenCoordinate(vPosWorld.xyz);
-  L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
+  // 直接光照
+  // L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
+  L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
   
   vec3 color = pow(clamp(L, vec3(0.0), vec3(1.0)), vec3(1.0 / 2.2));
   gl_FragColor = vec4(vec3(color.rgb), 1.0);
