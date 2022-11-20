@@ -193,6 +193,7 @@ void main() {
   vec2 screenUV = GetScreenCoordinate(vPosWorld.xyz);
   // 直接光照
   // L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
+  // Screen Space Ray Tracing 的反射测试
   L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
   
   vec3 color = pow(clamp(L, vec3(0.0), vec3(1.0)), vec3(1.0 / 2.2));
