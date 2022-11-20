@@ -124,7 +124,7 @@ vec3 GetGBufferDiffuse(vec2 uv) {
 vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
   vec3 albedo  = GetGBufferDiffuse(uv);
   float cos = max(0., dot(GetGBufferNormalWorld(uv), wi));
-  return albedo * cos;
+  return albedo * cos * INV_PI;
 }
 
 /*
