@@ -122,8 +122,9 @@ vec3 GetGBufferDiffuse(vec2 uv) {
  *
  */
 vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
-  vec3 L = vec3(0.0);
-  return L;
+  vec3 albedo  = GetGBufferDiffuse(uv);
+  float cos = max(0., dot(GetGBufferNormalWorld(uv), wi));
+  return albedo * cos;
 }
 
 /*
@@ -133,6 +134,7 @@ vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
  */
 vec3 EvalDirectionalLight(vec2 uv) {
   vec3 Le = vec3(0.0);
+  Le = texture2D(uGShadow, uv).x * uLightRadiance;
   return Le;
 }
 
@@ -146,7 +148,13 @@ void main() {
   float s = InitRand(gl_FragCoord.xy);
 
   vec3 L = vec3(0.0);
-  L = GetGBufferDiffuse(GetScreenCoordinate(vPosWorld.xyz));
+  // L = GetGBufferDiffuse(GetScreenCoordinate(vPosWorld.xyz));
+
+  vec3 wi = normalize(uLightDir);
+  vec3 wo = normalize(uCameraPos - vPosWorld.xyz);
+  vec2 screenUV = GetScreenCoordinate(vPosWorld.xyz);
+  L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
+  
   vec3 color = pow(clamp(L, vec3(0.0), vec3(1.0)), vec3(1.0 / 2.2));
   gl_FragColor = vec4(vec3(color.rgb), 1.0);
 }
