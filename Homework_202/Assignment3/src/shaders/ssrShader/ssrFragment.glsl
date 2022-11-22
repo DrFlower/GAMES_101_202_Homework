@@ -164,9 +164,8 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
 
 // test Screen Space Ray Tracing 
 vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
-  wo = -wo;
   vec3 worldNormal = GetGBufferNormalWorld(uv);
-  vec3 relfectDir = normalize(wo - 2. * dot(wo, worldNormal) * worldNormal);
+  vec3 relfectDir = normalize(reflect(-wo, worldNormal));
   vec3 hitPos;
   if(RayMarch(vPosWorld.xyz, relfectDir, hitPos)){
       vec2 screenUV = GetScreenCoordinate(hitPos);
@@ -177,7 +176,7 @@ vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
   }
 }
 
-#define SAMPLE_NUM 2
+#define SAMPLE_NUM 1
 
 void main() {
   float s = InitRand(gl_FragCoord.xy);
