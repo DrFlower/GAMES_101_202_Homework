@@ -11,28 +11,28 @@ function GAMES202Main() {
 	canvas.width = window.screen.width;
 	canvas.height = window.screen.height;
 	// Init gl
-	gl = canvas.getContext('webgl');
+	gl = canvas.getContext('webgl2');
 	if (!gl) {
 		alert('Unable to initialize WebGL. Your browser or machine may not support it.');
 		return;
 	}
 	gl.getExtension('OES_texture_float');
 	gl_draw_buffers = gl.getExtension('WEBGL_draw_buffers');
-	var maxdb = gl.getParameter(gl_draw_buffers.MAX_DRAW_BUFFERS_WEBGL);
-    console.log('MAX_DRAW_BUFFERS_WEBGL: ' + maxdb);
+	// var maxdb = gl.getParameter(gl_draw_buffers.MAX_DRAW_BUFFERS_WEBGL);
+    // console.log('MAX_DRAW_BUFFERS_WEBGL: ' + maxdb);
 
 	// Add camera
 	const camera = new THREE.PerspectiveCamera(75, gl.canvas.clientWidth / gl.canvas.clientHeight, 1e-3, 1000);
 	let cameraPosition, cameraTarget;
 	// /*
 	// Cube
-	// cameraPosition = [6, 1, 0]
-	// cameraTarget = [0, 0, 0]
+	cameraPosition = [6, 1, 0]
+	cameraTarget = [0, 0, 0]
 	// */
 	
 	// Cave
-	cameraPosition = [4.18927, 1.0313, 2.07331]
-	cameraTarget = [2.92191, 0.98, 1.55037]
+	// cameraPosition = [4.18927, 1.0313, 2.07331]
+	// cameraTarget = [2.92191, 0.98, 1.55037]
 	
 	camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
 	camera.fbo = new FBO(gl);
@@ -62,32 +62,32 @@ function GAMES202Main() {
 	let lightPos, lightDir, lightRadiance;
 	
 	// Cave
-	lightRadiance = [20, 20, 20];
-	lightPos = [-0.45, 5.40507, 0.637043];
-	lightDir = {
-		'x': 0.39048811,
-		'y': -0.89896828,
-		'z': 0.19843153,
-	};
+	// lightRadiance = [20, 20, 20];
+	// lightPos = [-0.45, 5.40507, 0.637043];
+	// lightDir = {
+	// 	'x': 0.39048811,
+	// 	'y': -0.89896828,
+	// 	'z': 0.19843153,
+	// };
 	
 	// /*
 	// Cube
-	// lightRadiance = [1, 1, 1];
-	// lightPos = [-2, 4, 1];
-	// lightDir = {
-	// 	'x': 0.4,
-	// 	'y': -0.9,
-	// 	'z': -0.2,
-	// };
+	lightRadiance = [1, 1, 1];
+	lightPos = [-2, 4, 1];
+	lightDir = {
+		'x': 0.4,
+		'y': -0.9,
+		'z': -0.2,
+	};
 	// */
 	let lightUp = [1, 0, 0];
 	const directionLight = new DirectionalLight(lightRadiance, lightPos, lightDir, lightUp, renderer.gl);
 	renderer.addLight(directionLight);
 
 	// Add shapes
-	// loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
+	loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
 	// loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
-	loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
+	// loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
 
 	function createGUI() {
 		const gui = new dat.gui.GUI();

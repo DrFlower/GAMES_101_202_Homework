@@ -16,7 +16,7 @@ class FBO{
                 return error();
             }
             gl.bindTexture(gl.TEXTURE_2D, texture);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.screen.width, window.screen.height, 0, gl.RGBA, gl.FLOAT, null);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.screen.width, window.screen.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -38,15 +38,23 @@ class FBO{
 	    framebuffer.attachments = [];
 	    framebuffer.textures = []
 
-	    for (var i = 0; i < GBufferNum; i++) {
-	    	var attachment = gl_draw_buffers['COLOR_ATTACHMENT' + i + '_WEBGL'];
+	    // for (var i = 0; i < GBufferNum; i++) {
+	    // 	var attachment = gl_draw_buffers['COLOR_ATTACHMENT' + i + '_WEBGL'];
+	    // 	var texture = CreateAndBindColorTargetTexture(framebuffer, attachment);
+	    // 	framebuffer.attachments.push(attachment);
+	    // 	framebuffer.textures.push(texture);
+	    // }
+        for (var i = 0; i < GBufferNum; i++) {
+	    	var attachment = gl.COLOR_ATTACHMENT0 + i;
 	    	var texture = CreateAndBindColorTargetTexture(framebuffer, attachment);
 	    	framebuffer.attachments.push(attachment);
 	    	framebuffer.textures.push(texture);
+            if(gl.checkFramebufferStatus(gl.FRAMEBUFFER) != gl.FRAMEBUFFER_COMPLETE)
+                console.log(gl.checkFramebufferStatus(gl.FRAMEBUFFER));
 	    }
 	    // * Tell the WEBGL_draw_buffers extension which FBO attachments are
 	    //   being used. (This extension allows for multiple render targets.)
-	    gl_draw_buffers.drawBuffersWEBGL(framebuffer.attachments);
+	    gl.drawBuffers(framebuffer.attachments);
 
         // Create depth buffer
         var depthBuffer = gl.createRenderbuffer(); // Create a renderbuffer object
