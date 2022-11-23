@@ -16,19 +16,21 @@ function GAMES202Main() {
 		alert('Unable to initialize WebGL. Your browser or machine may not support it.');
 		return;
 	}
-	gl.getExtension('OES_texture_float');
-	gl_draw_buffers = gl.getExtension('WEBGL_draw_buffers');
+	// gl.getExtension('OES_texture_float');
+	// gl_draw_buffers = gl.getExtension('WEBGL_draw_buffers');
 	// var maxdb = gl.getParameter(gl_draw_buffers.MAX_DRAW_BUFFERS_WEBGL);
     // console.log('MAX_DRAW_BUFFERS_WEBGL: ' + maxdb);
+
+	gl.getExtension('EXT_color_buffer_float')
 
 	// Add camera
 	const camera = new THREE.PerspectiveCamera(75, gl.canvas.clientWidth / gl.canvas.clientHeight, 1e-3, 1000);
 	let cameraPosition, cameraTarget;
-	// /*
+
 	// Cube
 	cameraPosition = [6, 1, 0]
 	cameraTarget = [0, 0, 0]
-	// */
+
 	
 	// Cave
 	// cameraPosition = [4.18927, 1.0313, 2.07331]
@@ -62,15 +64,14 @@ function GAMES202Main() {
 	let lightPos, lightDir, lightRadiance;
 	
 	// Cave
-	// lightRadiance = [20, 20, 20];
-	// lightPos = [-0.45, 5.40507, 0.637043];
-	// lightDir = {
-	// 	'x': 0.39048811,
-	// 	'y': -0.89896828,
-	// 	'z': 0.19843153,
-	// };
+	lightRadiance = [20, 20, 20];
+	lightPos = [-0.45, 5.40507, 0.637043];
+	lightDir = {
+		'x': 0.39048811,
+		'y': -0.89896828,
+		'z': 0.19843153,
+	};
 	
-	// /*
 	// Cube
 	lightRadiance = [1, 1, 1];
 	lightPos = [-2, 4, 1];
@@ -79,7 +80,6 @@ function GAMES202Main() {
 		'y': -0.9,
 		'z': -0.2,
 	};
-	// */
 	let lightUp = [1, 0, 0];
 	const directionLight = new DirectionalLight(lightRadiance, lightPos, lightDir, lightUp, renderer.gl);
 	renderer.addLight(directionLight);

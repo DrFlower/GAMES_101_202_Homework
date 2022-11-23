@@ -1,3 +1,5 @@
+#version 300 es
+
 #ifdef GL_ES
 precision highp float;
 #endif
@@ -11,15 +13,18 @@ uniform sampler2D uGNormalWorld;
 uniform sampler2D uGShadow;
 uniform sampler2D uGPosWorld;
 
-varying mat4 vWorldToScreen;
-varying highp vec4 vPosWorld;
+// varying mat4 vWorldToScreen;
+// varying highp vec4 vPosWorld;
+
+in mat4 vWorldToScreen;
+in vec4 vPosWorld;
 
 #define M_PI 3.1415926535897932384626433832795
 #define TWO_PI 6.283185307
 #define INV_PI 0.31830988618
 #define INV_TWO_PI 0.15915494309
 
-// out vec4 FragColor;
+out vec4 FragColor;
 
 float Rand1(inout float p) {
   p = fract(p * .1031);
@@ -88,7 +93,7 @@ vec2 GetScreenCoordinate(vec3 posWorld) {
 }
 
 float GetGBufferDepth(vec2 uv) {
-  float depth = texture2D(uGDepth, uv).x;
+  float depth = texture(uGDepth, uv).x;
   if (depth < 1e-2) {
     depth = 1000.0;
   }
@@ -96,22 +101,22 @@ float GetGBufferDepth(vec2 uv) {
 }
 
 vec3 GetGBufferNormalWorld(vec2 uv) {
-  vec3 normal = texture2D(uGNormalWorld, uv).xyz;
+  vec3 normal = texture(uGNormalWorld, uv).xyz;
   return normal;
 }
 
 vec3 GetGBufferPosWorld(vec2 uv) {
-  vec3 posWorld = texture2D(uGPosWorld, uv).xyz;
+  vec3 posWorld = texture(uGPosWorld, uv).xyz;
   return posWorld;
 }
 
 float GetGBufferuShadow(vec2 uv) {
-  float visibility = texture2D(uGShadow, uv).x;
+  float visibility = texture(uGShadow, uv).x;
   return visibility;
 }
 
 vec3 GetGBufferDiffuse(vec2 uv) {
-  vec3 diffuse = texture2D(uGDiffuse, uv).xyz;
+  vec3 diffuse = texture(uGDiffuse, uv).xyz;
   diffuse = pow(diffuse, vec3(2.2));
   return diffuse;
 }
@@ -125,7 +130,8 @@ vec3 GetGBufferDiffuse(vec2 uv) {
  */
 vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
   vec3 albedo  = GetGBufferDiffuse(uv);
-  float cos = max(0., dot(GetGBufferNormalWorld(uv), wi));
+  vec3 normal = GetGBufferNormalWorld(uv);
+  float cos = max(0., dot(normal, wi));
   return albedo * cos * INV_PI;
 }
 
@@ -136,7 +142,7 @@ vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
  */
 vec3 EvalDirectionalLight(vec2 uv) {
   vec3 Le = vec3(0.0);
-  Le = texture2D(uGShadow, uv).x * uLightRadiance;
+  Le = texture(uGShadow, uv).x * uLightRadiance;
   return Le;
 }
 
@@ -191,10 +197,10 @@ void main() {
   vec3 wo = normalize(uCameraPos - vPosWorld.xyz);
   vec2 screenUV = GetScreenCoordinate(vPosWorld.xyz);
   // 直接光照
-  L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
+  L = EvalDiffuse(wi, wo, screenUV);// * EvalDirectionalLight(screenUV);
 
   // Screen Space Ray Tracing 的反射测试
-  // L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
+  L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
 
   vec3 L_ind = vec3(0.0);
   // for(int i = 0; i < SAMPLE_NUM; i++){
@@ -218,5 +224,5 @@ void main() {
   
   vec3 color = pow(clamp(L, vec3(0.0), vec3(1.0)), vec3(1.0 / 2.2));
   // gl_FragColor = vec4(vec3(color.rgb), 1.0);
-  // FragColor = vec4(vec3(color.rgb), 1.0);
+  FragColor = vec4(vec3(color.rgb), 1.0);
 }

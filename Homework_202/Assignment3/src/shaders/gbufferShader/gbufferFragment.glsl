@@ -26,8 +26,6 @@ in vec4 vPosWorld;
 in vec3 vNormalWorld;
 in float vDepth;
 
-// out vec4 FragColor;
-
 float SimpleShadowMap(vec3 posWorld,float bias){
   vec4 posLight = vWorldToLight * vec4(posWorld, 1.0);
   vec2 shadowCoord = clamp(posLight.xy * 0.5 + 0.5, vec2(0.0), vec2(1.0));
@@ -62,7 +60,6 @@ void main(void) {
   // gl_FragData[2] = vec4(ApplyTangentNormalMap(), 1.0);
   // gl_FragData[3] = vec4(vec3(SimpleShadowMap(vPosWorld.xyz, 1e-2)), 1.0);
   // gl_FragData[4] = vec4(vec3(vPosWorld.xyz), 1.0);
-  // FragColor = vec4(1.0);
   Frag0 = vec4(kd, 1.0);
   Frag1 = vec4(vec3(vDepth), 1.0);
   Frag2 = vec4(ApplyTangentNormalMap(), 1.0);
