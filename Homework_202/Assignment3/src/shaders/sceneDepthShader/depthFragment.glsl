@@ -20,7 +20,7 @@ vec4 pack (float depth) {
 }
 
 void main(){
-  //vec3 color = texture2D(uSampler, vTextureCoord).rgb;
+  vec3 color = texture2D(uSampler, vTextureCoord).rgb;
   //gl_FragColor = vec4( gl_FragCoord.z, gl_FragCoord.z, gl_FragCoord.z, 1.0);
   gl_FragColor = pack(gl_FragCoord.z);
 }
