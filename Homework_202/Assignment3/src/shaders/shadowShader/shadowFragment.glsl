@@ -6,10 +6,6 @@ precision highp float;
 #endif
 
 layout(location = 0) out vec4 Frag0;
-layout(location = 1) out vec4 Frag1; 
-layout(location = 2) out vec4 Frag2; 
-layout(location = 3) out vec4 Frag3; 
-layout(location = 4) out vec4 Frag4; 
 
 uniform vec3 uCameraPos;
 
@@ -35,8 +31,4 @@ void main(){
   vec3 color = vec3(gl_FragCoord.z) * 100.0;
 
   Frag0 = vec4(color, 1.0);
-  Frag1 = vec4(color, 1.0);
-  Frag2 = vec4(color, 1.0);
-  Frag3 = vec4(color, 1.0);
-  Frag4 = vec4(color, 1.0);
 }

@@ -21,7 +21,17 @@ function GAMES202Main() {
 	// var maxdb = gl.getParameter(gl_draw_buffers.MAX_DRAW_BUFFERS_WEBGL);
     // console.log('MAX_DRAW_BUFFERS_WEBGL: ' + maxdb);
 
-	gl.getExtension('EXT_color_buffer_float')
+	let ext1 = gl.getExtension('EXT_color_buffer_float')
+	if (!ext1) {
+		alert("Need EXT_color_buffer_float");
+		return;
+	  }
+
+	// let ext2 = gl.getExtension("WEBGL_depth_texture");
+	// if (!ext2) {
+	//   alert("Need WEBGL_depth_texture");
+	//   return;
+	// }
 
 	// Add camera
 	const camera = new THREE.PerspectiveCamera(75, gl.canvas.clientWidth / gl.canvas.clientHeight, 1e-3, 1000);
@@ -37,11 +47,7 @@ function GAMES202Main() {
 	// cameraTarget = [2.92191, 0.98, 1.55037]
 	
 	camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-	camera.fbo = new FBO(gl);
-
-	// Edit Start
-	bufferFBO = new DepthFBO(gl, camera.fbo.textures[1]);
-	// Edit End
+	camera.fbo = new FBO(gl, 6);
 
 	// Add resize listener
 	function setSize(width, height) {

@@ -187,7 +187,7 @@ class MeshRender {
 		}
 	}
 
-	draw(camera, fbo, updatedParamters) {
+	draw(camera, fbo, updatedParamters, mipMapLevel) {
 		const gl = this.gl;
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
@@ -208,13 +208,66 @@ class MeshRender {
 		this.updateMaterialParameters(updatedParamters);
 		this.bindMaterialParameters();
 
-		// Draw
-		{
-			const vertexCount = this.mesh.count;
-			const type = gl.UNSIGNED_SHORT;
-			const offset = 0;
-			gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
+		if(mipMapLevel != null && mipMapLevel > 0){
+			let depthTexture = fbo.textures[5];
+			gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+			let currentWidth = window.screen.width;
+			let currentHeight = window.screen.height;
+			for (let i = 1; i < mipMapLevel; i++) {
+	
+                // calculate next viewport size
+                currentWidth /= 2;
+                currentHeight /= 2;
+                // ensure that the viewport size is always at least 1x1
+                currentWidth = currentWidth > 0 ? currentWidth : 1;
+                currentHeight = currentHeight > 0 ? currentHeight : 1;
+
+                // gl.bindRenderbuffer(gl.RENDERBUFFER, fbo.depthBuffer); // Bind the object to target
+                // gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, currentWidth, currentHeight);
+
+                gl.viewport(0, 0, currentWidth, currentHeight);
+                // bind next level for rendering but first restrict fetches only to previous level
+                // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_BASE_LEVEL, i-1);
+                // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAX_LEVEL, i-1);
+                // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_BASE_LEVEL, 0);
+                // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAX_LEVEL, bufferFBO.numLevels - 1);
+                // gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT5, gl.TEXTURE_2D, depthTexture, i);
+				gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, i);
+				// if(gl.checkFramebufferStatus(gl.FRAMEBUFFER) != gl.FRAMEBUFFER_COMPLETE)
+                // 	console.log(gl.checkFramebufferStatus(gl.FRAMEBUFFER));
+                // Draw
+				{
+					const vertexCount = this.mesh.count;
+					const type = gl.UNSIGNED_SHORT;
+					const offset = 0;
+					gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
+					// gl.drawArrays(gl.TRIANGLES, 0, 6);
+				}
+        	}
+
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_BASE_LEVEL, 0);
+       		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAX_LEVEL, mipMapLevel - 1);
+
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, camera.fbo.textures[0], 0);
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT1, gl.TEXTURE_2D, camera.fbo.textures[1], 0);
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT2, gl.TEXTURE_2D, camera.fbo.textures[2], 0);
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT3, gl.TEXTURE_2D, camera.fbo.textures[3], 0);
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT4, gl.TEXTURE_2D, camera.fbo.textures[4], 0);
+			// gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
+			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
+			gl.viewport(0, 0, window.screen.width, window.screen.height);
 		}
+		else{
+			// Draw
+			{
+				const vertexCount = this.mesh.count;
+				const type = gl.UNSIGNED_SHORT;
+				const offset = 0;
+				gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
+			}
+		}
+
+
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 	}
 }

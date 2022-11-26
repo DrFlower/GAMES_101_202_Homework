@@ -25,9 +25,9 @@ class DepthFBO{
 	    // gl.drawBuffers(framebuffer.attachments);
 
         
-        // ------------------
-        gl.bindTexture(gl.TEXTURE_2D, depthTexture);
-        gl.generateMipmap(gl.TEXTURE_2D);
+        // // ------------------
+        // gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+        // gl.generateMipmap(gl.TEXTURE_2D);
         let numLevels = 5;
         // let currentWidth = window.screen.width;
         // let currentHeight = window.screen.height;
@@ -45,6 +45,19 @@ class DepthFBO{
         //     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, i);
         //     // draw full-screen quad
         // }
+
+
+        
+        gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT32, window.screen.width, window.screen.height, 0,
+            gl.DEPTH_COMPONENT, gl.UNSIGNED_INT, null);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST_MIPMAP_NEAREST);
+        // depth texture is gonna be a mipmap so we have to establish the mipmap chain
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, depthTexture, 0);
 
         // gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, depthTexture, 0);
 
