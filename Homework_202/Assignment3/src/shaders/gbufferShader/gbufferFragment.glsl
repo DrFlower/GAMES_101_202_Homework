@@ -54,6 +54,15 @@ vec3 ApplyTangentNormalMap() {
   return nt;
 }
 
+#define u_Near 1e-2
+#define u_Far 1000.0f
+
+float LinearizeDepth(float depth)
+{
+    float z = depth * 2.0 - 1.0; 
+    return (2.0 * u_Near * u_Far) / (u_Far + u_Near - z * (u_Far - u_Near));
+}
+
 void main(void) {
   vec3 kd = texture(uKd, vTextureCoord).rgb;
   // gl_FragData[0] = vec4(kd, 1.0);
@@ -66,5 +75,6 @@ void main(void) {
   Frag2 = vec4(ApplyTangentNormalMap(), 1.0);
   Frag3 = vec4(vec3(SimpleShadowMap(vPosWorld.xyz, 1e-2)), 1.0);
   Frag4 = vec4(vec3(vPosWorld.xyz), 1.0);
-  Frag5 = vec4(vec3(vDepth), 1.0);
+  // Frag5 = vec4(vec3(vDepth), 1.0);
+  Frag5 = vec4(vec3(LinearizeDepth(gl_FragCoord.z)/200.), 1.0);
 }

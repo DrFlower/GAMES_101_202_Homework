@@ -56,7 +56,8 @@ function loadGLTF(renderer, path, name, materialName) {
 							shadowMaterial = buildShadowMaterial(light, "./src/shaders/shadowShader/shadowVertex.glsl", "./src/shaders/shadowShader/shadowFragment.glsl");
 							bufferMaterial = buildGbufferMaterial(diffuseMap, normalMap, light, renderer.camera, "./src/shaders/gbufferShader/gbufferVertex.glsl", "./src/shaders/gbufferShader/gbufferFragment.glsl");
 							//Edit Start
-							depthMaterial = buildSceneDepthMaterial(renderer.camera.fbo.textures[1], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
+
+							depthMaterial = buildSceneDepthMaterial(renderer.camera.fbo.textures[5], null, "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
 							//Edit End
 							break;
 					}

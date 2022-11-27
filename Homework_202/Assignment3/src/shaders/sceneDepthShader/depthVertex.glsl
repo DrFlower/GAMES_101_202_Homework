@@ -1,20 +1,12 @@
-attribute vec3 aVertexPosition;
-attribute vec3 aNormalPosition;
-attribute vec2 aTextureCoord;
+#version 300 es
 
-uniform mat4 uModelMatrix;
-uniform mat4 uViewMatrix;
-uniform mat4 uProjectionMatrix;
+layout (location = 0) in vec3 aVertexPosition;
+// layout (location = 1) in vec3 aNormalPosition;
+layout (location = 1) in vec2 aTextureCoord;
 
-varying highp vec3 vNormal;
-varying highp vec2 vTextureCoord;
+out vec2 vTextureCoord;
 
 void main(void) {
-
-  vNormal = (uModelMatrix * vec4(aNormalPosition, 0.0)).xyz;
-
-  gl_Position = uProjectionMatrix * uViewMatrix * uModelMatrix *
-                vec4(aVertexPosition, 1.0);
-
   vTextureCoord = aTextureCoord;
+  gl_Position = vec4(aVertexPosition, 1.0);
 }

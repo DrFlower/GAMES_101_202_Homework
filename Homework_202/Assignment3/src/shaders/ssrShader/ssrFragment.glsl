@@ -197,10 +197,10 @@ void main() {
   vec3 wo = normalize(uCameraPos - vPosWorld.xyz);
   vec2 screenUV = GetScreenCoordinate(vPosWorld.xyz);
   // 直接光照
-  L = EvalDiffuse(wi, wo, screenUV);// * EvalDirectionalLight(screenUV);
+  L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
 
   // Screen Space Ray Tracing 的反射测试
-  L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
+  // L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
 
   vec3 L_ind = vec3(0.0);
   // for(int i = 0; i < SAMPLE_NUM; i++){
