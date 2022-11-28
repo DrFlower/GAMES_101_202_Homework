@@ -126,7 +126,8 @@ class WebGLRenderer {
             let updatedParamters = {
                 "uLastMipLevel": lv - 1,
                 "uLastMipSize": [this.depthFBOs[lv].width, this.depthFBOs[lv].height, 0],
-                'uDepthMiMap': this.depthFBOs[lv].depthTexture
+                'uDepthMiMap': this.depthFBOs[lv].depthTexture,
+                "uCurLevel": lv,
             };
 
             if(lv != 0){

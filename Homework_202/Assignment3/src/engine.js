@@ -131,11 +131,11 @@ function GAMES202Main() {
 	// var maxdb = gl.getParameter(gl_draw_buffers.MAX_DRAW_BUFFERS_WEBGL);
     // console.log('MAX_DRAW_BUFFERS_WEBGL: ' + maxdb);
 
-	// let ext1 = gl.getExtension('ARB_texture_non_power_of_two')
-	// if (!ext1) {
-	// 	alert("Need ARB_texture_non_power_of_two");
-	// 	return;
-	//   }
+	let ext1 = gl.getExtension('EXT_color_buffer_float')
+	if (!ext1) {
+		alert("Need EXT_color_buffer_float");
+		return;
+	  }
 
 	// let ext2 = gl.getExtension("GL_ARB_framebuffer_object");
 	// if (!ext2) {
@@ -216,13 +216,6 @@ function GAMES202Main() {
 	
 	let depthTexture = gl.createTexture();
 
-	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[5], null, "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
-	depthMaterial.then((data) => {
-		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
-		renderer.addDepthMeshRender(depthMeshRender);
-	});
-
-
 	// let depthTexture = camera.fbo.textures[5];
 	// let lastDepthTexture = depthTexture;
 	gl.bindTexture(gl.TEXTURE_2D, depthTexture);
@@ -252,6 +245,12 @@ function GAMES202Main() {
 			gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
 			gl.TEXTURE_2D, depthTexture, i);
 	}
+
+	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[5], null, mipMapLevel, [window.screen.width, window.screen.height], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
+	depthMaterial.then((data) => {
+		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
+		renderer.addDepthMeshRender(depthMeshRender);
+	});
 
 	// for (let i = 0; i < mipMapLevel; i++) {
 	// 	if(i >0){
