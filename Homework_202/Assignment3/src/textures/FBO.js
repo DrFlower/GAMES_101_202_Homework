@@ -20,7 +20,7 @@ class FBO{
                 return error();
             }
 
-
+            console.log("CreateAndBindColorTargetTexture ", mipMapLevel, ":", width, "x", height);
 
             gl.bindTexture(gl.TEXTURE_2D, texture);
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, width, height, 0, gl.RGBA, gl.FLOAT, null);
@@ -118,8 +118,8 @@ class FBO{
                 texture = CreateAndBindColorTargetTexture(framebuffer, attachment, width, height, mipMapLevel);
                 framebuffer.attachments.push(attachment);
             }else{
-                texture = CreateAndBindColorTargetTexture(framebuffer, attachment, width, height, true);
-                framebuffer.attachments.push(attachment);
+                // texture = CreateAndBindColorTargetTexture(framebuffer, attachment, width, height, true);
+                // framebuffer.attachments.push(attachment);
 
                 // texture = CreateAndBindDepthTargetTexture();
             }
@@ -150,7 +150,7 @@ class FBO{
         var depthBuffer = gl.createRenderbuffer(); // Create a renderbuffer object
         framebuffer.depthBuffer = depthBuffer;
         gl.bindRenderbuffer(gl.RENDERBUFFER, depthBuffer); // Bind the object to target
-        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, window.screen.width, window.screen.height);
+        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width, height);
         gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthBuffer);
 
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);

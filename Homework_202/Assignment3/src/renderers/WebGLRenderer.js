@@ -119,19 +119,20 @@ class WebGLRenderer {
 
         for (let lv = 0; lv < this.depthFBOs.length&& depthMeshRender !=null; lv++) {
             gl.useProgram(depthMeshRender.shader.program.glShaderProgram);
-            // gl.bindTexture(gl.TEXTURE_2D, this.depthFBOs[lv].depthTexture);
+            // gl.bindTexture(gl.TEXTURE_2D, this.depthFBOs[lv].textures[0]);
             gl.bindFramebuffer(gl.FRAMEBUFFER, this.depthFBOs[lv]);
-
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
             let updatedParamters = {
                 "uLastMipLevel": lv - 1,
-                "uLastMipSize": [this.depthFBOs[lv].width, this.depthFBOs[lv].height, 0],
+                "uLastMipSize": [this.depthFBOs[lv].lastWidth, this.depthFBOs[lv].lastHeight, 0],
                 'uDepthMiMap': this.depthFBOs[lv].depthTexture,
+                // 'uDepthMiMap': this.depthFBOs[lv].textures[0],
                 "uCurLevel": lv,
             };
 
             if(lv != 0){
-                updatedParamters.uDepthMiMap = this.depthFBOs[lv].depthTexture;
+                updatedParamters.uDepthMiMap = this.depthFBOs[lv - 1].textures[0];
             }
 
             depthMeshRender.bindGeometryInfo();
@@ -142,7 +143,6 @@ class WebGLRenderer {
             // Bind material parameters
             depthMeshRender.updateMaterialParameters(updatedParamters);
             depthMeshRender.bindMaterialParameters();
-
             
             gl.viewport(0, 0, this.depthFBOs[lv].width, this.depthFBOs[lv].height);
           //   gl.uniform4fv(
@@ -154,6 +154,8 @@ class WebGLRenderer {
             // const count = 1;
             // gl.drawArrays(gl.POINTS, offset, count); 
             // gl.bindTexture(gl.TEXTURE_2D, null);
+            // gl.bindTexture(gl.TEXTURE_2D, this.depthFBOs[lv].textures[0])
+            
             {
 				const vertexCount = depthMeshRender.mesh.count;
 				const type = gl.UNSIGNED_SHORT;
@@ -219,6 +221,11 @@ class WebGLRenderer {
         
         // Camera pass
         for (let i = 0; i < this.meshes.length; i++) {
+            for(let lv = 0; lv < mipMapLevel; lv++){
+                if(this.depthFBOs.length > lv){
+                    updatedParamters['uDepthTexture' + '[' + lv + ']'] = this.depthFBOs[lv].textures[0];
+                }
+            }
             this.meshes[i].draw(this.camera, null, updatedParamters);
         }
     }

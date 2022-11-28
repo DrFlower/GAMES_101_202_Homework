@@ -7,6 +7,8 @@ var windowWidth = 1024;
 var windowHeight = 1024;
 var depthMeshRender;
 
+var mipMapLevel;
+
 function main() {
 	const gl = document.querySelector('canvas').getContext('webgl2');
 	if (!gl) {
@@ -137,6 +139,12 @@ function GAMES202Main() {
 		return;
 	  }
 
+	//   let ext2 = gl.getExtension('EXT_FRAMEBUFFER')
+	//   if (!ext2) {
+	// 	  alert("Need GL_EXT_FRAMEBUFFER");
+	// 	  return;
+	// 	}
+
 	// let ext2 = gl.getExtension("GL_ARB_framebuffer_object");
 	// if (!ext2) {
 	//   alert("Need GL_ARB_framebuffer_object");
@@ -204,25 +212,65 @@ function GAMES202Main() {
 	const directionLight = new DirectionalLight(lightRadiance, lightPos, lightDir, lightUp, renderer.gl);
 	renderer.addLight(directionLight);
 
+	mipMapLevel = 5;
+	mipMapLevel = 1 + Math.floor(Math.log2(Math.max(window.screen.width, window.screen.height)));
+
 	// Add shapes
 	// loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
 	// loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
 	loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
 
-	let mipMapLevel = 5;
+	
 	let currentWidth = window.screen.width;
 	let currentHeight = window.screen.height;
-	// let depthTexture = camera.fbo.textures[1];
+	let depthTexture = camera.fbo.textures[5];
 	
-	let depthTexture = gl.createTexture();
+	// let depthTexture = gl.createTexture();
 
-	// let depthTexture = camera.fbo.textures[5];
-	// let lastDepthTexture = depthTexture;
-	gl.bindTexture(gl.TEXTURE_2D, depthTexture);
-	// mipMapLevel = 1 + Math.floor(Math.log2(Math.max(window.screen.width, window.screen.height)));
+	// // let depthTexture = camera.fbo.textures[5];
+	// // let lastDepthTexture = depthTexture;
+	// gl.bindTexture(gl.TEXTURE_2D, depthTexture);
 
-	gl.texStorage2D(gl.TEXTURE_2D, mipMapLevel, gl.RGBA32F, currentWidth, currentHeight);
+
+	// gl.texStorage2D(gl.TEXTURE_2D, mipMapLevel, gl.RGBA32F, currentWidth, currentHeight);
+	// for (let i = 0; i < mipMapLevel; i++) {
+	// 	if(i >0){
+	// 		// calculate next viewport size
+	// 		currentWidth /= 2;
+	// 		currentHeight /= 2;
+
+	// 		currentWidth = Math.floor(currentWidth);
+	// 		currentHeight = Math.floor(currentHeight);
+
+	// 		// ensure that the viewport size is always at least 1x1
+	// 		currentWidth = currentWidth > 0 ? currentWidth : 1;
+	// 		currentHeight = currentHeight > 0 ? currentHeight : 1;
+	// 	}
+	// 	console.log("MipMap Level", i, ":", currentWidth, "x", currentHeight);
+	// 	// let depthTexture = gl.createTexture();
+	// 	// gl.bindTexture(gl.TEXTURE_2D, depthTexture);
+	// 	// // gl.texStorage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, currentWidth, currentHeight);
+	// 	let fb = gl.createFramebuffer();
+	// 	fb.width = currentWidth;
+	// 	fb.height = currentHeight;
+	// 	fb.depthTexture = depthTexture;
+	// 	renderer.addDepthFBO(fb);
+	// 	gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+	// 	gl.framebufferTexture2D(
+	// 		gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+	// 		gl.TEXTURE_2D, depthTexture, i);
+	// }
+
+	// depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[5], null, mipMapLevel, [window.screen.width, window.screen.height], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
+	// depthMaterial.then((data) => {
+	// 	depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
+	// 	renderer.addDepthMeshRender(depthMeshRender);
+	// });
+
 	for (let i = 0; i < mipMapLevel; i++) {
+		let lastWidth = currentWidth;
+		let lastHeight = currentHeight;
+
 		if(i >0){
 			// calculate next viewport size
 			currentWidth /= 2;
@@ -236,18 +284,22 @@ function GAMES202Main() {
 			currentHeight = currentHeight > 0 ? currentHeight : 1;
 		}
 		console.log("MipMap Level", i, ":", currentWidth, "x", currentHeight);
-		// let depthTexture = gl.createTexture();
-		// gl.bindTexture(gl.TEXTURE_2D, depthTexture);
-		// // gl.texStorage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, currentWidth, currentHeight);
-		let fb = gl.createFramebuffer();
+		let fb = new FBO(gl, 1, currentWidth, currentHeight, 0);
+		// if(i >0){
+		// 	depthTexture = fb.textures[0];
+		// }
+		fb.lastWidth = lastWidth;
+		fb.lastHeight = lastHeight;
 		fb.width = currentWidth;
 		fb.height = currentHeight;
 		fb.depthTexture = depthTexture;
 		renderer.addDepthFBO(fb);
-		gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-		gl.framebufferTexture2D(
-			gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
-			gl.TEXTURE_2D, depthTexture, i);
+
+		// gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+		// gl.framebufferTexture2D(
+		// 	gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+		// 	gl.TEXTURE_2D, depthTexture, 0);
+
 	}
 
 	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[5], null, mipMapLevel, [window.screen.width, window.screen.height], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
@@ -255,37 +307,6 @@ function GAMES202Main() {
 		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
 		renderer.addDepthMeshRender(depthMeshRender);
 	});
-
-	// for (let i = 0; i < mipMapLevel; i++) {
-	// 	if(i >0){
-	// 		// calculate next viewport size
-	// 		currentWidth /= 2;
-	// 		currentHeight /= 2;
-	// 		// ensure that the viewport size is always at least 1x1
-	// 		currentWidth = currentWidth > 0 ? currentWidth : 1;
-	// 		currentHeight = currentHeight > 0 ? currentHeight : 1;
-	// 	}
-
-	// 	// let fbo = new FBO(gl, 1, currentWidth, currentHeight, i);
-	// 	let fbo = gl.createFramebuffer();
-	// 	gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-	// 	gl.framebufferTexture2D(
-	// 		gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
-	// 		gl.TEXTURE_2D, depthTexture, i);
-	// 	fbo.attachments = [gl.COLOR_ATTACHMENT0];
-	// 	fbo.attachments = [];
-	// 	fbo.isDepthFBO = true;
-	// 	fbo.depthTexture = depthTexture;
-	// 	fbo.width = currentWidth;
-	// 	fbo.height = currentHeight;
-	// 	fbo.level = i;
-	// 	depthMaterial = buildSceneDepthMaterial(lastDepthTexture, fbo, "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
-	// 	// lastDepthTexture = fbo.textures[0];
-	// 	depthMaterial.then((data) => {
-	// 		let depthMeshRender = new MeshRender(renderer.gl, Mesh.cube(setTransform(0, 0, 0, 1, 1, 1)), data);
-	// 		renderer.addDepthMeshRender(depthMeshRender);
-	// 	});
-	// }
 
 	// for(let lv = 0; lv < mipMapLevel; lv++ ){
 	// 	if(lv >0){

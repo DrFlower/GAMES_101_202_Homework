@@ -13,6 +13,8 @@ uniform sampler2D uGNormalWorld;
 uniform sampler2D uGShadow;
 uniform sampler2D uGPosWorld;
 
+uniform sampler2D uDepthTexture[12];
+
 // varying mat4 vWorldToScreen;
 // varying highp vec4 vPosWorld;
 
@@ -224,5 +226,8 @@ void main() {
   
   vec3 color = pow(clamp(L, vec3(0.0), vec3(1.0)), vec3(1.0 / 2.2));
   // gl_FragColor = vec4(vec3(color.rgb), 1.0);
+
+  vec3 test = texture(uDepthTexture[0], screenUV).xyz;
+
   FragColor = vec4(vec3(color.rgb), 1.0);
 }
