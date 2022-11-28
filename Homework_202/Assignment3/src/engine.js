@@ -220,18 +220,22 @@ function GAMES202Main() {
 	// let lastDepthTexture = depthTexture;
 	gl.bindTexture(gl.TEXTURE_2D, depthTexture);
 	// mipMapLevel = 1 + Math.floor(Math.log2(Math.max(window.screen.width, window.screen.height)));
-	console.log("MipMapLevel:", mipMapLevel);
+
 	gl.texStorage2D(gl.TEXTURE_2D, mipMapLevel, gl.RGBA32F, currentWidth, currentHeight);
 	for (let i = 0; i < mipMapLevel; i++) {
 		if(i >0){
 			// calculate next viewport size
 			currentWidth /= 2;
 			currentHeight /= 2;
+
+			currentWidth = Math.floor(currentWidth);
+			currentHeight = Math.floor(currentHeight);
+
 			// ensure that the viewport size is always at least 1x1
 			currentWidth = currentWidth > 0 ? currentWidth : 1;
 			currentHeight = currentHeight > 0 ? currentHeight : 1;
 		}
-
+		console.log("MipMap Level", i, ":", currentWidth, "x", currentHeight);
 		// let depthTexture = gl.createTexture();
 		// gl.bindTexture(gl.TEXTURE_2D, depthTexture);
 		// // gl.texStorage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, currentWidth, currentHeight);

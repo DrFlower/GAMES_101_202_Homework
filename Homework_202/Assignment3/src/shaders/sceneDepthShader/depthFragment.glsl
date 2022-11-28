@@ -30,38 +30,61 @@ vec4 pack (float depth) {
     return rgbaDepth;
 }
 
+
+
 void main(){
 
   if(uCurLevel == 0){
       vec3 color = texture(uSampler, vTextureCoord).rgb;
       FragColor = vec4(color, 1.0);
   }else{
-      vec4 texels;
-      texels.x = texture(uSampler, vTextureCoord).x;
-      texels.y = textureOffset(uSampler, vTextureCoord, ivec2(-1, 0)).x;
-      texels.z = textureOffset(uSampler, vTextureCoord, ivec2(-1,-1)).x;
-      texels.w = textureOffset(uSampler, vTextureCoord, ivec2( 0,-1)).x;
-  
-      float maxZ = max(max(texels.x, texels.y), max(texels.z, texels.w));
-      ivec2 LastMipSize = ivec2(uLastMipSize.x, uLastMipSize.y);
-      vec3 extra;
-      // if we are reducing an odd-width texture then fetch the edge texels
-      if (((LastMipSize.x & 1) != 0) && (int(gl_FragCoord.x) == LastMipSize.x-3)) {
-          // if both edges are odd, fetch the top-left corner texel
-          if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
-              extra.z = textureOffset(uSampler, vTextureCoord, ivec2(1, 1)).x;
-              maxZ = max(maxZ, extra.z);
-          }
-          extra.x = textureOffset(uSampler, vTextureCoord, ivec2(1,  0)).x;
-          extra.y = textureOffset(uSampler, vTextureCoord, ivec2(1, -1)).x;
-          maxZ = max(maxZ, max(extra.x, extra.y));
-      } else
-      // if we are reducing an odd-height texture then fetch the edge texels
-      if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
-          extra.x = textureOffset(uSampler, vTextureCoord, ivec2( 0, 1)).x;
-          extra.y = textureOffset(uSampler, vTextureCoord, ivec2(-1, 1)).x;
-          maxZ = max(maxZ, max(extra.x, extra.y));
+
+      int offset = 1;
+      ivec2 thisLevelTexelCoord = ivec2(gl_FragCoord);
+      for(int lv = 0; lv < uCurLevel; lv++){
+        offset *= 2;
+        thisLevelTexelCoord *=2;
       }
+      float maxDepth = 0.;
+      
+	    // ivec2 previousLevelBaseTexelCoord = 2 * thisLevelTexelCoord;
+      for(int offset_x = offset -1; offset_x >= 0; offset_x--){
+           for(int offset_y = offset -1; offset_y >= 0; offset_y--){
+              // const ivec2 offetTexCoord = ivec2(-offset_x, -offset_y);
+              // maxDepth = max(maxDepth, textureOffset(uSampler, vTextureCoord, offetTexCoord).x);
+              // maxDepth = max(maxDepth, textureOffset(uSampler, vTextureCoord, ivec2(-offset_x, -offset_y)).x);
+              maxDepth = max(maxDepth, texelFetch(uSampler, thisLevelTexelCoord + ivec2(-offset_x, -offset_y), 0).x);
+           }
+      }
+
+      float maxZ = maxDepth;
+
+      // vec4 texels;
+      // texels.x = texture(uSampler, vTextureCoord).x;
+      // texels.y = textureOffset(uSampler, vTextureCoord, ivec2(-1, 0)).x;
+      // texels.z = textureOffset(uSampler, vTextureCoord, ivec2(-1,-1)).x;
+      // texels.w = textureOffset(uSampler, vTextureCoord, ivec2( 0,-1)).x;
+  
+      // float maxZ = max(max(texels.x, texels.y), max(texels.z, texels.w));
+      // ivec2 LastMipSize = ivec2(uLastMipSize.x, uLastMipSize.y);
+      // vec3 extra;
+      // // if we are reducing an odd-width texture then fetch the edge texels
+      // if (((LastMipSize.x & 1) != 0) && (int(gl_FragCoord.x) == LastMipSize.x-3)) {
+      //     // if both edges are odd, fetch the top-left corner texel
+      //     if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
+      //         extra.z = textureOffset(uSampler, vTextureCoord, ivec2(1, 1)).x;
+      //         maxZ = max(maxZ, extra.z);
+      //     }
+      //     extra.x = textureOffset(uSampler, vTextureCoord, ivec2(1,  0)).x;
+      //     extra.y = textureOffset(uSampler, vTextureCoord, ivec2(1, -1)).x;
+      //     maxZ = max(maxZ, max(extra.x, extra.y));
+      // } else
+      // // if we are reducing an odd-height texture then fetch the edge texels
+      // if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
+      //     extra.x = textureOffset(uSampler, vTextureCoord, ivec2( 0, 1)).x;
+      //     extra.y = textureOffset(uSampler, vTextureCoord, ivec2(-1, 1)).x;
+      //     maxZ = max(maxZ, max(extra.x, extra.y));
+      // }
       FragColor = vec4(maxZ, maxZ, maxZ, 1.0);
   }
 

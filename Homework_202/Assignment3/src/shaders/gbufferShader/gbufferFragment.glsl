@@ -76,5 +76,5 @@ void main(void) {
   Frag3 = vec4(vec3(SimpleShadowMap(vPosWorld.xyz, 1e-2)), 1.0);
   Frag4 = vec4(vec3(vPosWorld.xyz), 1.0);
   // Frag5 = vec4(vec3(vDepth), 1.0);
-  Frag5 = vec4(vec3(LinearizeDepth(gl_FragCoord.z)/200.), 1.0);
+  Frag5 = vec4(vec3(LinearizeDepth(gl_FragCoord.z)/150.), 1.0);
 }
