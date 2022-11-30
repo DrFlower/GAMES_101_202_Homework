@@ -161,8 +161,8 @@ function GAMES202Main() {
 
 	
 	// Cave
-	cameraPosition = [4.18927, 1.0313, 2.07331]
-	cameraTarget = [2.92191, 0.98, 1.55037]
+	// cameraPosition = [4.18927, 1.0313, 2.07331]
+	// cameraTarget = [2.92191, 0.98, 1.55037]
 	
 	camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
 	camera.fbo = new FBO(gl, 6);
@@ -201,13 +201,13 @@ function GAMES202Main() {
 	};
 	
 	// Cube
-	// lightRadiance = [1, 1, 1];
-	// lightPos = [-2, 4, 1];
-	// lightDir = {
-	// 	'x': 0.4,
-	// 	'y': -0.9,
-	// 	'z': -0.2,
-	// };
+	lightRadiance = [1, 1, 1];
+	lightPos = [-2, 4, 1];
+	lightDir = {
+		'x': 0.4,
+		'y': -0.9,
+		'z': -0.2,
+	};
 	let lightUp = [1, 0, 0];
 	const directionLight = new DirectionalLight(lightRadiance, lightPos, lightDir, lightUp, renderer.gl);
 	renderer.addLight(directionLight);
@@ -217,13 +217,13 @@ function GAMES202Main() {
 
 	// Add shapes
 	// loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
-	// loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
-	loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
+	loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
+	// loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
 
 	
 	let currentWidth = window.screen.width;
 	let currentHeight = window.screen.height;
-	let depthTexture = camera.fbo.textures[5];
+	let depthTexture = camera.fbo.textures[1];
 	
 	// let depthTexture = gl.createTexture();
 
@@ -302,7 +302,7 @@ function GAMES202Main() {
 
 	}
 
-	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[5], null, mipMapLevel, [window.screen.width, window.screen.height], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
+	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[1], null, mipMapLevel, [window.screen.width, window.screen.height], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
 	depthMaterial.then((data) => {
 		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
 		renderer.addDepthMeshRender(depthMeshRender);

@@ -3,7 +3,7 @@ class SceneDepthMaterial extends Material {
     constructor(depthTexture, depthMiMap, maxLevel, maxSize, vertexShader, fragmentShader) {    
         super({
             'uSampler': { type: 'texture', value: depthTexture },
-            'uDepthMiMap': { type: 'texture', value: depthMiMap },
+            'uDepthMipMap': { type: 'texture', value: depthMiMap },
             'uLastMipLevel': { type: '1i', value: -1 },
             'uLastMipSize': { type: '3fv', value: null },
             'uMaxLevel': { type: '1i', value: maxLevel },

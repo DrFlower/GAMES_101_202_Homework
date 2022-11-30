@@ -8,7 +8,7 @@ uniform vec3 uLightPos;
 uniform vec3 uCameraPos;
 uniform sampler2D uSampler;
 
-uniform sampler2D uDepthMiMap;
+uniform sampler2D uDepthMipMap;
 uniform int uLastMipLevel;
 uniform vec3 uLastMipSize;
 
@@ -39,56 +39,64 @@ void main(){
       FragColor = vec4(color, 1.0);
   }else{
 
-      // int offset = 1;
-      // ivec2 thisLevelTexelCoord = ivec2(gl_FragCoord);
-      // for(int lv = 0; lv < uCurLevel; lv++){
-      //   offset *= 2;
-      //   thisLevelTexelCoord *=2;
-      // }
-      // float maxDepth = 0.;
-      
-	    // // ivec2 previousLevelBaseTexelCoord = 2 * thisLevelTexelCoord;
-      // for(int offset_x = offset -1; offset_x >= 0; offset_x--){
-      //      for(int offset_y = offset -1; offset_y >= 0; offset_y--){
-      //         // const ivec2 offetTexCoord = ivec2(-offset_x, -offset_y);
-      //         // maxDepth = max(maxDepth, textureOffset(uSampler, vTextureCoord, offetTexCoord).x);
-      //         // maxDepth = max(maxDepth, textureOffset(uSampler, vTextureCoord, ivec2(-offset_x, -offset_y)).x);
-      //         maxDepth = max(maxDepth, texelFetch(uSampler, thisLevelTexelCoord + ivec2(-offset_x, -offset_y), 0).x);
-      //      }
-      // }
+    ivec2 thisLevelTexelCoord = ivec2(gl_FragCoord);
+	ivec2 previousLevelBaseTexelCoord = thisLevelTexelCoord * 2;
+    // for(int i = 0; i < uCurLevel; i++){
+    //     previousLevelBaseTexelCoord *= 2;
+    // }
 
-      // float maxZ = maxDepth;
+	vec4 depthTexelValues;
+	depthTexelValues.x = texelFetch(uDepthMipMap,
+                                    previousLevelBaseTexelCoord,
+                                    0).r;
+	depthTexelValues.y = texelFetch(uDepthMipMap,
+                                    previousLevelBaseTexelCoord + ivec2(1, 0),
+                                    0).r;
+	depthTexelValues.z = texelFetch(uDepthMipMap,
+                                    previousLevelBaseTexelCoord + ivec2(1, 1),
+                                    0).r;
+	depthTexelValues.w = texelFetch(uDepthMipMap,
+                                    previousLevelBaseTexelCoord + ivec2(0, 1),
+                                    0).r;
 
-      vec4 texels;
-      texels.x = texture(uDepthMiMap, vTextureCoord).x;
-      texels.y = textureOffset(uDepthMiMap, vTextureCoord, ivec2(-1, 0)).x;
-      texels.z = textureOffset(uDepthMiMap, vTextureCoord, ivec2(-1,-1)).x;
-      texels.w = textureOffset(uDepthMiMap, vTextureCoord, ivec2( 0,-1)).x;
-  
-      float maxZ = max(max(texels.x, texels.y), max(texels.z, texels.w));
-      ivec2 LastMipSize = ivec2(uLastMipSize.x, uLastMipSize.y);
-      vec3 extra;
-      // if we are reducing an odd-width texture then fetch the edge texels
-      if (((LastMipSize.x & 1) != 0) && (int(gl_FragCoord.x) == LastMipSize.x-3)) {
-          // if both edges are odd, fetch the top-left corner texel
-          if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
-              extra.z = textureOffset(uDepthMiMap, vTextureCoord, ivec2(1, 1)).x;
-              maxZ = max(maxZ, extra.z);
-          }
-          extra.x = textureOffset(uDepthMiMap, vTextureCoord, ivec2(1,  0)).x;
-          extra.y = textureOffset(uDepthMiMap, vTextureCoord, ivec2(1, -1)).x;
-          maxZ = max(maxZ, max(extra.x, extra.y));
-      } else
-      // if we are reducing an odd-height texture then fetch the edge texels
-      if (((LastMipSize.y & 1) != 0) && (int(gl_FragCoord.y) == LastMipSize.y-3)) {
-          extra.x = textureOffset(uDepthMiMap, vTextureCoord, ivec2( 0, 1)).x;
-          extra.y = textureOffset(uDepthMiMap, vTextureCoord, ivec2(-1, 1)).x;
-          maxZ = max(maxZ, max(extra.x, extra.y));
-      }
-      FragColor = vec4(maxZ, maxZ, maxZ, 1.0);
+	float minDepth = min(min(depthTexelValues.x, depthTexelValues.y),
+                         min(depthTexelValues.z, depthTexelValues.w));
+
+    // Incorporate additional texels if the previous level's width or height (or both)
+    // are odd.
+    ivec2 u_previousLevelDimensions = ivec2(uLastMipSize.x, uLastMipSize.y);
+	bool shouldIncludeExtraColumnFromPreviousLevel = ((u_previousLevelDimensions.x & 1) != 0);
+	bool shouldIncludeExtraRowFromPreviousLevel = ((u_previousLevelDimensions.y & 1) != 0);
+	if (shouldIncludeExtraColumnFromPreviousLevel) {
+		vec2 extraColumnTexelValues;
+		extraColumnTexelValues.x = texelFetch(uDepthMipMap,
+                                              previousLevelBaseTexelCoord + ivec2(2, 0),
+                                              0).r;
+		extraColumnTexelValues.y = texelFetch(uDepthMipMap,
+                                              previousLevelBaseTexelCoord + ivec2(2, 1),
+                                              0).r;
+
+		// In the case where the width and height are both odd, need to include the
+        // 'corner' value as well.
+		if (shouldIncludeExtraRowFromPreviousLevel) {
+			float cornerTexelValue = texelFetch(uDepthMipMap,
+                                                previousLevelBaseTexelCoord + ivec2(2, 2),
+                                                0).r;
+			minDepth = min(minDepth, cornerTexelValue);
+		}
+		minDepth = min(minDepth, min(extraColumnTexelValues.x, extraColumnTexelValues.y));
+	}
+	if (shouldIncludeExtraRowFromPreviousLevel) {
+		vec2 extraRowTexelValues;
+		extraRowTexelValues.x = texelFetch(uDepthMipMap,
+                                           previousLevelBaseTexelCoord + ivec2(0, 2),
+                                           0).r;
+		extraRowTexelValues.y = texelFetch(uDepthMipMap,
+                                           previousLevelBaseTexelCoord + ivec2(1, 2),
+                                           0).r;
+		minDepth = min(minDepth, min(extraRowTexelValues.x, extraRowTexelValues.y));
+	}
+
+	FragColor = vec4(vec3(minDepth), 1.0);
   }
-
-  //gl_FragColor = vec4( gl_FragCoord.z, gl_FragCoord.z, gl_FragCoord.z, 1.0);
-  // gl_FragColor = pack(gl_FragCoord.z);
-  // FragColor = vec4(1.0);
 }

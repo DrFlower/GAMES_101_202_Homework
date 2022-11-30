@@ -20,8 +20,6 @@ class FBO{
                 return error();
             }
 
-            console.log("CreateAndBindColorTargetTexture ", mipMapLevel, ":", width, "x", height);
-
             gl.bindTexture(gl.TEXTURE_2D, texture);
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, width, height, 0, gl.RGBA, gl.FLOAT, null);
 

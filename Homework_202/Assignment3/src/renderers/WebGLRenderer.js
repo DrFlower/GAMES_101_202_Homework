@@ -126,13 +126,13 @@ class WebGLRenderer {
             let updatedParamters = {
                 "uLastMipLevel": lv - 1,
                 "uLastMipSize": [this.depthFBOs[lv].lastWidth, this.depthFBOs[lv].lastHeight, 0],
-                'uDepthMiMap': this.depthFBOs[lv].depthTexture,
+                // 'uDepthMipMap': this.depthFBOs[lv].depthTexture,
                 // 'uDepthMiMap': this.depthFBOs[lv].textures[0],
                 "uCurLevel": lv,
             };
 
             if(lv != 0){
-                updatedParamters.uDepthMiMap = this.depthFBOs[lv - 1].textures[0];
+                updatedParamters.uDepthMipMap = this.depthFBOs[lv - 1].textures[0];
             }
 
             depthMeshRender.bindGeometryInfo();
