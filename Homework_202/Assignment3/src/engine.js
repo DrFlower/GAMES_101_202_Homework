@@ -216,8 +216,8 @@ function GAMES202Main() {
 	mipMapLevel = 1 + Math.floor(Math.log2(Math.max(window.screen.width, window.screen.height)));
 
 	// Add shapes
-	// loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
-	loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
+	loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
+	// loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
 	// loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
 
 	

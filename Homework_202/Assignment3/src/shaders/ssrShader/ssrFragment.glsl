@@ -156,8 +156,8 @@ vec3 EvalDirectionalLight(vec2 uv) {
 }
 
 bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
-  float step = 0.04;
-  const int totalStepTimes = 200; 
+  float step = 0.05;
+  const int totalStepTimes = 100; 
   int curStepTimes = 0;
 
   vec3 stepDir = normalize(dir) * step;
@@ -185,17 +185,41 @@ ivec2 getCellCount(int level){
     // return ivec2(2560, 1440);
 }
 
-vec2 getCell(vec2 pos,vec2 startCellCount){
+ivec2 getCell(vec2 pos, ivec2 startCellCount){
+ return ivec2(floor(pos*vec2(startCellCount)));
+}
 
+vec2 getCellCount2(int level){
+    return vec2(textureSize(uDepthTexture[0], level));
+}
+
+vec2 getCell2(vec2 pos,vec2 startCellCount){
  return vec2(floor(pos*startCellCount));
 }
+
+
 vec3 intersectDepthPlane(vec3 o, vec3 d, float t){
     return o + d * t;
 }
-vec3 intersectCellBoundary(vec3 o,vec3  d, vec2 rayCell,vec2 cell_count, vec2 crossStep, vec2 crossOffset){
+// vec3 intersectCellBoundary(vec3 o,vec3  d, ivec2 cell,ivec2 cell_count, vec2 crossStep, vec2 crossOffset){
+// 	vec3 intersection = vec3(0.);
+	
+// 	vec2 index = vec2(cell) + crossStep;
+// 	vec2 boundary = index / vec2(cell_count);
+// 	boundary += crossOffset;
+	
+// 	vec2 delta = boundary - o.xy;
+// 	delta /= d.xy;
+// 	float t = min(delta.x, delta.y);
+	
+// 	intersection = intersectDepthPlane(o, d, t);
+	
+// 	return intersection;
+// }
 
-    vec2 nextPos = rayCell + crossStep ;
-    nextPos = nextPos/cell_count;
+vec3 intersectCellBoundary(vec3 o,vec3  d, ivec2 rayCell,ivec2 cell_count, vec2 crossStep, vec2 crossOffset){
+    vec2 nextPos = vec2(rayCell) + crossStep ;
+    nextPos = nextPos/vec2(cell_count);
     nextPos = nextPos+crossOffset;
 
     vec2 dis  = nextPos - o.xy;
@@ -205,17 +229,131 @@ vec3 intersectCellBoundary(vec3 o,vec3  d, vec2 rayCell,vec2 cell_count, vec2 cr
     float t = min(delta.x,delta.y);
 
     return intersectDepthPlane(o,d,t);
+}
 
+vec3 intersectCellBoundary2(vec3 o,vec3  d, vec2 rayCell,vec2 cell_count, vec2 crossStep, vec2 crossOffset){
+    vec2 nextPos = rayCell + crossStep;
+    nextPos = nextPos/vec2(cell_count);
+    nextPos = nextPos+crossOffset;
 
+    vec2 dis  = nextPos - o.xy;
+
+    vec2 delta = dis/d.xy;
+
+    float t = min(delta.x,delta.y);
+    // return vec3(nextPos, 0.);
+    // return intersectDepthPlane(o,vec3(d.x,d.y,0),t*50.);
+    return intersectDepthPlane(o,d,t);
 }
 
 //todo
 float getMinimumDepthPlane(vec2 pos , int level){
-    return texture(uDepthTexture[0], pos).r;
+    // return texture(uDepthTexture[0], pos).x;
+    return GetGBufferDepth(pos);
 }
 
-bool crossedCellBoundary(vec2 oldCellIdx,vec2 newCellIdx){
+// bool crossedCellBoundary(ivec2 oldCellIdx,ivec2 newCellIdx){
+//     return (oldCellIdx.x!=newCellIdx.x)||(oldCellIdx.y!=newCellIdx.y);
+// }
+
+bool crossedCellBoundary(ivec2 oldCellIdx,ivec2 newCellIdx){
     return (oldCellIdx.x!=newCellIdx.x)||(oldCellIdx.y!=newCellIdx.y);
+}
+
+bool crossedCellBoundary2(vec2 oldCellIdx,vec2 newCellIdx){
+    return (oldCellIdx.x!=newCellIdx.x)||(oldCellIdx.y!=newCellIdx.y);
+}
+
+bool RayMarch2(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPos){
+     vec2 crossStep = vec2(rayDir.x>=0.?1:-1,rayDir.y>=0.?1:-1);
+    // vec2 crossOffset = crossStep / vec2(1024.0,1024.0) / 128.;
+    vec2 crossOffset = crossStep / vec2(2560.0,1440.0) / 128.;
+    crossStep = clamp(crossStep,0.0,1.0);
+    // crossStep = vec2(clamp(crossStep.x,0.0,1.0),clamp(crossStep.y,0.0,1.0));
+
+    vec3 ray = start;
+    float minZ = ray.z;
+    float maxZ = ray.z+rayDir.z*maxTraceDistance;
+    float deltaZ = (maxZ-minZ);
+
+    vec3 o = ray;
+    vec3 d = rayDir*maxTraceDistance;
+
+    vec2 startCellCount = getCellCount2(0);
+
+    vec2 rayCell = getCell2(ray.xy,startCellCount);
+    // crossStep = vec2(1., 1.)*50.;
+    // crossOffset = vec2( 0.1/64., 0.1/64.);
+    ray = intersectCellBoundary2(o, d, rayCell, startCellCount, crossStep, crossOffset * 64.);
+// if(true)
+// {
+//   hitPos = ray;
+//   return true;
+// }
+   
+
+    int iter = 0;
+    bool isBackwardRay = rayDir.z < 0.;
+
+    if(isBackwardRay)
+      return false;
+    
+    float Dir = isBackwardRay ? -1. : 1.;
+
+    while(ray.z*Dir <= maxZ*Dir && iter<500){
+        vec2 cellCount = getCellCount2(0);
+        vec2 oldCellIdx = getCell2(ray.xy,cellCount);
+
+      float cell_minZ = getMinimumDepthPlane(ray.xy, 0);
+      // float cell_minZ = getMinimumDepthPlane((vec2(oldCellIdx)+vec2(0.5))/vec2(cellCount), 0);
+
+      // if(ray.z > cell_minZ)
+      //   return true;
+
+      // if (cell_minZ<ray.z){
+      //   // hitPos =  intersectDepthPlane(o,d,(cell_minZ-minZ)/deltaZ);
+      //   // hitPos = vec3(iter);
+      //   // hitPos = vec3(0.5);
+      //   return true;
+      // }
+      // else
+      // {
+      //   ray = intersectCellBoundary2(o, d, oldCellIdx, cellCount, crossStep, crossOffset);
+      //   ++iter;
+      // }
+
+        // vec3 tmpRay = ((cell_minZ>ray.z) && !isBackwardRay) ? intersectDepthPlane(o,d,(cell_minZ-minZ)/deltaZ) :ray;
+        vec3 tmpRay = cell_minZ>ray.z ? intersectDepthPlane(o,d,(cell_minZ-minZ)/deltaZ) :ray;
+
+
+
+        vec2 newCellIdx = getCell2(tmpRay.xy,cellCount);
+
+        float thickness =  (ray.z - cell_minZ);
+        // bool crossed  = (isBackwardRay&&(cell_minZ>ray.z))||(thickness>MAX_THICKNESS)|| crossedCellBoundary(oldCellIdx, newCellIdx);
+       
+        // bool crossed  = (isBackwardRay&&(cell_minZ>ray.z))|| crossedCellBoundary(oldCellIdx, newCellIdx);
+        bool crossed  = crossedCellBoundary2(oldCellIdx, newCellIdx);
+
+        // if(crossed)
+        // {
+        //   hitPos = vec3(0.5);
+        //   return true;
+        // }
+        
+        ray = crossed ? intersectCellBoundary2(o, d, oldCellIdx, cellCount, crossStep, crossOffset):tmpRay;
+
+        ++iter;
+
+    }
+    bool intersected = ray.z*Dir > maxZ*Dir;
+    // hitPos = intersected ? ray : vec3(0.0);
+    hitPos = ray;
+    return intersected;
+}
+
+bool RayMarch3(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPos){
+  return false;
 }
 
 bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPos){
@@ -235,10 +373,10 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
 
     int startLevel = 0;
     int stopLevel = 0;
-    vec2 startCellCount = vec2(getCellCount(startLevel));
+    ivec2 startCellCount = getCellCount(startLevel);
 
 
-    vec2 rayCell = getCell(ray.xy,startCellCount);
+    ivec2 rayCell = getCell(ray.xy,startCellCount);
     ray = intersectCellBoundary(o, d, rayCell, startCellCount, crossStep, crossOffset * 64.);
 
     int level = startLevel;
@@ -247,24 +385,27 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
     
     float Dir = isBackwardRay ? -1. : 1.;
 
-    while( level>=stopLevel && ray.z*Dir <= maxZ*Dir && iter<100){
-        vec2 cellCount = vec2(getCellCount(level));
-        vec2 oldCellIdx = getCell(ray.xy,cellCount);
+    while( level>=stopLevel && ray.z*Dir <= maxZ*Dir && iter<500){
+        ivec2 cellCount = getCellCount(level);
+        ivec2 oldCellIdx = getCell(ray.xy,cellCount);
 
         float cell_minZ = getMinimumDepthPlane(ray.xy, level);
       // if(ray.z > cell_minZ)
       //   return true;
         vec3 tmpRay = ((cell_minZ>ray.z) && !isBackwardRay) ? intersectDepthPlane(o,d,(cell_minZ-minZ)/deltaZ) :ray;
 
-        vec2 newCellIdx = getCell(tmpRay.xy,cellCount);
+        ivec2 newCellIdx = getCell(tmpRay.xy,cellCount);
 
         float thickness = level == 0 ? (ray.z - cell_minZ) : 0.;
-        bool crossed  = (isBackwardRay&&(cell_minZ>ray.z))||(thickness>MAX_THICKNESS)|| crossedCellBoundary(oldCellIdx, newCellIdx);
-
+        // bool crossed  = (isBackwardRay&&(cell_minZ>ray.z))||(thickness>MAX_THICKNESS)|| crossedCellBoundary(oldCellIdx, newCellIdx);
+        bool crossed  = (isBackwardRay&&(cell_minZ>ray.z))|| crossedCellBoundary(oldCellIdx, newCellIdx);
         ray = crossed ? intersectCellBoundary(o, d, oldCellIdx, cellCount, crossStep, crossOffset):tmpRay;
-        level = crossed ? min(MIPMAP_SIZE, level+1): level - 1;
-        ++iter;
 
+
+        // level = crossed ? min(MIPMAP_SIZE, level+1): level - 1;
+        level = crossed ? min(0, level+1): level - 1;
+        ++iter;
+  
     }
     bool intersected = (level < stopLevel);
     hitPos = intersected ? ray : vec3(0.0);
@@ -278,6 +419,7 @@ vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
   vec3 hitPos;
   if(RayMarch(vPosWorld.xyz, relfectDir, hitPos)){
       vec2 screenUV = GetScreenCoordinate(hitPos);
+      // return vec3(1.0,0.,0.);
       return GetGBufferDiffuse(screenUV);
   }
   else{
@@ -331,34 +473,40 @@ void main() {
     //   // L_ind += vec3(1.0);
     // }
 
+    vec3 worldPos = vPosWorld.xyz;
+    // vec3 worldPos = GetGBufferPosWorld(screenUV);
 
-	  // vec3 relfectDir = normalize(reflect(vPosWorld.xyz, normal));
-    vec3 relfectDir = dir;
-    vec3 endPosInView = vPosWorld.xyz+relfectDir*1000.;
 
-    // vec3 start = GetScreenCoord(vPosWorld.xyz);
-    // vec3 end = GetScreenCoord(endPosInView);
+	  // vec3 relfectDir = normalize(reflect(worldPos, normal));
+    // // vec3 relfectDir = dir;
+    // vec3 endPosInView = worldPos+relfectDir*1000.;
+    // vec3 start = GetScreenCoordinate3(worldPos);
+    // vec3 end = GetScreenCoordinate3(endPosInView);
+    // vec3 rayDir = normalize(end-start);
 
-    // vec3 start = (vWorldToScreen * vec4(vPosWorld.xyz, 1.0)).xyz;
-    // vec3 end = (vWorldToScreen * vec4(endPosInView, 1.0)).xyz;
-    vec3 start = GetScreenCoordinate3(vPosWorld.xyz);
-    vec3 end = GetScreenCoordinate3(endPosInView);
 
-    vec3 rayDir = normalize(end-start);
+
+    vec3 start = GetScreenCoordinate3(worldPos);
+    vec3 relfectDir = normalize(reflect(-wo, normal));
+    vec3 rayDir = normalize(Project(vWorldToScreen * vec4(relfectDir, 0.0)).xyz * 0.5 + 0.5);
+
 
     float maxTraceX = rayDir.x>=0. ? (1.-start.x)/rayDir.x:-start.x/rayDir.x;
     float maxTraceY = rayDir.y>=0. ? (1.-start.y)/rayDir.y:-start.y/rayDir.y;
     float maxTraceZ = rayDir.z>=0. ? (1.-start.z)/rayDir.z:-start.z/rayDir.z;
     float maxTraceDistance = min(maxTraceX,min(maxTraceY,maxTraceZ));
+
+    // float maxTraceDistance = 1.;
+
   // L = vec3(maxTraceDistance);
-
-
-
-    if(RayMarch_Hiz(start, rayDir, maxTraceDistance, position_1)){
-      vec2 hitScreenUV = GetScreenCoordinate(position_1);
-      // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, hitScreenUV) * EvalDirectionalLight(hitScreenUV);
+  // L =(relfectDir + vec3(1.0))/2.;
+  // L =relfectDir *2. - vec3(0.5,0.5,0.5);
+    // if(RayMarch_Hiz(start, rayDir, maxTraceDistance, position_1)){
+    if(RayMarch2(start, rayDir, maxTraceDistance, position_1)){
+      // vec2 hitScreenUV = GetScreenCoordinate(position_1);
       // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, position_1.xy) * EvalDirectionalLight(position_1.xy);
-      L_ind += vec3(1.0);
+      L_ind += GetGBufferDiffuse(position_1.xy);
+      // L_ind += vec3(1.0);
       // L = vec3(1.0);
     }
   }
@@ -372,12 +520,13 @@ void main() {
 
   // vec3 test = texture(uDepthTexture[0], screenUV).xyz;
 
-  vec2 aaa = vec2(textureSize(uDepthTexture[0], 7));
-  // color = vec3(aaa.x/1000., aaa.y/1000.,0.);
+  // vec2 aaa = vec2(textureSize(uDepthTexture[0], 0));
+  // // color = vec3(aaa.x/1000., aaa.y/1000.,0.);
 
-  vec2 bbb= getCell(screenUV, aaa);
-  color = vec3(bbb/30., 0.);
+  // vec2 bbb= getCell(screenUV, aaa);
+  // color = vec3(bbb/255./10., 0.);
 
   // color = L;
+
   FragColor = vec4(vec3(color.rgb), 1.0);
 }
