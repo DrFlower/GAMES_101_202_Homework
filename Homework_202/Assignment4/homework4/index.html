@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            margin: 0;
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #glcanvas {
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="lib/sh.js" defer></script>
+    <script src="lib/three.js" defer></script>
+    <script src="lib/bvhtree.js" defer></script>
+    <script src="lib/OrbitControls.js" defer></script>
+    <script src="lib/gl-matrix-min.js" defer></script>
+    <script src="lib/RGBELoader.js" defer></script>
+    <script src="lib/math.js" defer></script>
+    <script type="text/javascript" src="lib/MTLLoader.js" defer></script>
+    <script type="text/javascript" src="lib/OBJLoader.js" defer></script>
+    <script type="text/javascript" src="lib/GLTFLoader.js" defer></script>
+    <script type="text/javascript" src="lib/dat.gui.js" defer></script>
+
+    <script src="src/shaders/Shader.js" defer></script>
+    <script src="src/shaders/InternalShader.js" defer></script>
+
+    <script src="src/materials/Material.js" defer></script>
+    <script src="src/materials/SkyBoxMaterial.js" defer></script>
+    <script src="src/materials/EnvMapMaterial.js" defer></script>
+    <script src="src/materials/KullaContyMaterial.js" defer></script>
+    <script src="src/materials/PBRMaterial.js" defer></script>
+
+    <script src="src/textures/Texture.js" defer></script>
+    <script src="src/textures/FBO.js" defer></script>
+    <script src="src/textures/CubeTexture.js" defer></script>
+
+    <script src="src/objects/Mesh.js" defer></script>
+    <script src="src/loads/loadOBJ.js" defer></script>
+    <script src="src/loads/loadGLTF.js" defer></script>
+    <script src="src/loads/loadShader.js" defer></script>
+
+    <script src="src/lights/Light.js" defer></script>
+    <script src="src/lights/DirectionalLight.js" defer></script>
+    <script src="src/lights/PointLight.js" defer></script>
+
+    <script src="src/renderers/WebGLRenderer.js" defer></script>
+    <script src="src/renderers/MeshRender.js" defer></script>
+
+    <script src="src/engine.js" defer></script>
+</head>
+
+<body>
+    <canvas id="glcanvas"></canvas>
+</body>
+</html>
