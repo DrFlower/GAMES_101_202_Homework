@@ -477,18 +477,18 @@ void main() {
     // vec3 worldPos = GetGBufferPosWorld(screenUV);
 
 
-	  // vec3 relfectDir = normalize(reflect(worldPos, normal));
-    // // vec3 relfectDir = dir;
-    // vec3 endPosInView = worldPos+relfectDir*1000.;
-    // vec3 start = GetScreenCoordinate3(worldPos);
-    // vec3 end = GetScreenCoordinate3(endPosInView);
-    // vec3 rayDir = normalize(end-start);
-
-
-
+	  vec3 relfectDir = normalize(reflect(worldPos, normal));
+    // vec3 relfectDir = dir;
+    vec3 endPosInView = worldPos+relfectDir*1000.;
     vec3 start = GetScreenCoordinate3(worldPos);
-    vec3 relfectDir = normalize(reflect(-wo, normal));
-    vec3 rayDir = normalize(Project(vWorldToScreen * vec4(relfectDir, 0.0)).xyz * 0.5 + 0.5);
+    vec3 end = GetScreenCoordinate3(endPosInView);
+    vec3 rayDir = normalize(end-start);
+
+
+
+    // vec3 start = GetScreenCoordinate3(worldPos);
+    // vec3 relfectDir = normalize(reflect(-wo, normal));
+    // vec3 rayDir = normalize(Project(vWorldToScreen * vec4(relfectDir, 0.0)).xyz * 0.5 + 0.5);
 
 
     float maxTraceX = rayDir.x>=0. ? (1.-start.x)/rayDir.x:-start.x/rayDir.x;
