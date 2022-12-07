@@ -112,14 +112,15 @@ int main() {
             Vec3f V = Vec3f(std::sqrt(1.f - NdotV * NdotV), 0.f, NdotV);
 
             Vec3f irr = IntegrateBRDF(V, roughness, NdotV);
+            irr = Vec3f(1.0f) - irr;
 
             data[(i * resolution + j) * 3 + 0] = uint8_t(irr.x * 255.0);
             data[(i * resolution + j) * 3 + 1] = uint8_t(irr.y * 255.0);
             data[(i * resolution + j) * 3 + 2] = uint8_t(irr.z * 255.0);
         }
     }
-    stbi_flip_vertically_on_write(true);
-    stbi_write_png("GGX_E_MC_LUT.png", resolution, resolution, 3, data, resolution * 3);
+    //stbi_flip_vertically_on_write(true);
+    stbi_write_png("GGX_E_MC_LUT_flip.png", resolution, resolution, 3, data, resolution * 3);
     
     std::cout << "Finished precomputed!" << std::endl;
     return 0;

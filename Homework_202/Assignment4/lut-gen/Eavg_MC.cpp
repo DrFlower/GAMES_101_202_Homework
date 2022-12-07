@@ -46,7 +46,7 @@ samplePoints squareToCosineHemisphere(int sample_count){
             double sampley = (p + rng(gen)) / sample_side;
             
             double theta = 0.5f * acos(1 - 2*samplex);
-            double phi =  2 * M_PI * sampley;
+            double phi =  2 * PI * sampley;
             Vec3f wi = Vec3f(sin(theta) * cos(phi), sin(theta) * sin(phi), cos(theta));
             float pdf = wi.z / PI;
             
@@ -78,16 +78,23 @@ Vec3f IntegrateEmu(Vec3f V, float roughness, float NdotV, Vec3f Ei) {
         float VoH = std::max(dot(V, H), 0.0f);
         float NoV = std::max(dot(N, V), 0.0f);
 
+        float NdotL = std::max(dot(N, L), 0.0f);
+        float mu = NdotL;
+
         // TODO: To calculate Eavg here
-        
+        //Eavg += Ei * mu * 2;
+        //Eavg += Ei * sqrt(1.0f - NdotV * NdotV) * 2.0f;
+        Eavg += Ei * mu *2.0f;
+        //Eavg += Ei * NoL * 2.0f;
     }
 
     return Eavg / sample_count;
+    //return Ei * sqrt(1.0f - NdotV * NdotV) * 2.0f;
 }
 
 
 int main() {
-    unsigned char *Edata = stbi_load("./GGX_E_MC_LUT.png", &resolution, &resolution, &channel, 3);
+    unsigned char *Edata = stbi_load("./GGX_E_MC_LUT_flip.png", &resolution, &resolution, &channel, 3);
     if (Edata == NULL) 
     {
 		std::cout << "ERROE_FILE_NOT_LOAD" << std::endl;
@@ -100,7 +107,7 @@ int main() {
         // | 
         // | rough（i）
         // flip it if you want to write the data on picture 
-        uint8_t data[resolution * resolution * 3];
+        uint8_t* data = new uint8_t[resolution * resolution * 3];
         float step = 1.0 / resolution;
         Vec3f Eavg = Vec3f(0.0);
 		for (int i = 0; i < resolution; i++) 
