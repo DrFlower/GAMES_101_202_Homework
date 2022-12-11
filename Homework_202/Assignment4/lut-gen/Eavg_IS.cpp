@@ -26,12 +26,27 @@ Vec2f Hammersley(uint32_t i, uint32_t N) {
 }
 
 Vec3f ImportanceSampleGGX(Vec2f Xi, Vec3f N, float roughness) {
-
     float a = roughness * roughness;
 
-    // TODO: Copy the code from your previous work - Bonus 1
+    //TODO: in spherical space - Bonus 1
+    float theta = atan(a * sqrt(Xi.x) / sqrt(1.0f - Xi.x));
+    float phi = 2.0 * PI * Xi.y;
 
-    return Vec3f(1.0f);
+
+    //TODO: from spherical space to cartesian space - Bonus 1
+    float sinTheta = sin(theta);
+    float consTheta = cos(theta);
+    Vec3f H = Vec3f(cos(phi) * sinTheta, sin(phi) * sinTheta, consTheta);
+    //Vec3f H = Vec3f(sinf(theta) * cosf(phi), sinf(theta) * sinf(phi), cosf(theta));
+
+    //TODO: tangent coordinates - Bonus 1
+    Vec3f up = abs(N.z) < 0.999 ? Vec3f(0.0, 0.0, 1.0) : Vec3f(1.0, 0.0, 0.0);
+    Vec3f tangent = normalize(cross(up, N));
+    Vec3f bitangent = cross(N, tangent);
+
+    //TODO: transform H to tangent space - Bonus 1
+    Vec3f sampleVec = tangent * H.x + bitangent * H.y + N * H.z;
+    return normalize(sampleVec);
 }
 
 
@@ -52,10 +67,12 @@ Vec3f IntegrateEmu(Vec3f V, float roughness, float NdotV, Vec3f Ei) {
         float NoV = std::max(dot(N, V), 0.0f);
 
         // TODO: To calculate Eavg here - Bonus 1
-        
+        float NdotL = std::max(dot(N, L), 0.0f);
+        float mu = NdotL;
+        Eavg += Ei * mu * 2.0f;
     }
 
-    return Vec3f(1.0);
+    return Eavg / sample_count;
 }
 
 void setRGB(int x, int y, float alpha, unsigned char *data) {
@@ -90,7 +107,7 @@ int main() {
         // | 
         // | rough（i）
         // Flip it, if you want the data written to the texture
-        uint8_t data[resolution * resolution * 3];
+        uint8_t* data = new uint8_t[resolution * resolution * 3];
         float step = 1.0 / resolution;
         Vec3f Eavg = Vec3f(0.0);
 		for (int i = 0; i < resolution; i++) 

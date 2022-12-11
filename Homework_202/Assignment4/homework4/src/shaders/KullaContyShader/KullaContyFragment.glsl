@@ -90,9 +90,10 @@ vec3 MultiScatterBRDF(float NdotL, float NdotV)
   vec3 F_avg = AverageFresnel(albedo, edgetint);
   
   // TODO: To calculate fms and missing energy here
+  vec3 F_ms = (1.0 - E_o) * (1.0 - E_i) / (PI * (1.0 - E_avg));
+  vec3 F_add = F_avg * E_avg / (1.0 - F_avg * (1.0 - E_avg));
 
-
-  return vec3(1.0);
+  return F_add * F_ms;
   
 }
 
