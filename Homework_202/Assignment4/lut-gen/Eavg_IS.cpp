@@ -51,28 +51,7 @@ Vec3f ImportanceSampleGGX(Vec2f Xi, Vec3f N, float roughness) {
 
 
 Vec3f IntegrateEmu(Vec3f V, float roughness, float NdotV, Vec3f Ei) {
-    Vec3f Eavg = Vec3f(0.0f);
-    const int sample_count = 1024;
-    Vec3f N = Vec3f(0.0, 0.0, 1.0);
-
-    for (int i = 0; i < sample_count; i++) 
-    {
-        Vec2f Xi = Hammersley(i, sample_count);
-        Vec3f H = ImportanceSampleGGX(Xi, N, roughness);
-        Vec3f L = normalize(H * 2.0f * dot(V, H) - V);
-
-        float NoL = std::max(L.z, 0.0f);
-        float NoH = std::max(H.z, 0.0f);
-        float VoH = std::max(dot(V, H), 0.0f);
-        float NoV = std::max(dot(N, V), 0.0f);
-
-        // TODO: To calculate Eavg here - Bonus 1
-        float NdotL = std::max(dot(N, L), 0.0f);
-        float mu = NdotL;
-        Eavg += Ei * mu * 2.0f;
-    }
-
-    return Eavg / sample_count;
+    return Ei * NdotV * 2.0f;
 }
 
 void setRGB(int x, int y, float alpha, unsigned char *data) {
