@@ -37,7 +37,6 @@ Vec3f ImportanceSampleGGX(Vec2f Xi, Vec3f N, float roughness) {
     float sinTheta = sin(theta);
     float consTheta = cos(theta);
     Vec3f H = Vec3f(cos(phi) * sinTheta, sin(phi) * sinTheta, consTheta);
-    //Vec3f H = Vec3f(sinf(theta) * cosf(phi), sinf(theta) * sinf(phi), cosf(theta));
 
     //TODO: tangent coordinates - Bonus 1
     Vec3f up = abs(N.z) < 0.999 ? Vec3f(0.0, 0.0, 1.0) : Vec3f(1.0, 0.0, 0.0);
