@@ -1,0 +1,8 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: -2
+IndentCaseLabels: false
+PointerBindsToType: false
+IndentWidth: 4
+AlwaysBreakTemplateDeclarations: true
+ColumnLimit: 90
+
