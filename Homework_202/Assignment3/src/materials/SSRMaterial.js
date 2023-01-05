@@ -4,6 +4,7 @@ class SSRMaterial extends Material {
         let lightVP = light.CalcLightVP();
         let lightDir = light.CalcShadingDirection();
 
+        // Edit Start
         let uniforms = {
             'uLightRadiance': { type: '3fv', value: lightIntensity },
             'uLightDir': { type: '3fv', value: lightDir },
@@ -16,11 +17,11 @@ class SSRMaterial extends Material {
         }
 
         for(let i = 0; i < mipMapLevel; i++){
-            // uniforms.push({['uDepthTexture' + '[' + i + ']']: { type: 'texture', value: null }})
             uniforms['uDepthTexture' + '[' + i + ']'] = { type: 'texture', value: null };
         }
 
         super(uniforms, [], vertexShader, fragmentShader);
+        // Edit End
     }
 }
 

@@ -55,10 +55,6 @@ function loadGLTF(renderer, path, name, materialName) {
 							material = buildSSRMaterial(diffuseMap, specularMap, light, renderer.camera, "./src/shaders/ssrShader/ssrVertex.glsl", "./src/shaders/ssrShader/ssrFragment.glsl");
 							shadowMaterial = buildShadowMaterial(light, "./src/shaders/shadowShader/shadowVertex.glsl", "./src/shaders/shadowShader/shadowFragment.glsl");
 							bufferMaterial = buildGbufferMaterial(diffuseMap, normalMap, light, renderer.camera, "./src/shaders/gbufferShader/gbufferVertex.glsl", "./src/shaders/gbufferShader/gbufferFragment.glsl");
-							//Edit Start
-
-							// depthMaterial = buildSceneDepthMaterial(renderer.camera.fbo.textures[5], null, "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
-							//Edit End
 							break;
 					}
 
@@ -74,12 +70,6 @@ function loadGLTF(renderer, path, name, materialName) {
 						let bufferMeshRender = new MeshRender(renderer.gl, mesh, data);
 						renderer.addBufferMeshRender(bufferMeshRender);
 					});
-					// Edit Start
-					// depthMaterial.then((data) => {
-					// 	let depthMeshRender = new MeshRender(renderer.gl, mesh, data);
-					// 	renderer.addDepthMeshRender(depthMeshRender);
-					// });
-					// Edit End
 				}
 
 			});

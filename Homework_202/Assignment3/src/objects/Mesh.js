@@ -88,6 +88,7 @@ class Mesh {
 		return new Mesh({ name: 'aVertexPosition', array: new Float32Array(positions) }, null, null, indices, transform);
 	}
 
+	// Edit Start
 	static Quad(transform) {
 		const positions = [
             -1.0,  1.0, 0.0,
@@ -109,4 +110,5 @@ class Mesh {
 
 		return new Mesh({ name: 'aVertexPosition', array: new Float32Array(positions) }, null, { name: 'aTextureCoord', array: new Float32Array(texcoords) }, indices, transform);
 	}
+	// Edit End
 }
