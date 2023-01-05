@@ -104,6 +104,13 @@ class WebGLRenderer {
 
         // Camera pass
         for (let i = 0; i < this.meshes.length; i++) {
+            // Edit Start
+            for(let lv = 0; lv < mipMapLevel; lv++){
+                if(this.depthFBOs.length > lv){
+                    updatedParamters['uDepthTexture' + '[' + lv + ']'] = this.depthFBOs[lv].textures[0];
+                }
+            }
+            // Edit End
             this.meshes[i].draw(this.camera, null, updatedParamters);
         }
     }
