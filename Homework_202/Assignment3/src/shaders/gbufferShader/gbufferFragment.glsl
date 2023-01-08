@@ -9,7 +9,7 @@ layout(location = 1) out vec4 Frag1;
 layout(location = 2) out vec4 Frag2;
 layout(location = 3) out vec4 Frag3;
 layout(location = 4) out vec4 Frag4;
-layout(location = 5) out vec4 Frag5;
+// layout(location = 5) out vec4 Frag5;
 
 uniform sampler2D uKd;
 uniform sampler2D uNt;
@@ -76,5 +76,5 @@ void main(void) {
   Frag3 = vec4(vec3(SimpleShadowMap(vPosWorld.xyz, 1e-2)), 1.0);
   Frag4 = vec4(vec3(vPosWorld.xyz), 1.0);
   // Frag5 = vec4(vec3(vDepth), 1.0);
-  Frag5 = vec4(vec3(LinearizeDepth(gl_FragCoord.z)/150.), 1.0);
+  // Frag5 = vec4(vec3(LinearizeDepth(gl_FragCoord.z)/150.), 1.0);
 }

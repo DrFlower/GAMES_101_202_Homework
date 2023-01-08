@@ -58,7 +58,7 @@ function GAMES202Main() {
 	// cameraTarget = [2.92191, 0.98, 1.55037]
 	
 	camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-	camera.fbo = new FBO(gl, 6);
+	camera.fbo = new FBO(gl, 5);
 
 	// Add resize listener
 	function setSize(width, height) {
@@ -108,8 +108,8 @@ function GAMES202Main() {
 	renderer.addLight(directionLight);
 
 	// Add shapes
-	// loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
-	loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
+	loadGLTF(renderer, 'assets/cube/', 'cube1', 'SSRMaterial');
+	// loadGLTF(renderer, 'assets/cube/', 'cube2', 'SSRMaterial');
 	// loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');
 
 	// Edit Start
