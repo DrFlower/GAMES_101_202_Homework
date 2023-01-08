@@ -564,7 +564,7 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
 
     float Dir = isBackwardRay ? -1. : 1.;
 
-    while( level >= stopLevel && ray.z * Dir <= maxZ * Dir && iter < 1000){
+    while( level >= stopLevel && ray.z * Dir <= maxZ * Dir && iter < 100){
         ivec2 cellCount = getCellCount(level);
         ivec2 oldCellIdx = getCell(ray.xy, cellCount);
 
@@ -583,7 +583,7 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
         ++iter;
     }
     bool intersected = (level < stopLevel);
-    // intersected = true;
+    intersected = true;
     hitPos = intersected ? ray : vec3(0.0);
     return intersected;
 }
@@ -642,9 +642,9 @@ void main() {
     vec3 normal = GetGBufferNormalWorld(screenUV);
     vec3 b1, b2;
     LocalBasis(normal, b1, b2);
-    // vec3 dir = normalize(mat3(b1, b2, normal) * localDir);
-    vec3 dir = normalize(reflect(-wo, normal));
-    // vec3 dir = normalize(reflect(worldPos, normal));
+    // vec3 dir = normalize(mat3(b1, b2, normal) * localDir); // ssgi
+    vec3 dir = normalize(reflect(-wo, normal)); // ssr
+    // vec3 dir = normalize(reflect(worldPos, normal)); // ??
     vec3 position_1;
     if(RayMarch(worldPos, dir, position_1)){
       vec2 hitScreenUV = GetScreenCoordinate(position_1);
