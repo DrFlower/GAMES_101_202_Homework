@@ -26,7 +26,7 @@ in vec4 vPosWorld;
 #define INV_PI 0.31830988618
 #define INV_TWO_PI 0.15915494309
 
-#define MAX_MIPMAP_LEVEL 2
+#define MAX_MIPMAP_LEVEL 11
 #define MAX_THICKNESS 0.0017
 
 out vec4 FragColor;
@@ -115,7 +115,7 @@ vec3 GetGBufferNormalWorld(vec2 uv) {
 }
 
 vec3 GetGBufferPosWorld(vec2 uv) {
-  vec3 posWorld = texture(uGNormalWorld, uv).xyz;
+  vec3 posWorld = texture(uGPosWorld, uv).xyz;
   return posWorld;
 }
 
@@ -585,7 +585,6 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
     bool intersected = (level < stopLevel);
     // intersected = true;
     hitPos = intersected ? ray : vec3(0.0);
-    // hitPos = vec3(1.0 - ray.x, 1.0 - ray.y, ray.z);
     return intersected;
 }
 
@@ -627,15 +626,13 @@ void main() {
   // vec3 worldPos = GetGBufferPosWorld(screenUV);
   vec3 worldPos = vPosWorld.xyz;
   vec3 wi = normalize(uLightDir);
-  vec3 wo = normalize(uCameraPos - vPosWorld.xyz);
+  vec3 wo = normalize(uCameraPos - worldPos);
   
   // 直接光照
   L = EvalDiffuse(wi, wo, screenUV) * EvalDirectionalLight(screenUV);
 
   // Screen Space Ray Tracing 的反射测试
   // L = (GetGBufferDiffuse(screenUV) + EvalReflect(wi, wo, screenUV))/2.;
-
- 
 
   vec3 L_ind = vec3(0.0);
   for(int i = 0; i < SAMPLE_NUM; i++){
@@ -656,10 +653,6 @@ void main() {
       // L_ind += GetGBufferDiffuse(hitScreenUV);
     }
 
-    // vec3 worldPos = vPosWorld.xyz;
-    // vec3 worldPos = GetGBufferPosWorld(screenUV);
-
-
 	 
     vec3 relfectDir = dir;
     vec3 endPosInWorld = worldPos + relfectDir * 1000.;
@@ -671,9 +664,6 @@ void main() {
 
   // L = vec3(start);
 
-    // vec3 start = GetScreenCoordinate3(worldPos);
-    // vec3 relfectDir = normalize(reflect(-wo, normal));
-    // vec3 rayDir = normalize(Project(vWorldToScreen * vec4(relfectDir, 0.0)).xyz * 0.5 + 0.5);
 
 
     float maxTraceX = rayDir.x >= 0. ? (1. - start.x) / rayDir.x : -start.x / rayDir.x;
@@ -681,11 +671,6 @@ void main() {
     float maxTraceZ = rayDir.z >= 0. ? (1. - start.z) / rayDir.z : -start.z / rayDir.z;
     float maxTraceDistance = min(maxTraceX, min(maxTraceY, maxTraceZ));
 
-    // float maxTraceDistance = 1.;
-
-  // L = vec3(maxTraceDistance);
-  // L =(relfectDir + vec3(1.0))/2.;
-  // L =relfectDir *2. - vec3(0.5,0.5,0.5);
     if(RayMarch_Hiz(start, rayDir, maxTraceDistance, position_1)){
     // if(RayMarch3(start, rayDir, maxTraceDistance, position_1)){
       // vec2 hitScreenUV = GetScreenCoordinate(position_1);
