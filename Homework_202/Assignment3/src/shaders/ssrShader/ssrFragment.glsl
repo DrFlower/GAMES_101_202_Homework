@@ -157,7 +157,7 @@ vec3 EvalDirectionalLight(vec2 uv) {
 
 bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
   float step = 0.05;
-  const int totalStepTimes = 2000; 
+  const int totalStepTimes = 500; 
   int curStepTimes = 0;
 
   vec3 stepDir = normalize(dir) * step;
@@ -167,7 +167,7 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
     vec2 screenUV = GetScreenCoordinate(curPos);
     float rayDepth = GetDepth(curPos);
     float gBufferDepth = GetGBufferDepth(screenUV);
- hitPos = curPos;
+//  hitPos = curPos;
     if(rayDepth - gBufferDepth > 0.0001){
       hitPos = curPos;
       return true;
@@ -176,8 +176,8 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
     curPos += stepDir;
   }
 
-  // return false;
-  return true;
+  return false;
+  // return true;
 }
 
 //todo
@@ -301,7 +301,7 @@ vec3 intersectCellBoundary2(vec3 o,vec3  d, vec2 rayCell,vec2 cell_count, vec2 c
 //todo
 float getMinimumDepthPlane2(vec2 pos , int level){
 
-  vec2 cellCount = vec2(getCellCount(level)) + vec2(0.5, 0.5);
+  vec2 cellCount = vec2(getCellCount(level));
   ivec2 cell = ivec2(floor(pos * cellCount));
 
   if(level == 0){
@@ -588,6 +588,52 @@ bool RayMarch_Hiz(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPo
     return intersected;
 }
 
+bool RayMarch5(vec3 ori, vec3 dir, out vec3 hitPos) {
+    float step = 0.05;
+    dir = normalize(dir);
+    const int totalStepTimes = 150; 
+    int curStepTimes = 0;
+
+    int startLevel = 2;
+    int stopLevel = 0;
+
+    float maxTraceX = dir.x >= 0. ? (1. - ori.x) / dir.x : -ori.x / dir.x;
+    float maxTraceY = dir.y >= 0. ? (1. - ori.y) / dir.y : -ori.y / dir.y;
+    float maxTraceZ = dir.z >= 0. ? (1. - ori.z) / dir.z : -ori.z / dir.z;
+    float maxTraceDistance = min(maxTraceX, min(maxTraceY, maxTraceZ));
+    float maxZ = ori.z + dir.z * maxTraceDistance;
+    bool isBackwardRay = dir.z < 0.;
+    float Dir = isBackwardRay ? -1. : 1.;
+
+    vec3 curPos = ori;
+    int level = startLevel;
+    while( level >= stopLevel /**&& curPos.z * Dir <= maxZ * Dir*/ && curStepTimes < totalStepTimes){
+        float rayDepth = GetDepth(curPos);
+        vec2 screenUV = GetScreenCoordinate(curPos);
+        float gBufferDepth = getMinimumDepthPlane2(screenUV, level);
+
+        if(rayDepth - gBufferDepth > 0.0001){
+          if(level == 0){
+            hitPos = curPos;
+            return true;
+          }
+          else{
+            level = level - 1;
+          }
+        }
+        else{
+          level = min(MAX_MIPMAP_LEVEL, level + 1);
+          float zFactor = (1. - abs(dir.z));
+          vec3 stepDir = (dir * step * float(level + 1));// / (zFactor * zFactor);
+          curPos += stepDir;
+        }
+
+
+        curStepTimes++;
+    }
+    return false;
+}
+
 // test Screen Space Ray Tracing 
 vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
   vec3 worldNormal = GetGBufferNormalWorld(uv);
@@ -613,7 +659,7 @@ vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
 
 // }
 
-#define SAMPLE_NUM 1
+#define SAMPLE_NUM 3
 
 void main() {
   float s = InitRand(gl_FragCoord.xy);
@@ -646,25 +692,19 @@ void main() {
     vec3 dir = normalize(reflect(-wo, normal)); // ssr
     // vec3 dir = normalize(reflect(worldPos, normal)); // ??
     vec3 position_1;
-    if(RayMarch(worldPos, dir, position_1)){
+    if(RayMarch5(worldPos, dir, position_1)){
+      // ssgi
       vec2 hitScreenUV = GetScreenCoordinate(position_1);
       // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, hitScreenUV) * EvalDirectionalLight(hitScreenUV);
-      // L_ind += vec3(1.0);
-      // L_ind += GetGBufferDiffuse(hitScreenUV);
+
+      // ssr
+      L_ind += GetGBufferDiffuse(hitScreenUV);
     }
 
-	 
-    vec3 relfectDir = dir;
-    vec3 endPosInWorld = worldPos + relfectDir * 1000.;
+    vec3 endPosInWorld = worldPos + dir * 1000.;
     vec3 start = GetScreenCoordinate3(worldPos);
     vec3 end = GetScreenCoordinate3(endPosInWorld);
     vec3 rayDir = normalize(end - start);
-
-    // rayDir = normalize(Project(vWorldToScreen * vec4(relfectDir, 0.0)).xyz * 0.5 + 0.5);
-
-  // L = vec3(start);
-
-
 
     float maxTraceX = rayDir.x >= 0. ? (1. - start.x) / rayDir.x : -start.x / rayDir.x;
     float maxTraceY = rayDir.y >= 0. ? (1. - start.y) / rayDir.y : -start.y / rayDir.y;
@@ -674,10 +714,12 @@ void main() {
     if(RayMarch_Hiz(start, rayDir, maxTraceDistance, position_1)){
     // if(RayMarch3(start, rayDir, maxTraceDistance, position_1)){
       // vec2 hitScreenUV = GetScreenCoordinate(position_1);
+
+      // ssgi
       // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, position_1.xy) * EvalDirectionalLight(position_1.xy);
-      L_ind += GetGBufferDiffuse(position_1.xy);
-      // L_ind += vec3(1.0);
-      // L = vec3(1.0);
+
+      // ssr
+      // L_ind += GetGBufferDiffuse(position_1.xy);
     }
   }
 
