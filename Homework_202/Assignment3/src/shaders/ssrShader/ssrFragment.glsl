@@ -157,7 +157,7 @@ vec3 EvalDirectionalLight(vec2 uv) {
 
 bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
   float step = 0.05;
-  const int totalStepTimes = 500; 
+  const int totalStepTimes = 100; 
   int curStepTimes = 0;
 
   vec3 stepDir = normalize(dir) * step;
@@ -178,6 +178,20 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
 
   return false;
   // return true;
+}
+
+// test Screen Space Ray Tracing 
+vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
+  vec3 worldNormal = GetGBufferNormalWorld(uv);
+  vec3 relfectDir = normalize(reflect(-wo, worldNormal));
+  vec3 hitPos;
+  if(RayMarch(vPosWorld.xyz, relfectDir, hitPos)){
+      vec2 screenUV = GetScreenCoordinate(hitPos);
+      return GetGBufferDiffuse(screenUV);
+  }
+  else{
+    return vec3(0.); 
+  }
 }
 
 ivec2 getCellCount(int level){
@@ -245,8 +259,7 @@ vec3 intersectCellBoundary(vec3 o, vec3 d, ivec2 rayCell, ivec2 cell_count, vec2
       return intersection;
 }
 
-float getMinimumDepthPlane(vec2 pos , int level){
-
+float getMinimumDepthPlane(vec2 pos, int level){
   vec2 cellCount = vec2(getCellCount(level));
   ivec2 cell = ivec2(floor(pos * cellCount));
 
@@ -346,9 +359,10 @@ bool RayMarch_Hiz_In_Texture_Space(vec3 start, vec3 rayDir,float maxTraceDistanc
     return intersected;
 }
 
+
 bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
     float step = 0.05;
-    const int totalStepTimes = 100; 
+    const int totalStepTimes = 100;
     int curStepTimes = 0;
 
     int startLevel = 2;
@@ -381,7 +395,7 @@ bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
         else{
           level = min(MAX_MIPMAP_LEVEL, level + 1);
           float zFactor = (1. - abs(dir.z) * abs(dir.z));
-          vec3 stepDistance = (dir * step * float(level + 1)) / zFactor;
+          vec3 stepDistance = (dir * step * float(level + 1));// / zFactor;
           curPos += stepDistance;
         }
 
@@ -389,20 +403,6 @@ bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
         curStepTimes++;
     }
     return false;
-}
-
-// test Screen Space Ray Tracing 
-vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
-  vec3 worldNormal = GetGBufferNormalWorld(uv);
-  vec3 relfectDir = normalize(reflect(-wo, worldNormal));
-  vec3 hitPos;
-  if(RayMarch(vPosWorld.xyz, relfectDir, hitPos)){
-      vec2 screenUV = GetScreenCoordinate(hitPos);
-      return GetGBufferDiffuse(screenUV);
-  }
-  else{
-    return vec3(0.); 
-  }
 }
 
 #define SAMPLE_NUM 1
@@ -434,10 +434,8 @@ void main() {
     vec3 normal = GetGBufferNormalWorld(screenUV);
     vec3 b1, b2;
     LocalBasis(normal, b1, b2);
-    // vec3 dir = normalize(mat3(b1, b2, normal) * localDir); // ssgi
-    vec3 dir = normalize(reflect(-wo, normal)); // ssr
-
-    vec3 position_1;
+    vec3 dir = normalize(mat3(b1, b2, normal) * localDir); // ssgi
+    // vec3 dir = normalize(reflect(-wo, normal)); // ssr
 
     vec3 endPosInWorld = worldPos + dir * 1000.;
     vec3 start = GetScreenCoordinate3(worldPos);
@@ -449,25 +447,36 @@ void main() {
     float maxTraceZ = rayDir.z >= 0. ? (1. - start.z) / rayDir.z : -start.z / rayDir.z;
     float maxTraceDistance = min(maxTraceX, min(maxTraceY, maxTraceZ));
 
+    vec3 position_1;
+    // if(RayMarch(worldPos, dir, position_1)){
+    //   vec2 hitScreenUV = GetScreenCoordinate(position_1);
+      
+    //   // ssgi
+    //   L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, hitScreenUV) * EvalDirectionalLight(hitScreenUV);
+
+    //   // ssr
+    //   // L_ind += GetGBufferDiffuse(hitScreenUV);
+    // }
+
     if(RayMarch_Hiz(worldPos, dir, position_1)){
       vec2 hitScreenUV = GetScreenCoordinate(position_1);
       
       // ssgi
-      // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, hitScreenUV) * EvalDirectionalLight(hitScreenUV);
+      L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, hitScreenUV) * EvalDirectionalLight(hitScreenUV);
 
       // ssr
-      L_ind += GetGBufferDiffuse(hitScreenUV);
+      // L_ind += GetGBufferDiffuse(hitScreenUV);
     }
 
-    if(RayMarch_Hiz_In_Texture_Space(start, rayDir, maxTraceDistance, position_1)){
-      // vec2 hitScreenUV = GetScreenCoordinate(position_1);
+    // if(RayMarch_Hiz_In_Texture_Space(start, rayDir, maxTraceDistance, position_1)){
+    //   // vec2 hitScreenUV = GetScreenCoordinate(position_1);
 
-      // ssgi
-      // L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, position_1.xy) * EvalDirectionalLight(position_1.xy);
+    //   // ssgi
+    //   L_ind += EvalDiffuse(dir, wo, screenUV) / pdf * EvalDiffuse(wi, dir, position_1.xy) * EvalDirectionalLight(position_1.xy);
 
-      // ssr
-      // L_ind += GetGBufferDiffuse(position_1.xy);
-    }
+    //   // ssr
+    //   // L_ind += GetGBufferDiffuse(position_1.xy);
+    // }
   }
 
   L_ind /= float(SAMPLE_NUM);
