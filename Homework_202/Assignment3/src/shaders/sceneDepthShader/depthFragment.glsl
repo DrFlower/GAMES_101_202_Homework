@@ -12,9 +12,7 @@ uniform sampler2D uDepthMipMap;
 uniform int uLastMipLevel;
 uniform vec3 uLastMipSize;
 
-uniform int uMaxLevel;
 uniform int uCurLevel;
-uniform vec3 uMaxSize;
 
 in vec2 vTextureCoord;
 
@@ -41,9 +39,6 @@ void main(){
 
     ivec2 thisLevelTexelCoord = ivec2(gl_FragCoord);
 	ivec2 previousLevelBaseTexelCoord = thisLevelTexelCoord * 2;
-    // for(int i = 0; i < uCurLevel; i++){
-    //     previousLevelBaseTexelCoord *= 2;
-    // }
 
 	vec4 depthTexelValues;
 	depthTexelValues.x = texelFetch(uDepthMipMap,

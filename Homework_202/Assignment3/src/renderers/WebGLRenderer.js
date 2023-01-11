@@ -70,15 +70,12 @@ class WebGLRenderer {
         // Edit Start
         for (let lv = 0; lv < this.depthFBOs.length && depthMeshRender !=null; lv++) {
             gl.useProgram(depthMeshRender.shader.program.glShaderProgram);
-            // gl.bindTexture(gl.TEXTURE_2D, this.depthFBOs[lv].textures[0]);
             gl.bindFramebuffer(gl.FRAMEBUFFER, this.depthFBOs[lv]);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
             let updatedParamters = {
                 "uLastMipLevel": lv - 1,
                 "uLastMipSize": [this.depthFBOs[lv].lastWidth, this.depthFBOs[lv].lastHeight, 0],
-                // 'uDepthMipMap': this.depthFBOs[lv].depthTexture,
-                // 'uDepthMiMap': this.depthFBOs[lv].textures[0],
                 "uCurLevel": lv,
             };
 
