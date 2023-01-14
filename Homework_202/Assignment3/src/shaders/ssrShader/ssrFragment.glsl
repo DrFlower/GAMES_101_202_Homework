@@ -150,8 +150,7 @@ vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
  *
  */
 vec3 EvalDirectionalLight(vec2 uv) {
-  vec3 Le = vec3(0.0);
-  Le = texture(uGShadow, uv).x * uLightRadiance;
+  vec3 Le = GetGBufferuShadow(uv) * uLightRadiance;
   return Le;
 }
 
@@ -167,7 +166,7 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
     vec2 screenUV = GetScreenCoordinate(curPos);
     float rayDepth = GetDepth(curPos);
     float gBufferDepth = GetGBufferDepth(screenUV);
-//  hitPos = curPos;
+
     if(rayDepth - gBufferDepth > 0.0001){
       hitPos = curPos;
       return true;
@@ -177,7 +176,6 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
   }
 
   return false;
-  // return true;
 }
 
 // test Screen Space Ray Tracing 
@@ -310,7 +308,7 @@ bool crossedCellBoundary(ivec2 oldCellIdx,ivec2 newCellIdx){
 
 bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
     float step = 0.05;
-    float maxDistance = 5.0;
+    float maxDistance = 7.5;
 
     int startLevel = 2;
     int stopLevel = 0;
@@ -364,8 +362,7 @@ void main() {
   vec3 L_ind = vec3(0.0);
   for(int i = 0; i < SAMPLE_NUM; i++){
     float pdf;
-    Rand1(s);
-    vec3 localDir = SampleHemisphereUniform(s, pdf);
+    vec3 localDir = SampleHemisphereCos(s, pdf);
     vec3 normal = GetGBufferNormalWorld(screenUV);
     vec3 b1, b2;
     LocalBasis(normal, b1, b2);
