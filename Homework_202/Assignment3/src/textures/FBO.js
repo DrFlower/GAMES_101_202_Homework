@@ -1,6 +1,6 @@
 class FBO{
     // Edit Start
-    constructor(gl, GBufferNum, width, height, mipMapLevel){
+    constructor(gl, GBufferNum, width, height){
     // Edit End
         //定义错误函数
         function error() {
@@ -10,7 +10,7 @@ class FBO{
             return null;
         }
 
-        function CreateAndBindColorTargetTexture(fbo, attachment, width, height, mipMapLevel) {
+        function CreateAndBindColorTargetTexture(fbo, attachment, width, height) {
             //创建纹理对象并设置其尺寸和参数
             var texture = gl.createTexture();
             if(!texture){
@@ -19,7 +19,7 @@ class FBO{
             }
             gl.bindTexture(gl.TEXTURE_2D, texture);
             // Edit Start
-            // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, window.screen.width, window.screen.height, 0, gl.RGBA, gl.FLOAT, null);
+            // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.screen.width, window.screen.height, 0, gl.RGBA, gl.FLOAT, null);
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, width, height, 0, gl.RGBA, gl.FLOAT, null);
             // Edit End
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
@@ -27,10 +27,7 @@ class FBO{
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-            // Edit Start
-            // gl.framebufferTexture2D(gl.FRAMEBUFFER, attachment, gl.TEXTURE_2D, texture, 0);
-            gl.framebufferTexture2D(gl.FRAMEBUFFER, attachment, gl.TEXTURE_2D, texture, mipMapLevel);
-            // Edit End
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, attachment, gl.TEXTURE_2D, texture, 0);
 
             return texture;
         };
@@ -57,9 +54,6 @@ class FBO{
         if(height == null){
             height = windowHeight;
         }
-        if(mipMapLevel == null){
-            mipMapLevel = 0;
-        }
 
         framebuffer.width = width;
         framebuffer.height = height;
@@ -70,7 +64,7 @@ class FBO{
 	    	// var attachment = gl_draw_buffers['COLOR_ATTACHMENT' + i + '_WEBGL'];
             var attachment = gl.COLOR_ATTACHMENT0 + i;
 	    	// var texture = CreateAndBindColorTargetTexture(framebuffer, attachment);
-            var texture = CreateAndBindColorTargetTexture(framebuffer, attachment, width, height, mipMapLevel);
+            var texture = CreateAndBindColorTargetTexture(framebuffer, attachment, width, height, 0);
 	    	framebuffer.attachments.push(attachment);
 	    	framebuffer.textures.push(texture);
 

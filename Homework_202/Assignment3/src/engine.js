@@ -137,17 +137,16 @@ function GAMES202Main() {
 			currentHeight = currentHeight > 0 ? currentHeight : 1;
 		}
 		console.log("MipMap Level", i, ":", currentWidth, "x", currentHeight);
-		let fb = new FBO(gl, 1, currentWidth, currentHeight, 0);
+		let fb = new FBO(gl, 1, currentWidth, currentHeight);
 		fb.lastWidth = lastWidth;
 		fb.lastHeight = lastHeight;
 		fb.width = currentWidth;
 		fb.height = currentHeight;
-		fb.depthTexture = depthTexture;
 		renderer.addDepthFBO(fb);
 
 	}
 
-	depthMaterial = buildSceneDepthMaterial(camera.fbo.textures[1], "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
+	depthMaterial = buildSceneDepthMaterial(depthTexture, "./src/shaders/sceneDepthShader/depthVertex.glsl", "./src/shaders/sceneDepthShader/depthFragment.glsl");
 	depthMaterial.then((data) => {
 		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
 	});

@@ -299,11 +299,61 @@ float getMinimumDepthPlane(vec2 pos, int level){
   }
 
     return texelFetch(uDepthTexture[0], cell, 0).x;
-    // return GetGBufferDepth(pos);
 }
 
 bool crossedCellBoundary(ivec2 oldCellIdx,ivec2 newCellIdx){
     return (oldCellIdx.x!=newCellIdx.x)||(oldCellIdx.y!=newCellIdx.y);
+}
+
+bool RayMarch_Hiz_In_Texture_Space(vec3 start, vec3 rayDir,float maxTraceDistance, out vec3 hitPos){
+    vec2 crossStep = vec2(rayDir.x >= 0. ? 1 : -1, rayDir.y >= 0. ? 1 : -1);
+    // vec2 crossOffset = crossStep / vec2(1024.0, 1024.0) / 128.;
+    vec2 crossOffset = crossStep / vec2(2560.0,1440.0) / 128.;
+    crossStep = clamp(crossStep, 0.0, 1.0);
+
+    vec3 ray = start;
+    float minZ = ray.z;
+    float maxZ = ray.z + rayDir.z * maxTraceDistance;
+    float deltaZ = (maxZ - minZ);
+
+    vec3 o = ray;
+    vec3 d = rayDir * maxTraceDistance;
+
+    int startLevel = 0;
+    int stopLevel = 0;
+    ivec2 startCellCount = getCellCount(startLevel);
+
+
+    ivec2 rayCell = getCell(ray.xy, startCellCount);
+    ray = intersectCellBoundary(o, d, rayCell, startCellCount, crossStep, crossOffset * 64.);
+
+    int level = startLevel;
+    int iter = 0;
+    bool isBackwardRay = rayDir.z < 0.;
+
+    float Dir = isBackwardRay ? -1. : 1.;
+
+    while( level >= stopLevel && ray.z * Dir <= maxZ * Dir && iter < 100){
+        ivec2 cellCount = getCellCount(level);
+        ivec2 oldCellIdx = getCell(ray.xy, cellCount);
+
+        float cell_minZ = getMinimumDepthPlane(ray.xy, level);
+
+        vec3 tmpRay = ((cell_minZ > ray.z) && !isBackwardRay) ? intersectDepthPlane(o, d, (cell_minZ - minZ) / deltaZ) : ray;
+
+        ivec2 newCellIdx = getCell(tmpRay.xy, cellCount);
+
+        float thickness = level == 0 ? (ray.z - cell_minZ) : 0.;
+        bool crossed  = (isBackwardRay && (cell_minZ > ray.z))||(thickness > MAX_THICKNESS)|| crossedCellBoundary(oldCellIdx, newCellIdx);
+        ray = crossed ? intersectCellBoundary(o, d, oldCellIdx, cellCount, crossStep, crossOffset) : tmpRay;
+
+        level = crossed ? min(MAX_MIPMAP_LEVEL, level + 1): level - 1;
+        ++iter;
+    }
+    bool intersected = (level < stopLevel);
+    intersected = true;
+    hitPos = intersected ? ray : vec3(0.0);
+    return intersected;
 }
 
 bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
@@ -369,15 +419,15 @@ void main() {
     vec3 dir = normalize(mat3(b1, b2, normal) * localDir); // ssgi
     // vec3 dir = normalize(reflect(-wo, normal)); // ssr
 
-    vec3 endPosInWorld = worldPos + dir * 1000.;
-    vec3 start = GetScreenCoordinate3(worldPos);
-    vec3 end = GetScreenCoordinate3(endPosInWorld);
-    vec3 rayDir = normalize(end - start);
+    // vec3 endPosInWorld = worldPos + dir * 1000.;
+    // vec3 start = GetScreenCoordinate3(worldPos);
+    // vec3 end = GetScreenCoordinate3(endPosInWorld);
+    // vec3 rayDir = normalize(end - start);
 
-    float maxTraceX = rayDir.x >= 0. ? (1. - start.x) / rayDir.x : -start.x / rayDir.x;
-    float maxTraceY = rayDir.y >= 0. ? (1. - start.y) / rayDir.y : -start.y / rayDir.y;
-    float maxTraceZ = rayDir.z >= 0. ? (1. - start.z) / rayDir.z : -start.z / rayDir.z;
-    float maxTraceDistance = min(maxTraceX, min(maxTraceY, maxTraceZ));
+    // float maxTraceX = rayDir.x >= 0. ? (1. - start.x) / rayDir.x : -start.x / rayDir.x;
+    // float maxTraceY = rayDir.y >= 0. ? (1. - start.y) / rayDir.y : -start.y / rayDir.y;
+    // float maxTraceZ = rayDir.z >= 0. ? (1. - start.z) / rayDir.z : -start.z / rayDir.z;
+    // float maxTraceDistance = min(maxTraceX, min(maxTraceY, maxTraceZ));
 
     vec3 position_1;
     // if(RayMarch(worldPos, dir, position_1)){

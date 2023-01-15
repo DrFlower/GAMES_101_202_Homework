@@ -195,7 +195,6 @@ class MeshRender {
 		if (fbo != null) {
 			// Edit Start
 			// gl_draw_buffers.drawBuffersWEBGL(fbo.attachments);
-			gl.viewport(0.0, 0.0, fbo.width, fbo.height);
 			gl.drawBuffers(fbo.attachments);
 			// Edit End
 		}

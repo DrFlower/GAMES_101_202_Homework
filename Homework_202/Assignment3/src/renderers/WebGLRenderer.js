@@ -67,6 +67,7 @@ class WebGLRenderer {
         }
         // return
 
+        // Depth Mipmap pass
         // Edit Start
         for (let lv = 0; lv < this.depthFBOs.length && depthMeshRender !=null; lv++) {
             gl.useProgram(depthMeshRender.shader.program.glShaderProgram);
