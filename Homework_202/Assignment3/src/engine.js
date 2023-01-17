@@ -8,6 +8,7 @@ var windowWidth;
 var windowHeight;
 var mipMapLevel;
 var depthMeshRender;
+var depthDebugMeshRender;
 // Edit End
 
 GAMES202Main();
@@ -150,6 +151,11 @@ function GAMES202Main() {
 	depthMaterial.then((data) => {
 		depthMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
 	});
+
+	let depthDebugMaterial = buildSceneDepthDebugMaterial("./src/shaders/sceneDepthDebugShader/depthDebugVertex.glsl", "./src/shaders/sceneDepthDebugShader/deptDebughFragment.glsl");
+	depthDebugMaterial.then((data) => {
+		depthDebugMeshRender = new MeshRender(renderer.gl, Mesh.Quad(setTransform(0, 0, 0, 1, 1, 1)), data);
+	});
 	// Edit End
 
 	function createGUI() {
@@ -160,14 +166,19 @@ function GAMES202Main() {
 		lightPanel.add(renderer.lights[0].entity.lightDir, 'z', -10, 10, 0.1);
 		lightPanel.open();
 	}
-	createGUI();
+	// createGUI();
+
+	//Edit Start deltaTime实现
+	let prevTime = 0;
 
 	function mainLoop(now) {
 		cameraControls.update();
-
-		renderer.render();
+		let deltaime = (now - prevTime) / 1000;
+		renderer.render(now, deltaime);
 		requestAnimationFrame(mainLoop);
+		prevTime = now;
 	}
+	//Edit End
 	requestAnimationFrame(mainLoop);
 }
 

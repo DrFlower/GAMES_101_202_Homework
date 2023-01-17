@@ -25,7 +25,9 @@ class WebGLRenderer {
     addDepthFBO(fbo) { this.depthFBOs.push(fbo); }
     // Edit End
 
-    render() {
+    //Edit Start 添加time, deltaime参数
+    render(time, deltaime) {
+    //Edit End
         console.assert(this.lights.length != 0, "No light");
         console.assert(this.lights.length == 1, "Multiple lights");
         var light = this.lights[0];
@@ -111,5 +113,17 @@ class WebGLRenderer {
             // Edit End
             this.meshes[i].draw(this.camera, null, updatedParamters);
         }
+
+        // Depth debug pass
+        // if (depthDebugMeshRender != null) {
+        //     for(let lv = 0; lv < mipMapLevel; lv++){
+        //         if(this.depthFBOs.length > lv){
+        //             updatedParamters['uTime'] = time / 1000;
+        //             console.log("time: ", time / 1000);
+        //             updatedParamters['uDepthTexture' + '[' + lv + ']'] = this.depthFBOs[lv].textures[0];
+        //         }
+        //     }
+        //     depthDebugMeshRender.draw(this.camera, null, updatedParamters);
+        // }
     }
 }

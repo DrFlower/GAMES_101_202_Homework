@@ -156,7 +156,7 @@ vec3 EvalDirectionalLight(vec2 uv) {
 
 bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
   float step = 0.05;
-  const int totalStepTimes = 100; 
+  const int totalStepTimes = 150; 
   int curStepTimes = 0;
 
   vec3 stepDir = normalize(dir) * step;

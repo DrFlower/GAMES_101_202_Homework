@@ -11,7 +11,6 @@ uniform sampler2D uSampler;
 uniform sampler2D uDepthMipMap;
 uniform int uLastMipLevel;
 uniform vec3 uLastMipSize;
-
 uniform int uCurLevel;
 
 in vec2 vTextureCoord;
