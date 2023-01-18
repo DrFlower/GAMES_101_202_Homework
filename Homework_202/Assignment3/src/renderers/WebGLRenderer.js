@@ -115,6 +115,7 @@ class WebGLRenderer {
         }
 
         // Depth debug pass
+        // Edit Start
         // if (depthDebugMeshRender != null) {
         //     for(let lv = 0; lv < mipMapLevel; lv++){
         //         if(this.depthFBOs.length > lv){
@@ -125,5 +126,6 @@ class WebGLRenderer {
         //     }
         //     depthDebugMeshRender.draw(this.camera, null, updatedParamters);
         // }
+        // Edit End
     }
 }

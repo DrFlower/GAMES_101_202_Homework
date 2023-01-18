@@ -1,6 +1,5 @@
 class SceneDepthDebugMaterial extends Material {
     constructor(vertexShader, fragmentShader) {
-        // Edit Start
         let uniforms = {
             'uTime': { type: '1f', value: 0 },
         }
@@ -10,7 +9,6 @@ class SceneDepthDebugMaterial extends Material {
         }
 
         super(uniforms, [], vertexShader, fragmentShader);
-        // Edit End
     }
 }
 
