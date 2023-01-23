@@ -10,6 +10,15 @@ GAMES202附文章详细讲解
 
 ## GAMES101
 
+- [GAMES101-作业1：旋转与投影](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment1)
+- [GAMES101-作业2：Triangles and Z-buffering](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment2)
+- [GAMES101-作业3：Pipeline and Shading](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment3)
+- [GAMES101-作业4：bezier 曲线](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment4)
+- [GAMES101-作业5：光线与三角形相交](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment5)
+- [GAMES101-作业6：加速结构](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment6)
+- [GAMES101-作业7：路径追踪](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment7)
+- [GAMES101-作业8：质点弹簧系统](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_101/Assignment8)
+
 ## GAMES202
 
 ![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/README_IMGS/games202-homework1_final.gif)
