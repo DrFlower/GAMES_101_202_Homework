@@ -2,7 +2,7 @@
 
 GAMES101、GAMES202作业全解
 
-GAMES202附文章详细讲解
+GAMES202作业（含提高题）附文章详细讲解
 
 [GAMES101-现代计算机图形学入门-闫令琪](https://www.bilibili.com/video/BV1X7411F744)
 
@@ -37,3 +37,4 @@ GAMES202附文章详细讲解
 
 [GAMES202-作业4：Kulla-Conty BRDF](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_202/Assignment4)
 
+附知乎GAMES202作业专栏：[手把手教你写GAMES202作业](https://www.zhihu.com/column/c_1591546501603545090)
