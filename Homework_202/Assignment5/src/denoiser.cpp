@@ -34,7 +34,8 @@ void Denoiser::Reprojection(const FrameInfo &frameInfo) {
                 pre_screen_position.y < 0 || pre_screen_position.y >= height) {
                 continue;
             } else {
-                int pre_id = m_preFrameInfo.m_id(pre_screen_position.x, pre_screen_position.y);
+                int pre_id =
+                    m_preFrameInfo.m_id(pre_screen_position.x, pre_screen_position.y);
                 if (pre_id == id) {
                     m_valid(x, y) = true;
                     m_misc(x, y) =
@@ -65,7 +66,7 @@ void Denoiser::TemporalAccumulation(const Buffer2D<Float3> &curFilteredColor) {
                 int x_end = std::min(width - 1, x + kernelRadius);
                 int y_start = std::max(0, y - kernelRadius);
                 int y_end = std::min(height - 1, y + kernelRadius);
-                
+
                 Float3 mu(0.f);
                 Float3 sigma(0.f);
 
@@ -99,7 +100,7 @@ Buffer2D<Float3> Denoiser::Filter(const FrameInfo &frameInfo) {
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             // TODO: Joint bilateral filter
-            //filteredImage(x, y) = frameInfo.m_beauty(x, y);
+            // filteredImage(x, y) = frameInfo.m_beauty(x, y);
 
             int x_start = std::max(0, x - kernelRadius);
             int x_end = std::min(width - 1, x + kernelRadius);
@@ -121,25 +122,84 @@ Buffer2D<Float3> Denoiser::Filter(const FrameInfo &frameInfo) {
                     auto color = frameInfo.m_beauty(m, n);
 
                     auto d_position = SqrDistance(center_postion, postion) /
-                                        (2.0f * m_sigmaCoord * m_sigmaCoord);
+                                      (2.0f * m_sigmaCoord * m_sigmaCoord);
                     auto d_color = SqrDistance(center_color, color) /
-                                     (2.0f * m_sigmaColor * m_sigmaColor);
+                                   (2.0f * m_sigmaColor * m_sigmaColor);
                     auto d_normal = SafeAcos(Dot(center_normal, normal));
                     d_normal *= d_normal;
                     d_normal / (2.0f * m_sigmaNormal * m_sigmaNormal);
 
                     float d_plane = .0f;
                     if (d_position > 0.f) {
-                        d_plane =
-                            Dot(center_normal, Normalize(postion - center_postion));
+                        d_plane = Dot(center_normal, Normalize(postion - center_postion));
                     }
                     d_plane *= d_plane;
                     d_plane /= (2.0f * m_sigmaPlane * m_sigmaPlane);
 
-                    float weight =
-                        std::exp(-d_plane - d_position - d_color - d_normal);
+                    float weight = std::exp(-d_plane - d_position - d_color - d_normal);
                     total_weight += weight;
                     final_color += color * weight;
+                }
+            }
+
+            filteredImage(x, y) = final_color / total_weight;
+        }
+    }
+    return filteredImage;
+}
+
+Buffer2D<Float3> Denoiser::ATrousWaveletFilter(const FrameInfo &frameInfo) {
+    int height = frameInfo.m_beauty.m_height;
+    int width = frameInfo.m_beauty.m_width;
+    Buffer2D<Float3> filteredImage = CreateBuffer2D<Float3>(width, height);
+    int kernelRadius = 8;
+#pragma omp parallel for
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            // TODO: Joint bilateral filter
+            // filteredImage(x, y) = frameInfo.m_beauty(x, y);
+
+            auto center_postion = frameInfo.m_position(x, y);
+            auto center_normal = frameInfo.m_normal(x, y);
+            auto center_color = frameInfo.m_beauty(x, y);
+
+            Float3 final_color;
+            auto total_weight = .0f;
+
+            int passes = std::log2(kernelRadius / 2);
+            for (int pass = 0; pass < passes; pass++) {
+
+                for (int filterX = -2; filterX <= 2; filterX++) {
+                    for (int filterY = -2; filterY <= 2; filterY++) {
+
+                        int m = x + std::pow(2, pass) * filterX;
+                        int n = y + std::pow(2, pass) * filterY;
+
+                        auto postion = frameInfo.m_position(m, n);
+                        auto normal = frameInfo.m_normal(m, n);
+                        auto color = frameInfo.m_beauty(m, n);
+
+                        auto d_position = SqrDistance(center_postion, postion) /
+                                          (2.0f * m_sigmaCoord * m_sigmaCoord);
+                        auto d_color = SqrDistance(center_color, color) /
+                                       (2.0f * m_sigmaColor * m_sigmaColor);
+                        auto d_normal = SafeAcos(Dot(center_normal, normal));
+                        d_normal *= d_normal;
+                        d_normal / (2.0f * m_sigmaNormal * m_sigmaNormal);
+
+                        float d_plane = .0f;
+                        if (d_position > 0.f) {
+                            d_plane =
+                                Dot(center_normal, Normalize(postion - center_postion));
+                        }
+                        d_plane *= d_plane;
+                        d_plane /= (2.0f * m_sigmaPlane * m_sigmaPlane);
+
+                        float weight =
+                            std::exp(-d_plane - d_position - d_color - d_normal);
+                        total_weight += weight;
+                        final_color += color * weight;
+                    }
                 }
             }
 
@@ -162,7 +222,8 @@ void Denoiser::Maintain(const FrameInfo &frameInfo) { m_preFrameInfo = frameInfo
 Buffer2D<Float3> Denoiser::ProcessFrame(const FrameInfo &frameInfo) {
     // Filter current frame
     Buffer2D<Float3> filteredColor;
-    filteredColor = Filter(frameInfo);
+    // filteredColor = Filter(frameInfo);
+    filteredColor = ATrousWaveletFilter(frameInfo);
 
     // Reproject previous frame color to current
     if (m_useTemportal) {
