@@ -5,10 +5,8 @@ Denoiser::Denoiser() : m_useTemportal(false) {}
 void Denoiser::Reprojection(const FrameInfo &frameInfo) {
     int height = m_accColor.m_height;
     int width = m_accColor.m_width;
-    Matrix4x4 preWorldToScreen =
+    Matrix4x4 pre_World_To_Screen =
         m_preFrameInfo.m_matrix[m_preFrameInfo.m_matrix.size() - 1];
-    Matrix4x4 preWorldToCamera =
-        m_preFrameInfo.m_matrix[m_preFrameInfo.m_matrix.size() - 2];
 #pragma omp parallel for
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -28,7 +26,7 @@ void Denoiser::Reprojection(const FrameInfo &frameInfo) {
             auto pre_world_position =
                 pre_local_to_world(pre_local_position, Float3::EType::Point);
             auto pre_screen_position =
-                preWorldToScreen(pre_world_position, Float3::EType::Point);
+                pre_World_To_Screen(pre_world_position, Float3::EType::Point);
 
             if (pre_screen_position.x < 0 || pre_screen_position.x >= width ||
                 pre_screen_position.y < 0 || pre_screen_position.y >= height) {
@@ -152,7 +150,7 @@ Buffer2D<Float3> Denoiser::ATrousWaveletFilter(const FrameInfo &frameInfo) {
     int height = frameInfo.m_beauty.m_height;
     int width = frameInfo.m_beauty.m_width;
     Buffer2D<Float3> filteredImage = CreateBuffer2D<Float3>(width, height);
-    int kernelRadius = 8;
+    int kernelRadius = 16;
 #pragma omp parallel for
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -222,8 +220,8 @@ void Denoiser::Maintain(const FrameInfo &frameInfo) { m_preFrameInfo = frameInfo
 Buffer2D<Float3> Denoiser::ProcessFrame(const FrameInfo &frameInfo) {
     // Filter current frame
     Buffer2D<Float3> filteredColor;
-    // filteredColor = Filter(frameInfo);
-    filteredColor = ATrousWaveletFilter(frameInfo);
+     filteredColor = Filter(frameInfo);
+    //filteredColor = ATrousWaveletFilter(frameInfo);
 
     // Reproject previous frame color to current
     if (m_useTemportal) {
