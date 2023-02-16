@@ -93,7 +93,7 @@ Buffer2D<Float3> Denoiser::Filter(const FrameInfo &frameInfo) {
     int height = frameInfo.m_beauty.m_height;
     int width = frameInfo.m_beauty.m_width;
     Buffer2D<Float3> filteredImage = CreateBuffer2D<Float3>(width, height);
-    int kernelRadius = 16;
+    int kernelRadius = 32;
 #pragma omp parallel for
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -150,7 +150,6 @@ Buffer2D<Float3> Denoiser::ATrousWaveletFilter(const FrameInfo &frameInfo) {
     int height = frameInfo.m_beauty.m_height;
     int width = frameInfo.m_beauty.m_width;
     Buffer2D<Float3> filteredImage = CreateBuffer2D<Float3>(width, height);
-    int kernelRadius = 16;
 #pragma omp parallel for
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
@@ -164,7 +163,7 @@ Buffer2D<Float3> Denoiser::ATrousWaveletFilter(const FrameInfo &frameInfo) {
             Float3 final_color;
             auto total_weight = .0f;
 
-            int passes = std::log2(kernelRadius / 2);
+            int passes = 5;
             for (int pass = 0; pass < passes; pass++) {
 
                 for (int filterX = -2; filterX <= 2; filterX++) {
