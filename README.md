@@ -39,6 +39,6 @@ GAMES202作业（含提高题）附文章详细讲解
 
 ![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/README_IMGS/games202-homework5_TemporalAccumulation.gif)
 
-[GAMES202-作业4：Kulla-Conty BRDF](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_202/Assignment5)
+[GAMES202-作业5：实时光线追踪降噪](https://github.com/DrFlower/GAMES_101_202_Homework/tree/main/Homework_202/Assignment5)
 
 附知乎GAMES202作业专栏：[手把手教你写GAMES202作业](https://www.zhihu.com/column/c_1591546501603545090)
