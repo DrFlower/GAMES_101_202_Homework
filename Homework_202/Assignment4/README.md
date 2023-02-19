@@ -1,6 +1,6 @@
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_final.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_final.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_top.webp)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_top.webp)
 
 ## 作业总览
 
@@ -36,11 +36,11 @@
 
 ### 预计算E(μ)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_multiple_bounces.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_multiple_bounces.png)
 
 我们要补偿损失的能量，而损失的能量是由于G项只考虑了光线一次弹射，没考虑多次弹射而导致的，而在第一次弹射没能输出的能量，会在后续的弹射中会输出，所以我们有一个基本的思想：被遮挡掉的能量就是会在多次弹射中输出的能量， 也是我们需要补偿的能量。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_Eμ.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_Eμ.png)
 
 先来理一下E(μ)是个什么，E(μ)其实就是某个BRDF一次弹射输出的总能量，计算方式其实就是对反射方程在半球上做积分，课程上给的这个式子写得比较绕，可参考- [GAMES202 作业BBS - [作业4]请教 E(u)的计算](https://games-cn.org/forums/topic/zuoye4qingjiao-eudejisuan/) 中，**ZETAAAAAAAA**的回答来理解。这里为了单位化我们把光照L项取1。
 
@@ -88,7 +88,7 @@ $$
 
 $E(\mu)$的结果是一张二维的表，以roughness和μ作为两个维度。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_E_MC_LUT.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_E_MC_LUT.png)
 
 生成后可以得到一张这样的图。
 
@@ -96,7 +96,7 @@ $E(\mu)$的结果是一张二维的表，以roughness和μ作为两个维度。
 
 ### 预计算Eavg
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_Eμ.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_Eμ.png)
 
 同样我们也先理一下$E_{avg}$是个什么，仍然是看回这张图，前面我们已经求出了某个BRDF一次弹射输出的总能量$E(\mu)$，那么丢失的能量就是$1-E(\mu)$了。
 
@@ -108,7 +108,7 @@ $$
 
 这样公式就考虑上了这两项，而至于c具体是什么，如下图：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_Eavg.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_Eavg.png)
 
 上图$f_{ms}$就是我们设计的描述损失了的能量的BRDF的函数，那么c就是
 $$
@@ -134,7 +134,7 @@ Vec3f IntegrateEmu(Vec3f V, float roughness, float NdotV, Vec3f Ei) {
 
 $E_{avg}$的结果是一张一维的表，以roughness作为参数。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_GGX_Eavg_MC_LUT.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_GGX_Eavg_MC_LUT.png)
 
 最后会生成这样的图片。
 
@@ -250,9 +250,9 @@ $$
 
 最后我们在``Eavg_IS.cpp``补充一样的ImportanceSampleGGX实现，以及与``Eavg_MC.cpp``一样的IntegrateEmu实现，然后把我们最终要用的两张图生成出来。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_GGX_E_LUT.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_GGX_E_LUT.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_GGX_Eavg_LUT.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_GGX_Eavg_LUT.png)
 
 然鹅这张$E_{avg}$比作业上的参考图要亮一些，原因不明。
 ### 实时渲染
@@ -326,7 +326,7 @@ vec3 fresnelSchlick(vec3 F0, vec3 V, vec3 H)
 
 两个Shader都补充同样的实现，这时我们运行起来会得到以下效果：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_brdf_implement.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_brdf_implement.png)
 
 下面一排是只有一次光线弹射的有明显能量损失的微表面BRDF模型，上面一排则是仍未实现完整的Kulla-Conty模型，待我们把实现补充完整后即可看到在roughness越低的时候，Kulla-Conty模型会相对下面那排越亮。
 
@@ -343,13 +343,13 @@ f_{add} = \frac {F_{avg}E_{avg}}{1-F_{avg}(1-E_{avg})}
 $$
 其中$f_{ms}$其实就是我们前面为损失的能量$1 - E(\mu)$设计的BRDF，而这里我们还需要乘一个$f_{add}$，是因为考虑对于有颜色的材质，是有自然存在的能量损失的（这是个物理现象，物体在我们视觉中表示出某种颜色是因为他吸收了其他颜色，反射出这种颜色）。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_average_frensel.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_average_frensel.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_color_term.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_color_term.png)
 
 这个$f_{add}$的计算怎么理解呢，我们定义一个平均的Frensel值$F_{avg}$（Frensel在不同入射角有不同的值，这里我们定义一个在多个入射方向反射n次平均得出的值）。$E_{avg}$应该是指单次弹射出来的能量（PPT中写的是 is how much energy that you can see，个人理解这里有误），$F_{avg}E_{avg}$才是我们看到的，因为首次没出去的能量才参与后续弹射计算，所以once bounce是用$(1-E_{avg})$计算，然后再考虑多次弹射，最终得出上面的$f_{add}$。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_average_frense_reference.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_average_frense_reference.png)
 
 至于$F_{avg}$是怎么来的，作业中参考了这里[Revisiting Physically Based Shading at Imageworks](https://blog.selfshadow.com/publications/s2017-shading-course/imageworks/s2017_pbs_imageworks_slides_v2.pdf)，pdf第26页。
 
@@ -413,4 +413,4 @@ class KullaContyMaterial extends Material {
 
 最后效果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/GAMES202-homework4_final.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment4/README_IMG/GAMES202-homework4_final.png)
