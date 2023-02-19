@@ -1,6 +1,6 @@
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_top.webp)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_top.webp)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_final.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_final.gif)
 ## 作业总览
 
 1. 实现Shadow Map。
@@ -14,7 +14,7 @@
 
 ## 关于作业框架加载不出模型
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_model_disapear.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_model_disapear.png)
 
 作业框架有大概率加载不出202娘，如上图所示。
 
@@ -29,9 +29,9 @@
 
 作业框架由js+webgl实现，js可能不是问题，但对于没有opengl/webgl基础的同学，毕竟在GAMES101/202没讲过图形API的使用，某些流程可能不太理解，这里对核心流程做个简单说明。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadowmap_1.PNG)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadowmap_1.PNG)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadowmap_2.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadowmap_2.png)
 
 先复习一下ShadowMap的原理，相比起直接对场景进行无阴影的渲染，ShadowMap阴影流程需要多一个Pass，第一个Pass是先从光源点向光源方向作为视角渲染出一张深度图，也就是所谓的ShadowMap，第二个Pass再从当前摄像机渲染真实的场景，在渲染场景时把像素点变换到光源空间中，取其在光源空间中的深度与在ShadowMap中同一个uv坐标所记录的深度作对比，若大于ShadowMap上的深度，则该点在阴影中。
 
@@ -194,19 +194,19 @@ useShadowMap的实现很简单，用texture2D传入shadowMap贴图和对应uv坐
 
 完成后我们即可得到下面结果。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_useShadowMap.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_useShadowMap.png)
 
 ### Shadow Bias
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadow_bias.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadow_bias.png)
 
 虽然得到了阴影的结果，但当我们换一个姿势观察的时候发现阴影有点问题，这就是课程中提到的由于ShadowMap精度不足（ShadowMap上的一个像素对应了实际渲染场景中的一片区域，但其实这片区域的深度并不相同）导致的自遮挡问题，称为Shadow Acne。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadowmap_3.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadowmap_3.png)
 
 解决这个问题有很简单的办法，在对比深度时，只需要加上一个自己定义的数值的bias即可。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadowmap_4.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadowmap_4.png)
 
 加上bias后效果如上图，虽然我们解决了原本的问题，但又另外引入了一个新的问题，由bias引起的漏光问题，为了优化漏光的问题，我们需要根据实际场景调整bias的值，但这个值很可能随着环境情况变化而变化，我们或许可以有根据相关参数调节bias值的方法。
 
@@ -266,13 +266,13 @@ visibility = useShadowMap(uShadowMap, vec4(shadowCoord, 1.0), bias, 0.);
 
 然后我们可以得出一下效果
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_shadow_bias2.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_shadow_bias2.png)
 
 可以看到明显改善了Shadow Acne问题。
 
 ### PCF
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcf.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcf.png)
 
 因为ShadowMap是有分辨率的，同样会因为精度问题产生走样，因为对ShadowMap采样后做深度比较是非0即1的结果，导致阴影边界非常生硬。
 
@@ -342,19 +342,19 @@ void main(void) {
 
 使用poissonDiskSamples采样函数，并把``NUM_SAMPLES``调整为50，效果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcf2.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcf2.png)
 
 ### PCSS
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_1.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_1.png)
 
 上图可以看出，在真实的光照阴影中，靠近遮挡物的部分，阴影边界会比较锐利，而远离遮挡物的阴影边界则比较模糊。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_2.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_2.png)
 
 在游戏中，我们可以用PCSS来实现这种近实远虚的软阴影效果。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_4.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_4.png)
 
 PCSS的核心在于，如何确定一个点的虚实程度，一个简单的规则，当这个点离遮挡点越远的时候，阴影显得越虚，当然这个还得跟光源大小等相关，根据相似三角形，我们可以得出公式：
 
@@ -364,13 +364,13 @@ $\large W_{penumbra} = (d_{Receiver} - d_{Blocker}) * W_{light} / d_{Blocker}$
 
 在上述公式中，receiver的深度是已知的，light的大小是我们设定的，那么剩下的是遮挡物blocker的深度了，为了结果更准确，我们在一个范围里计算这个点遮挡物的平均深度，那么我们又有了一个新的问题，这个范围取多少呢？能否根据相关联的数据计算出合适的范围？
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_5.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_5.png)
 
 这张图给了我们一种方案，我们可以从shading point连接到光源，其经过Shadow Map时所截取的面积，就是我们用来求平均深度的采样面积，也就是离光源越近，我们所采样的范围就越大。
 
 那么Light到ShadowMap的距离是一个怎样的概念？这里我们认为ShadowMap在近平面的位置，那距离就是近平面的深度了。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_3.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_3.png)
 
 最后我们来总结一下PCSS的计算步骤：
 
@@ -468,7 +468,7 @@ void main(void) {
 
 最终结果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_pcss_6.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_pcss_6.png)
 
 可以看到能得到很不错的软阴影效果。
 
@@ -818,7 +818,7 @@ for (let i = 0; i < this.meshes.length; i++) {
 
 然后我们来看看效果：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_rotate_1.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_rotate_1.gif)
 
 可以看到202娘已经在旋转了，但是阴影并没有跟着旋转，这是怎么回事呢。
 
@@ -874,7 +874,7 @@ for (let l = 0; l < this.lights.length; l++) {
 
 虽然Shadow Pass是每帧绘制的，但我们没有更新lightMVP矩阵，导致物体变动并没有反映在ShadowMap上，这里我们需要在两个Pass中都每帧更新一下shader中的参数uLightMVP，即可解决阴影不更新的问题。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_clear_shdowmap.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_clear_shdowmap.png)
 
 ```js
 //WebGLRenderer.js
@@ -892,7 +892,7 @@ gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); // 清除shadowmap上一帧
 
 第三行很重要，首先第三行才是真正执行清除的操作，让第二行代码生效，第二行只是一个设置，另外这也是清除掉上一帧ShadowMap数据的操作，不然阴影动起来时会发现阴影会叠加。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_rotate_2.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_rotate_2.gif)
 
 #### 动态多光源
 
@@ -1115,7 +1115,7 @@ for (let l = 0; l < this.lights.length; l++) {
 
 大功告成！这就是文章开头的最终效果：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework1_final.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment1/README_IMG/games202-homework1_final.gif)
 
 
 
