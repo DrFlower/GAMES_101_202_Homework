@@ -1,6 +1,6 @@
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_top.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_top.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_joint_bilateral_filtering.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_joint_bilateral_filtering.png)
 
 ## 作业总览
 
@@ -26,9 +26,9 @@
 
 ### 联合双边滤波
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_ppt_joint_bilateral_filtering.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_ppt_joint_bilateral_filtering.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_ppt_joint_bilateral_filtering_example.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_ppt_joint_bilateral_filtering_example.png)
 
 
 对于降噪，我们可以通过滤波把噪声信号过滤掉，最简单的一种是高斯滤波，高斯滤波对于某个像素的最终颜色会考虑其周围所有像素的颜色贡献，且贡献权重随着像素距离而减少，最终达到去除高频信号的目的。但这种滤波会把物体的边界也模糊掉，我们通常希望只去掉噪声而维持物体边界锐利，所以进一步有了双边滤波，跨越物体的边界常常伴随着颜色的剧烈变化，基于这一点，双边滤波在距离的基础上，考虑上了颜色，若两个像素之间颜色差距越大，则贡献越小，从而保留边缘信息。而联合双边滤波则是考虑更多的参考信息，如深度和法线，从而更好地指导过滤操作。
@@ -114,11 +114,11 @@ Buffer2D<Float3> Denoiser::Filter(const FrameInfo &frameInfo) {
 
 降噪前：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_input.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_input.png)
 
 降噪后：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_joint_bilateral_filtering.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_joint_bilateral_filtering.png)
 
 
 ### 两帧间的投影
@@ -188,7 +188,7 @@ void Denoiser::Reprojection(const FrameInfo &frameInfo) {
 
 ### 两帧间的累积
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_ppt_temporal_clamping.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_ppt_temporal_clamping.png)
 
 把已降噪的当前帧与已降噪的上一帧结合，公式如下：
 
@@ -248,19 +248,19 @@ void Denoiser::TemporalAccumulation(const Buffer2D<Float3> &curFilteredColor) {
 
 TemporalAccumulation实现前：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_Filter.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_Filter.gif)
 
 TemporalAccumulation实现后：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_TemporalAccumulation.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_TemporalAccumulation.gif)
 
 ### A-Trous Wavelet 加速单帧降噪
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_ppt_progressively_growing_sizes.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_ppt_progressively_growing_sizes.png)
 
 课程PPT给的这个图不好理解，一个方面是用一维来演示，另一方面是i=2的情况下是没画完的，很容易被误导了，我另外补充一张图给大家参考理解下。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_A-Trous_Wavelet.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_A-Trous_Wavelet.png)
 
 以$16^2$大小的滤波为例，我们拆成3次$5^2$的滤波，虽然每次采样的像素点都是$5^2$个，但是每轮采样像素点的间隔不一样，间隔以$2^i$增长，且i从0开始。
 
@@ -330,11 +330,11 @@ Buffer2D<Float3> Denoiser::ATrousWaveletFilter(const FrameInfo &frameInfo) {
 
 效果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_A-Trous_Wavelet_frist_frame.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_A-Trous_Wavelet_frist_frame.png)
 
 接上累积帧信息的话，动态效果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework5_A-Trous_Wavelet_final.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment5/README_IMG/games202-homework5_A-Trous_Wavelet_final.gif)
 
 可以看到一开始几帧有比较明显的噪声，后面效果则明显变好。
 
