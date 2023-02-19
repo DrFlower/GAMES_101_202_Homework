@@ -1,6 +1,6 @@
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_top.webp)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_top.webp)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/ganes202-homework2_final.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/ganes202-homework2_final.gif)
 
 ## 作业总览
 
@@ -20,7 +20,7 @@
 
 ### 球谐函数
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_ppt_3.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_ppt_3.png)
 
 可能很多人跟我一样第一次看到这张图时都觉得它抽象到离谱，不过问题不大，作为工程师，我们应该先着重解决工程部分问题，把关于基函数怎么来、为什么等问题先抛到一边，我们只需要知道球谐函数有哪些性质，如何使用球谐函数等即可。
 
@@ -33,7 +33,7 @@
 [球谐光照——球谐函数](https://zhuanlan.zhihu.com/p/153352797)
 ### PRT
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_ppt_1.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_ppt_1.png)
 
 当对球谐函数有基本的了解后，就可以看如何把它应用到我们的PRT实现上了，这部分如果有不清楚的地方，建议重复观看课程第六集``1:10:00-1:25:18``部分，作业要做的基础部分的实现，都在这了，实际上我们要做的事情并不复杂。
 
@@ -120,7 +120,7 @@ $$\widehat{SH}_{coeff} = \displaystyle\sum\limits_{i} L_{env}(\omega_{i}) \mathb
 
 
 ### Diffuse Unshadowed和Diffuse Shadowed传输项球谐系数
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_ppt_2.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_ppt_2.png)
 
 ```cpp
 // prt.cpp
@@ -192,7 +192,7 @@ $$\mathbf L_{DS} = \frac {\rho}{\pi}\int_S L_{i}(x, \omega_{i})V(\omega_{i})max(
 
 ### 导出数据
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_vs_config.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_vs_config.png)
 
 预计算实现完成后，就可以编译启动程序了，但要令程序生成我们需要的预计算数据文件，需要运行程序时传参，传入的参数要求是配置文件``prt.xml``的路径，可以通过命令行传参，也可以把参数填入VS的**命令参数**配置项，这样在VS内启动可以自动传参。
 
@@ -394,14 +394,14 @@ void main(){
 
 下面我们来看看效果：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_mary_none_pi.jfif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_mary_none_pi.jfif)
 
 如果你没有把传输项球谐系数除以π的话，你应该会得到以上结果，很多同学、甚至包括作业pdf中的图2和图3都是上图效果，这应该是一个过亮的错误效果，特别是图3，``skybox``这个cubemap环境下，显示出了与环境非常不协调的过曝效果（这里其实有个坑，``skybox``在预计算中使用的cubemap资源和实时渲染中显示出来的cubemap资源是两套不同画面的资源，所以差异会更大）。
 
 这是一个错误的例子，如果你是根据本文来实现，在传输项球谐系数计算时，最终有把结果除以π的话，是不会得到上图效果的，而是会得到以下效果：
 
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_mary_with_pi.jfif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_mary_with_pi.jfif)
 
 过亮问题没有了，但似乎又太暗了点？作为参考，我们可以找到``prt/scenes``目录下生成的``prt.png``图片来对比，实际上``prt.png``要比我们渲染出来的效果是要亮一点的，那问题出在哪呢？
 
@@ -491,7 +491,7 @@ void main(){
 
 最后我们可以得到以下的画面效果：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework2_mary_with_gamma.jfif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/games202-homework2_mary_with_gamma.jfif)
 
 可见与nori框架下生成的png图片效果一致，到此作业2的基础部分已完成。
 
@@ -527,7 +527,7 @@ var envmap = [
 
 修改上面两行代码后，我们便可以切换到CornellBox了：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/ganes202-homework2_CornellBox.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/ganes202-homework2_CornellBox.png)
 
 
 ### Diffuse Inter-reflection传输项球谐系数
@@ -634,7 +634,7 @@ virtual void preprocess(const Scene *scene) override
 
 编译后，再把各个cubemap数据导出一次，拷贝到实时渲染框架中观察下效果。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/ganes202-homework2_shadowed_inter-reflection_compare.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/ganes202-homework2_shadowed_inter-reflection_compare.png)
 
 上面是Shadowed和interreflection bounce两次情况下的对比，可以看到整体上没有太大差异，但阴影处可以明显看出interreflection情况下原本阴影的地方会更明亮一些。
 
@@ -838,4 +838,4 @@ function mat4Matrix2mathMatrix(rotationMatrix){
 把上面3个问题做了调整后，我们将得到作业的最终效果：
 
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/ganes202-homework2_final.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment2/README_IMG/ganes202-homework2_final.gif)
