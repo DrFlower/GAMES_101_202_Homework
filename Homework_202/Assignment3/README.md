@@ -1,6 +1,6 @@
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_top.jpg)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_top.jpg)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_final.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_final.png)
 
 ## 作业总览
 
@@ -86,14 +86,14 @@ main函数中计算出EvalDiffuse和EvalDirectionalLight所需要的参数，并
 
 结果如下：
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_direct_light.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_direct_light.png)
 
 
 ### Screen Space Ray Tracing
 
 Screen Space Ray Tracing似乎是闫老师的个人喜好叫法，其实就是SSR，我们需要实现RayMarch然后用镜面反射来检查我们的步进方向对不对。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ppt_linear_raymarch.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ppt_linear_raymarch.png)
 
 RayMarch目的是求光线与物体交点，原理就是模拟光线从给定一个起点沿着某个方向每次步进一定的距离，用步进后光线的深度对比光线所在的屏幕坐标的场景物体深度，若光线深度大于场景物体深度，则相交，实现如下：
 
@@ -176,12 +176,12 @@ void main() {
 
 最后在main函数中把之前实现的直接光照换成要测SSR的函数，最后反射效果如下图，RayMarch实现正确。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ssr.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ssr.png)
 
 
 ### 间接光照
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_indirect_light.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_indirect_light.png)
 
 参考作业给出的伪代码实现间接光计算。
 
@@ -269,24 +269,24 @@ loadGLTF(renderer, 'assets/cave/', 'cave', 'SSRMaterial');// 场景3
 SAMPLE_NUM为1时，场景2和场景3的间接光效果如下，可以看到噪点很多，可以自行调整SAMPLE_NUM，减少噪点。
 
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ssgi_cube.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ssgi_cube.png)
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ssgi_cave.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ssgi_cave.png)
 
 
 ### Bonus 1：实现Mipmap优化的 Screen Space Ray Tracing（Hiz优化）
 
 基础部分实现的固定距离步进的Raymarch，在遇到很长距离都没有交点的情况下，仍然会做很多次步进和深度比较，那么有没有办法动态调整步进距离，使得这种情况下可以减少步进次数呢？
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ppt_generate_depth_mipmap.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ppt_generate_depth_mipmap.png)
 
 一个简单的优化思路是，我们使用深度图Mipmap，与常见Mipmap不同，这里使用的Mipmap不是记录更大一层的Mipmap对应的四个像素的平均值，而是记录四个像素的最小值。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ppt_why_depth_mipmap.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ppt_why_depth_mipmap.png)
 
 有了最小深度的Mipmap后，我们相当于有了一个场景深度的加速结构，处于上层的Mipmap中的一个像素对应的深度反映了下层的Mipmap的一片区域的最小深度，如果当前光线与较上层的Mipmap无相交，则与下层的Mipmap也无相交。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_ppt_hierachical_tracing.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_ppt_hierachical_tracing.png)
 
 有了这个结构后，我们就可以动态调整步进距离了，我们可以尝试先步进一个小的距离，若与场景物体无相交，则可以逐步提高当前采样的Mipmap等级，因为高层Mipmap的一个像素对应了低层Mipmap的一个区域，提高了Mipmap等级也意味着步进距离也可以跟着增大了，若在高层Mipmap判断与场景物体有相交，意味着光线在这片区域内存在与场景物体的交点，则需要降低Mipmap等级直到找到具体的相交位置点。
 
@@ -901,7 +901,7 @@ void main(){
 
 fragment shader实现，这里其实是直接“借鉴”上面这篇文章的实现，配合原文应该很好理解，不多做解释了。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_depth_mipmap.gif)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_depth_mipmap.gif)
 
 生成出来的每一层的Mipmap效果预览如上图，因为每提升一个等级，都是取之前一个等级的四周像素的最小值，所以可以看到随着等级提升，黑色像素块是会逐渐“侵占”白色像素块的。
 
@@ -1064,21 +1064,21 @@ bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
 
 写完新的RayMarch实现是需要在前面SSR场景中验证一下步进方向是否正确的，否则在这个cave间接光场景不好观察是否正确，写错了都不知道。把步进方向从上半球采样方向和改成镜面反射方向，把间接光计算改成直接取交点的Diffuse即可。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_raymarch_hiz_ssr_test.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_raymarch_hiz_ssr_test.png)
 
 测试OK。
 
 下面对比一下运行效果吧，环境是2560x1440分辨率，1070ti的桌面显卡。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_cave_sample_num_1.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_cave_sample_num_1.png)
 
 这是SAMPLE_NUM取1时的场景效果。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_raymarch_fps.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_raymarch_fps.png)
 
 这是没有hiz优化的RayMarch的帧率，8.59 FPS。
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_raymarch_hiz_fps.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_raymarch_hiz_fps.png)
 
 这是有hiz优化的RayMarch_Hiz的帧率，16.86 PS。
 
@@ -1086,4 +1086,4 @@ bool RayMarch_Hiz(vec3 ori, vec3 dir, out vec3 hitPos) {
 
 最后贴一张SAMPLE_NUM为32时的效果吧！
 
-![](https://blog-1300673521.cos.ap-guangzhou.myqcloud.com/games202-homework3_final.png)
+![](https://github.com/DrFlower/GAMES_101_202_Homework/blob/main/Homework_202/Assignment3/README_IMG/games202-homework3_final.png)
