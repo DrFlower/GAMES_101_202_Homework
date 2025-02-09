@@ -194,43 +194,43 @@ vec3 EvalReflect(vec3 wi, vec3 wo, vec2 uv) {
 
 ivec2 getCellCount(int level){
   if(level == 0){
-    return textureSize(uDepthTexture[0], level);
+    return textureSize(uDepthTexture[0], 0);
   }
   else if(level == 1){
-    return textureSize(uDepthTexture[1], level);
+    return textureSize(uDepthTexture[1], 0);
   }
   else if(level == 2){
-    return textureSize(uDepthTexture[2], level);
+    return textureSize(uDepthTexture[2], 0);
   }
     else if(level == 3){
-    return textureSize(uDepthTexture[3], level);
+    return textureSize(uDepthTexture[3], 0);
   }
     else if(level == 4){
-    return textureSize(uDepthTexture[4], level);
+    return textureSize(uDepthTexture[4], 0);
   }
     else if(level == 5){
-    return textureSize(uDepthTexture[5], level);
+    return textureSize(uDepthTexture[5], 0);
   }
     else if(level == 6){
-    return textureSize(uDepthTexture[6], level);
+    return textureSize(uDepthTexture[6], 0);
   }
     else if(level == 7){
-    return textureSize(uDepthTexture[7], level);
+    return textureSize(uDepthTexture[7], 0);
   }
     else if(level == 8){
-    return textureSize(uDepthTexture[8], level);
+    return textureSize(uDepthTexture[8], 0);
   }
     else if(level == 9){
-    return textureSize(uDepthTexture[9], level);
+    return textureSize(uDepthTexture[9], 0);
   }
     else if(level == 10){
-    return textureSize(uDepthTexture[10], level);
+    return textureSize(uDepthTexture[10], 0);
   }
     else if(level == 11){
-    return textureSize(uDepthTexture[11], level);
+    return textureSize(uDepthTexture[11], 0);
   }
 
-  return textureSize(uDepthTexture[0], level);
+  return textureSize(uDepthTexture[0], 0);
 }
 
 ivec2 getCell(vec2 pos, ivec2 startCellCount){
